@@ -5,59 +5,38 @@
     </router-link>
     Getty
     <!-- 로고 옆으로 조정해보기 -->
-    <!-- <div class="justify-content-end ">
-      <router-link :to="{ name: 'About' }" class=" nav-link">로그인</router-link>
-    </div> -->
-  <nav class="navbar sticky-top navbar-expand-lg navbar-success bg-dark" id="navbar">
-  <div class="container-fluid">
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <span v-if="isLogin">
-        <ul class="navbar-nav">
+    <!-- <div class="justify-content-end "> -->
+      <!-- <router-link :to="{ name: 'About' }" class="nav-link">로그인</router-link> -->
+    <!-- </div> -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <router-link :to="{ name: 'Mypage' }" class="text-light nav-link">마이페이지</router-link>
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <router-link @click.native="logout" to="#" class="text-light nav-link" text-decoration: none>로그아웃</router-link>
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
           </li>
         </ul>
-      </span>
-      <span v-else>
-        <ul class="nav">
-          <!-- <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="http://localhost:8080/loanList" style="color: white">금융서비스</a>
-          </li> -->
-          <!-- <li class="nav-item">
-            <router-link :to="{ name: 'About' }" class="text-light nav-link">로그인</router-link>
-          </li> -->
-        </ul>
-      </span>
+      </div>
     </div>
-    <div class="container-fluid justify-content-center">
-      <ul class="nav nav-pills">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Active</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Separated link</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <br>
-</nav>
+  </nav>
 </div>
 </template>
 
