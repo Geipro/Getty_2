@@ -15,6 +15,9 @@
     <span v-else>
       <ul>
         <li>
+          <router-link :to="{ name: 'Mypage' }" class="text-light nav-link">마이페이지</router-link>
+        </li>
+        <li>
           <router-link :to="{ name: 'About' }" class="text-light nav-link">로그인</router-link>
         </li>
         <li>

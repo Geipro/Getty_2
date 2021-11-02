@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <Navbar/>
+    <br>
     <MainPageCenter />
     <!-- <MainPageBottom /> -->
   </div>

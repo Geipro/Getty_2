@@ -14,8 +14,11 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  background-color: #000000;
+  color: white;
+  background-color: #36454f;
+  min-height: 100vh;
+  position: relative;
+  width: 100%;
 }
 
 #nav {
