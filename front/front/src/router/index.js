@@ -33,6 +33,11 @@ const routes = [
     name: 'Myreview',
     component: Myreview
   },
+  {
+    path: '/board',
+    name: 'Board',
+    component: () => import('../views/Board.vue')
+  }
 ]
 
 const router = new VueRouter({

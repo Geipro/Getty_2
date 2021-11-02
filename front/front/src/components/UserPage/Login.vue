@@ -4,7 +4,7 @@
         <div class="myform form">
             <div class="logo mb-3">
                 <div class="col-md-12 text-center">
-                    <h1>Login</h1>
+                    <h1 class="text-light" >Login</h1>
                 </div>
             </div>
             <form action="#" method="post" name="login" class=" form-signin ">
@@ -28,9 +28,9 @@
                     </div>
                 </div>
                 <div class="form-group mt-3">
-                    <a href="#" class="mr-5" id="signup" @click="signup">회원가입</a>
-                    <a class="ml-5 mr-5">           |            </a>
-                    <a href="#" id="changePw" @click="changePw">비밀번호 찾기</a>
+                    <a href="#" class="mr-5 text-light" id="signup" @click="signup">회원가입</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<a class="ml-5 mr-5 text-light">|</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="#" class="text-light" id="changePw" @click="changePw">비밀번호 찾기</a>
                 </div>
             </form>        
         </div>

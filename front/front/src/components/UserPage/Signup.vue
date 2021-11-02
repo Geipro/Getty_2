@@ -4,7 +4,7 @@
     <div class="myform form">
       <div class="logo mb-3">
         <div class="col-md-12 text-center">
-          <h1>Signup</h1>
+          <h1 class="text-light" >Signup</h1>
         </div>
       </div>
       <form 
@@ -13,14 +13,14 @@
       >
         <div class="form-group mb-2">
           <div class="d-flex justify-content-between">
-            <label for="exampleInputUsername text-left float-left">이름</label>
+            <label class="text-light" for="exampleInputUsername text-left float-left">이름</label>
           </div>
           <input type="text"  name="username" v-model="credential.username"
           class="form-control" id="username" aria-describedby="emailHelp" placeholder="이름">
         </div>
         <div class="form-group mb-2">
           <div class="d-flex justify-content-between">
-            <label for="exampleInputEmail1">닉네임</label> 
+            <label class="text-light" for="exampleInputEmail1">닉네임</label> 
             
           </div>
           <input type="text"  name="nickname" v-model="credential.nickname"
@@ -28,7 +28,7 @@
         </div>
         <div class="form-group mb-2">
           <div class="d-flex justify-content-between">
-            <label for="exampleInputId">아이디</label>
+            <label class="text-light" for="exampleInputId">아이디</label>
             
           </div>
           <input type="id" name="id" v-validate="'required'" v-model="credential.id" data-vv-as="ID"
@@ -37,14 +37,14 @@
         </div>
         <div class="form-group mb-2">
           <div class="d-flex justify-content-between">
-            <label for="exampleInputEmail1">전화번호</label> 
+            <label class="text-light" for="exampleInputEmail1">전화번호</label> 
           </div>
           <input type="tel" name="phone" v-validate="'digits:11'" v-model="credential.phoneNum" data-vv-as="PhoneNumber"
           class="form-control" :class="{error: errors.has('phone')}" id="phone" aria-describedby="phoneHelp" placeholder="01012345678">
         </div>
         <div class="form-group mb-2">
           <div class="d-flex justify-content-between">
-            <label for="">비밀번호</label>
+            <label class="text-light" for="">비밀번호</label>
           </div>
           <input type="password" ref="password" name="password" v-validate="'required|min:6'" v-model="credential.password" data-vv-as="Password"
           class="form-control" :class="{error: errors.has('password')}"  id="password" aria-describedby="password" placeholder="Enter Password">
@@ -52,7 +52,7 @@
         </div>
         <div class="form-group mb-2">
           <div class="d-flex justify-content-between">
-            <label for="exampleInputEmail1">비밀번호 확인</label>
+            <label class="text-light" for="exampleInputEmail1">비밀번호 확인</label>
           </div>
           <input type="password" name="passwordConfirmation" v-validate="'confirmed:password'" v-model="credential.passwordConfirmation" data-vv-as="Password Confirmation"
           class="form-control" :class="{error: errors.has('passwordConfirmation')}"  id="passwordConfirmation" aria-describedby="passwordConfirmationHelp" placeholder="Enter Password One More">
@@ -65,7 +65,7 @@
         </div>
         <div class="col-md-12 ">
           <div class="form-group">
-              <p class="text-center"><a href="#" @click="login">로그인</a></p>
+              <p class="text-center"><a class="text-light" href="#" @click="login">로그인</a></p>
           </div>
         </div>
       </form>
