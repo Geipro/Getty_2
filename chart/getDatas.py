@@ -1,5 +1,6 @@
 import requests
 import json
+import math
 
 check_list = []
 
@@ -33,10 +34,16 @@ for coin in check_list[:1]:
     tot_URL = url + coin
     res = requests.get(tot_URL).json()[0]
     print(res)
-    coin_object[coin]['price'] = res['trade_price']
+    pri = res['trade_price']
+    hi_pri = res['highest_52_week_price']
+    low_pri = res['lowest_52_week_price']
+    coin_object[coin]['price'] = pri
     coin_object[coin]['day_chage_price'] = res['signed_change_price']
     coin_object[coin]['day_change_rate'] = res['signed_change_rate']
-    
+    coin_object[coin]['highest_52_week_price'] = hi_pri
+    coin_object[coin]['highest_52_week_rate'] = round((hi_pri - pri)/hi_pri*100, 2)
+    coin_object[coin]['lowest_52_week_price'] = low_pri
+    coin_object[coin]['lowest_52_week_rate'] = round((pri - low_pri)/low_pri*100, 2)
     print(coin_object[coin])
 
     # print(res)
