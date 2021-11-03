@@ -1,7 +1,8 @@
 <template>
     <div class="board text-center container">
         <h1 class="mb-5">자유게시판</h1>
-		<table class="table table-dark table-striped table-bordered table-hover col-md-12 text-center text-light">
+        <b-table dark striped hover bordered :items="items" :fields="fields"></b-table>
+		<!-- <b-table class="table table-dark table-striped table-bordered table-hover col-md-12 text-center text-light">
 			<colgroup>
 				<col style="width:10%">
 				<col style="width:*">
@@ -24,18 +25,37 @@
 					<td>{{boardItem.writedate}}</td>
 				</tr>
 			</tbody>
-		</table>
+		</b-table> -->
         <div class="mt-5 mb-4 flow-row float-right justify-content-end" >
-            <b-button variant="primary" class="">글쓰기</b-button>
+            <b-button variant="primary" class="" @click="write">글쓰기</b-button>
         </div>
     </div>
 </template>
 
 <script>
+import data from '@/data'
 export default {
     name: 'BoardList',
     data (){
         return{
+            items: data.Content,
+            fields: [
+                {
+                    key: 'content_id',
+                    label : '번호',
+                    sortable: true
+                },
+                {
+                    key: 'title', 
+                    label : '제목',
+                    sortable: false
+                },
+                {
+                    key:'created_at',
+                    label:'생성일',
+                    sortable: false,
+                }
+            ],
             boardList:[
                 {
                     "no": 1,
@@ -85,6 +105,11 @@ export default {
     methods:{
         getList(){
             //axios
+        },
+        write(){
+            this.$router.push({
+                path:'/boardCreate'
+            })
         }
     }
 }
