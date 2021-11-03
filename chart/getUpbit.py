@@ -17,7 +17,6 @@ def get_coin_symbol():
     for li in res:
         if 'KRW' in str(li.values()):
             coin_sym = li['market']
-            coin_name = list(li.values())[1]
             coin_object[f'{coin_sym}'] = dict()
             coin_object[f'{coin_sym}']['name'] = str(list(li.values())[1])
             coin_object[f'{coin_sym}']['sym'] = str(coin_sym)[4:]
