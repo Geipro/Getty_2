@@ -1,8 +1,8 @@
 <template>
-  <div class="color5">
+  <div>
     <div>
       <h1 style="color:white">
-        회원 정보 수정
+        개인 정보 수정
       </h1>
       <br>
       <!-- 정보는 기존 data를 가져와야 됨 -->
@@ -78,7 +78,7 @@ export default {
 </script>
 
 <style>
-.color1{
+/* .color1{
   background-color: #cff0da !important;
 }
 .color2{
@@ -92,5 +92,5 @@ export default {
 }
 .color5{
   background-color: #fFFFF3 !important;
-}
+} */
 </style>

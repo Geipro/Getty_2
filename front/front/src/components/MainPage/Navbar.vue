@@ -1,6 +1,5 @@
 <template>
 <div>
-
   <div class="d-flex justify-content-end">
     <span v-if="isLogin">
       <ul class="ulist">
@@ -33,15 +32,11 @@
       <img src="@/assets/logo.png" style="width:70px">
     </router-link>
     Getty
-    <!-- 로고 옆으로 조정해보기 -->
-    <!-- <div>
-      <router-link :to="{ name: 'About' }" class="nav-link">로그인</router-link>
-    </div> -->
   </div>
-
+  <div>
     <b-navbar type="dark" variant="#2c3e50" class="justify-content-center">
-      <b-navbar-nav style="pa-5">
-        <!-- 탭 간격 띄우기/ hover 기능은 필요시 할까? 핵심은 아니니  ml pa 적용이 안되네-->
+      <b-navbar-nav>
+        <!-- 탭 간격 띄우기-->
         <!-- Navbar dropdowns -->
         <b-nav-item-dropdown text="금융 상품 정보" right>
           <b-dropdown-item href="#">예금</b-dropdown-item>
@@ -64,6 +59,7 @@
         </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-navbar>
+  </div>
 </div>
 </template>
 
@@ -96,25 +92,6 @@ export default {
 </script>
 
 <style scoped>
-/* h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-} */
-
-/* #navbar {
-  font-family: 'Noto Sans KR', sans-serif;
-} */
-
 .ulist {
    list-style: none;
 }
@@ -124,5 +101,11 @@ ul {
 }
 li {
   display: inline-block;
+}
+
+.navbar-expand .navbar-nav .nav-link {
+    padding-right: 5rem;
+    padding-left: 5rem;
+    /* padding-top: 1rem; */
 }
 </style>

@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> | 
+      <router-link to="/about">About</router-link> |
       <router-link to="/board">Board</router-link>
     </div>
     <router-view/>
@@ -16,7 +16,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: white;
-  background-color: #36454f;
+  background-color: #1f2325;
   min-height: 100vh;
   position: relative;
   width: 100%;
@@ -34,4 +34,5 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
 </style>

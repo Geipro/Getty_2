@@ -10,16 +10,6 @@
           </router-link>
         </li>
         <br>
-        <!-- 사용 안 할 듯 -->
-        <!-- <li class="nav-item">
-          <router-link
-            :to="{ name: 'OrderCheck' }"
-          >
-            비밀번호 수정
-          </router-link>
-        </li>
-        <br> -->
-
         <!-- props/ emit으로 해보기 -->
         <li class="nav-item">
           <router-link

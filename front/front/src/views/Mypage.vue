@@ -3,12 +3,12 @@
     <Navbar />
     <br>
     <br>
-
     <div class="row">
-      <div class="col-2">
+      <div class="col-2 d-flex justify-content-center align-items-center">
         <MypageSide/>
       </div>
-      <div class="col-10">
+      <!-- d-flex justify-content-center align-items-center 빼면 길어짐 -->
+      <div class="col-8 d-flex justify-content-center align-items-center">
         <UserInformationModify/>
       </div>
     </div>

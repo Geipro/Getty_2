@@ -1,11 +1,13 @@
 <template>
   <div>
     <Navbar />
+    <br>
+    <br>
     <div class="row">
-      <div class="col-2">
+      <div class="col-2 d-flex justify-content-center align-items-center">
         <MypageSide/>
       </div>
-      <div class="col-10">
+      <div class="col-8">
         <WriteList/>
       </div>
     </div>
