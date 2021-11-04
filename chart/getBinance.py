@@ -6,10 +6,9 @@ url = 'https://api.binance.com/api/v3/ticker/'
 
 res = requests.get(url+'price').json()[0]
 
-print(res)
+print(int(float(res['price'])*bitcoin_price))
 
 res = requests.get(url+'24hr').json()[0]
 
-print(res)
 
 print(bitcoin_price)

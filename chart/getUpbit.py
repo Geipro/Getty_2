@@ -17,9 +17,9 @@ def get_coin_symbol():
     for li in res:
         if 'KRW' in str(li.values()):
             coin_sym = li['market']
-            coin_object[f'{coin_sym}'] = dict()
-            coin_object[f'{coin_sym}']['name'] = str(list(li.values())[1])
-            coin_object[f'{coin_sym}']['sym'] = str(coin_sym)[4:]
+            coin_object[coin_sym] = dict()
+            coin_object[coin_sym]['name'] = str(list(li.values())[1])
+            coin_object[coin_sym]['sym'] = str(coin_sym)[4:]
             check_list.append(coin_sym)
 
 
@@ -34,6 +34,7 @@ def update_coin_data():
         pri = res['trade_price']
         hi_pri = res['highest_52_week_price']
         low_pri = res['lowest_52_week_price']
+        trade_vol = res['acc_trade_price_24h']
         coin_object[coin]['price'] = pri
         coin_object[coin]['day_chage_price'] = res['signed_change_price']
         coin_object[coin]['day_change_rate'] = res['signed_change_rate']
@@ -41,6 +42,8 @@ def update_coin_data():
         coin_object[coin]['highest_52_week_rate'] = round((hi_pri - pri)/hi_pri*100, 2)
         coin_object[coin]['lowest_52_week_price'] = low_pri
         coin_object[coin]['lowest_52_week_rate'] = round((pri - low_pri)/low_pri*100, 2)
+        coin_object[coin]['acc_trade_price_24h'] = trade_vol
+        coin_object[coin]['acc_trade_won_24h'] = int(trade_vol*pri)
         print(coin_object[coin])
 
 if __name__ == '__main__':
