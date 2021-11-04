@@ -16,7 +16,7 @@ from common.consts import (
 
 models.Base.metadata.create_all(bind=engine)
 
-app = FastAPI()
+app = FastAPI(root_path="/backend")
 
 # Cors
 origins = []
