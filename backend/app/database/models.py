@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, ForeignKey, String, Integer, Date
+from sqlalchemy import Boolean, Column, ForeignKey, String, Integer, Date, Text
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql.expression import null
 from sqlalchemy.sql.sqltypes import DateTime
@@ -6,10 +6,10 @@ from sqlalchemy.sql.sqltypes import DateTime
 from .database import Base
 
 
-class Client(Base):
-    __tablename__ = "client"
+class User(Base):
+    __tablename__ = "user"
 
-    cid = Column(
+    uid = Column(
         Integer,
         primary_key=True,
         autoincrement=True,
@@ -26,3 +26,48 @@ class Client(Base):
     job = Column(String(45), nullable=False, comment="직업")
     birth = Column(String(45), nullable=False, comment="생년월일")
     sex = Column(Integer, nullable=False, comment="성별")
+
+
+class Post(Base):
+    __tablename__ = "post"
+
+    pid = Column(
+        Integer, primary_key=True, autoincrement=True, nullable=False, comment="게시글 ID"
+    )
+    uid = Column(
+        Integer,
+        ForeignKey("user.uid", ondelete="RESTRICT", onupdate="RESTRICT"),
+        nullable=False,
+        comment="고객 ID",
+    )
+
+    title = Column(String(100), nullable=False, comment="제목")
+    content = Column(Text, nullable=False, comment="내용")
+    hit = Column(Integer, nullable=False, comment="조회수", default=0)
+
+    create_date = Column(Date, nullable=False, comment="작성일")
+
+    # is_parent = Column(Boolean, nullable=False, comment="게시글/댓글 구별")
+
+
+class Comment(Base):
+    __tablename__ = "comment"
+
+    cid = Column(
+        Integer, primary_key=True, autoincrement=True, nullable=False, comment="댓글 ID"
+    )
+    uid = Column(
+        Integer,
+        ForeignKey("user.uid", ondelete="RESTRICT", onupdate="RESTRICT"),
+        nullable=False,
+        comment="고객 ID",
+    )
+    pid = Column(
+        Integer,
+        ForeignKey("post.pid", ondelete="RESTRICT", onupdate="RESTRICT"),
+        nullable=False,
+        comment="게시글 ID",
+    )
+
+    content = Column(Text, nullable=False, comment="내용")
+    create_date = Column(Date, nullable=False, comment="작성일")
