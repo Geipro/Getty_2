@@ -28,7 +28,8 @@
   </div>
 
 
-  <div style="color: white" class="justify-content-center bg-#2c3e50 mb-4">
+  <div class="justify-content-center mb-4 title-style">
+  <!-- <div style="color: white font-size: 300px" class="justify-content-center bg-#2c3e50 mb-4"> -->
     <router-link :to="{ name: 'Home' }">
       <img src="@/assets/logo.png" style="width:70px">
     </router-link>
@@ -36,25 +37,24 @@
   </div>
   <div>
     <b-navbar type="dark" variant="#2c3e50" class="justify-content-center">
-      <b-navbar-nav class="m">
-        <!-- 탭 간격 띄우기-->
+      <b-navbar-nav>
         <!-- Navbar dropdowns -->
-        <b-nav-item-dropdown text="금융 상품 정보" right>
+        <b-nav-item-dropdown text="금융 상품 정보" right class="nav-margin">
           <b-dropdown-item href="#">예금</b-dropdown-item>
           <b-dropdown-item href="#">적금</b-dropdown-item>
           <b-dropdown-item href="#">신용대출</b-dropdown-item>
           <b-dropdown-item href="#">주택담보대출</b-dropdown-item>
         </b-nav-item-dropdown>
 
-        <b-nav-item href="#">주요 뉴스</b-nav-item>
-        <b-nav-item-dropdown text="커뮤니티" right>
+        <b-nav-item href="#" class="nav-margin">주요 뉴스</b-nav-item>
+        <b-nav-item-dropdown text="커뮤니티" right class="nav-margin">
           <b-dropdown-item href="#">EN</b-dropdown-item>
           <b-dropdown-item href="#">ES</b-dropdown-item>
           <b-dropdown-item href="#">RU</b-dropdown-item>
           <b-dropdown-item href="#">FA</b-dropdown-item>
         </b-nav-item-dropdown>
 
-        <b-nav-item-dropdown text="거래소" right>
+        <b-nav-item-dropdown text="거래소" right class="nav-margin">
           <b-dropdown-item href="#">Account</b-dropdown-item>
           <b-dropdown-item href="#">Settings</b-dropdown-item>
         </b-nav-item-dropdown>
@@ -96,17 +96,23 @@ export default {
 .ulist {
    list-style: none;
 }
-
 ul {
   padding: 0;
 }
 li {
   display: inline-block;
 }
-
-.navbar-expand .navbar-nav .nav-link {
-    padding-right: 5rem;
-    padding-left: 5rem;
+.nav-margin{
+    padding-right: 4rem;
+    padding-left: 4rem;
     /* padding-top: 1rem; */
+    color: white;
 }
+.title-style {
+  color: white;
+  font-size: 2.5rem;
+  background-color: #1f2325;
+  /* background-color: #2c3e50; */
+}
+
 </style>
