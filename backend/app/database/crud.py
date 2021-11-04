@@ -5,14 +5,22 @@ from datetime import date
 import bcrypt
 
 
+def get_user_by_uid(db: Session, uid: int):
+    return db.query(models.User).filter(models.User.uid == uid).first()
+
+
 def get_user_by_userid(db: Session, user_id: str):
-    return db.query(models.Client).filter(models.Client.user_id == user_id).first()
+    return db.query(models.User).filter(models.User.user_id == user_id).first()
+
+
+def get_user_post_by_uid(db: Session, uid: int):
+    return db.query(models.Post).filter(models.Post.uid == uid).all()
 
 
 def create_user(db: Session, user: schemas.UserCreate):
     hashed_password = bcrypt.hashpw(user.user_pw.encode("utf-8"), bcrypt.gensalt())
     create_now = date.today()
-    db_user = models.Client(
+    db_user = models.User(
         user_id=user.user_id,
         user_pw=hashed_password,
         user_name=user.user_name,
@@ -29,3 +37,25 @@ def create_user(db: Session, user: schemas.UserCreate):
     db.refresh(db_user)
 
     return db_user
+
+
+def create_post(db: Session, post: schemas.PostCreate, uid: int):
+    create_now = date.today()
+    db_post = models.Post(
+        title=post.title,
+        content=post.content,
+        hit=0,
+        uid=uid,
+        create_date=create_now,
+    )
+
+    db.add(db_post)
+    db.commit()
+    db.refresh(db_post)
+
+    return db_post
+
+
+# def create_comment(db: Session, post: schemas.CommentCreate):
+#     create_now = date.today()
+#     db_comment = models.Post(t)
