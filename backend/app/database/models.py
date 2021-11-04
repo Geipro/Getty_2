@@ -18,7 +18,7 @@ class Client(Base):
     )
     user_name = Column(String(45), nullable=True, comment="고객 이름")
     user_id = Column(String(45), nullable=True, comment="고객 ID")
-    user_pw = Column(String(45), nullable=True, comment="고객 PW")
+    user_pw = Column(String(300), nullable=True, comment="고객 PW")
     create_date = Column(Date, nullable=True, comment="생성 날짜")
     phone_number = Column(String(45), nullable=True, comment="전화 번호")
 
