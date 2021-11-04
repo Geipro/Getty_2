@@ -1,5 +1,4 @@
 from datetime import date
-from typing import List, Optional
 from pydantic import BaseModel
 
 
@@ -41,7 +40,7 @@ class Token(BaseModel):
 
 
 class UserToken(BaseModel):
-    cid: int
+    uid: int
     user_id: str
     # user_pw: str
     user_name: str
@@ -50,3 +49,16 @@ class UserToken(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class PostCreate(BaseModel):
+    title: str
+    content: str
+
+    create_date: date
+
+    class Config:
+        orm_mode = True
+
+
+# class CommentCreate(BaseModel):
