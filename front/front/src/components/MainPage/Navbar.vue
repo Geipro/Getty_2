@@ -13,6 +13,7 @@
     </span>
     <span v-else>
       <ul>
+        <!-- login 적용하면 마이페이지는 제거 -->
         <li>
           <router-link :to="{ name: 'Mypage' }" class="text-light nav-link">마이페이지</router-link>
         </li>
@@ -27,7 +28,7 @@
   </div>
 
 
-  <div style="color: white" class="justify-content-center bg-#2c3e50">
+  <div style="color: white" class="justify-content-center bg-#2c3e50 mb-4">
     <router-link :to="{ name: 'Home' }">
       <img src="@/assets/logo.png" style="width:70px">
     </router-link>
@@ -35,7 +36,7 @@
   </div>
   <div>
     <b-navbar type="dark" variant="#2c3e50" class="justify-content-center">
-      <b-navbar-nav>
+      <b-navbar-nav class="m">
         <!-- 탭 간격 띄우기-->
         <!-- Navbar dropdowns -->
         <b-nav-item-dropdown text="금융 상품 정보" right>

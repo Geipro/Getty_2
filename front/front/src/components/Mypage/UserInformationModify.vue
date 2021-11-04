@@ -16,12 +16,11 @@
           ></b-form-input>
         </b-form-group>
 
-
+        <br>
         <b-form-group
           id="input-group-1"
           label="Email address"
           label-for="input-1"
-          description="We'll never share your email with anyone else."
         >
           <b-form-input
             id="input-1"
@@ -51,7 +50,6 @@ export default {
           food: null,
           checked: []
         },
-        foods: [{ text: 'Select One', value: null }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
         show: true
       }
     },
@@ -78,19 +76,5 @@ export default {
 </script>
 
 <style>
-/* .color1{
-  background-color: #cff0da !important;
-}
-.color2{
-  background-color: #88dba3 !important;
-}
-.color3{
-  background-color: #dadbdb !important;
-}
-.color4{
-  background-color: #3ac569 !important;
-}
-.color5{
-  background-color: #fFFFF3 !important;
-} */
+
 </style>

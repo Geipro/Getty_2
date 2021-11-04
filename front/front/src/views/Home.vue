@@ -2,7 +2,10 @@
   <div class="home">
     <Navbar/>
     <br>
-    <MainPageCenter />
+
+    <div class="d-flex justify-content-center align-items-center">
+      <MainPageCenter />
+    </div>
     <!-- <MainPageBottom /> -->
   </div>
 </template>
