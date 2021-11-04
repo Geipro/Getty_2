@@ -1,4 +1,3 @@
-import abc
 from datetime import date
 from typing import List, Optional
 from pydantic import BaseModel
@@ -29,3 +28,25 @@ class UserCreate(BaseModel):
     job: str
     birth: str
     sex: int
+
+
+# signin
+class UserLogin(BaseModel):
+    user_id: str
+    user_pw: str
+
+
+class Token(BaseModel):
+    Authorization: str
+
+
+class UserToken(BaseModel):
+    cid: int
+    user_id: str
+    # user_pw: str
+    user_name: str
+    phone_number: str
+    # create_date: date
+
+    class Config:
+        orm_mode = True
