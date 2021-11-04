@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from typing import Optional
-from fastapi import FastAPI, APIRouter, Depends, HTTPException
+from fastapi import FastAPI, APIRouter, Depends, HTTPException, Header
 from fastapi.middleware.cors import CORSMiddleware
 
 import bcrypt, jwt
@@ -47,7 +47,7 @@ def create_access_token(*, data: dict = None, expires_delta: int = None):
 
 
 @app.post("/signup", status_code=200, response_model=schemas.User)
-async def signup(user_info: schemas.UserCreate, db: Session = Depends(get_db)):
+async def sign_up(user_info: schemas.UserCreate, db: Session = Depends(get_db)):
     """
     `회원가입 API`\n
     :param user:s
@@ -62,7 +62,7 @@ async def signup(user_info: schemas.UserCreate, db: Session = Depends(get_db)):
 
 
 @app.post("/signin", status_code=200, response_model=schemas.Token)
-async def signin(user_info: schemas.UserLogin, db: Session = Depends(get_db)):
+async def sign_in(user_info: schemas.UserLogin, db: Session = Depends(get_db)):
     """
     `로그인 API`\n
     :param user_info:
@@ -74,19 +74,86 @@ async def signin(user_info: schemas.UserLogin, db: Session = Depends(get_db)):
             status_code=400, detail="user_id and user_pw must be provided"
         )
 
-    get_user = crud.get_user_by_userid(db, user_id=user_info.user_id)
-    if not get_user:
+    is_exist = crud.get_user_by_userid(db, user_id=user_info.user_id)
+    if not is_exist:
         raise HTTPException(status_code=400, detail="no match user")
 
-    pw_verified = bcrypt.checkpw(
-        user_info.user_pw.encode("utf-8"), get_user.user_pw.encode("utf-8")
+    is_verified = bcrypt.checkpw(
+        user_info.user_pw.encode("utf-8"), is_exist.user_pw.encode("utf-8")
     )
 
-    if not pw_verified:
+    if not is_verified:
         raise HTTPException(status_code=400, detail="No match user : Wrong password")
 
     token = dict(
-        Authorization=f"{create_access_token(data=schemas.UserToken.from_orm(get_user).dict(exclude={'user_pw', 'create_date'}),)}"
+        Authorization=f"{create_access_token(data=schemas.UserToken.from_orm(is_exist).dict(exclude={'user_pw', 'create_date'}))}"
     )
 
     return token
+
+
+@app.get("/test/get_user", status_code=200)
+async def get_user(db: Session = Depends(get_db), token: str = Header(None)):
+    """
+    `토큰 decode test`\n
+    :header token:
+    :return:
+    """
+    if token == None:
+        raise HTTPException(status_code=400, detail="Header doesn't have Auth Token")
+    payload = jwt.decode(token, JWT_SECRET, algorithms=JWT_ALGORITHM)
+    user_id = payload.get("user_id")
+    if user_id is None:
+        raise HTTPException(status_code=400, detail="NO_MATCH_USER")
+    user = crud.get_user_by_userid(db, user_id=user_id)
+
+    return user
+
+
+@app.get("/post", status_code=200)
+async def get_my_post(
+    token: str = Header(None),
+    db: Session = Depends(get_db),
+):
+    """
+    `게시글 생성`
+    :header token:
+    :param db:
+    :param post_id:
+    :return:
+    """
+    if token == None:
+        raise HTTPException(status_code=400, detail="Header doesn't have Auth Token")
+    payload = jwt.decode(token, JWT_SECRET, algorithms=JWT_ALGORITHM)
+    user_id = payload.get("user_id")
+    if user_id is None:
+        raise HTTPException(status_code=400, detail="NO_MATCH_USER")
+    # print("test gogo")
+    user = crud.get_user_by_userid(db, user_id=user_id)
+
+    return crud.get_user_post_by_uid(db=db, uid=user.uid)
+
+
+@app.post("/post", status_code=200)
+async def create_post(
+    post_info: schemas.PostCreate,
+    token: str = Header(None),
+    db: Session = Depends(get_db),
+):
+    """
+    `게시글 생성`
+    :header token:
+    :param db:
+    :param post_id:
+    :return:
+    """
+    if token == None:
+        raise HTTPException(status_code=400, detail="Header doesn't have Auth Token")
+    payload = jwt.decode(token, JWT_SECRET, algorithms=JWT_ALGORITHM)
+    user_id = payload.get("user_id")
+    if user_id is None:
+        raise HTTPException(status_code=400, detail="NO_MATCH_USER")
+    # print("test gogo")
+    user = crud.get_user_by_userid(db, user_id=user_id)
+
+    return crud.create_post(db=db, post=post_info, uid=user.uid)
