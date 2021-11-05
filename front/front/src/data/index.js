@@ -25,7 +25,77 @@ export default {
             created_at : '2019-01-01 13:13:12'
         },
         {
+            content_id: 12,
+            user_id: 1,
+            title: "안녕하세요 반가워요",
+            context: "방금 가입했어요~",
+            created_at : '2019-01-01 13:13:12'
+        },
+        {
+            content_id: 13,
+            user_id: 1,
+            title: "안녕하세요 반가워요",
+            context: "방금 가입했어요~",
+            created_at : '2019-01-01 13:13:12'
+        },
+        {
             content_id: 2,
+            user_id: 3,
+            title: "안녕하세요!",
+            context: "잘 부탁드려요",
+            created_at : '2019-01-02 13:13:12'
+        },
+        {
+            content_id: 4,
+            user_id: 3,
+            title: "안녕하세요!",
+            context: "잘 부탁드려요",
+            created_at : '2019-01-02 13:13:12'
+        },
+        {
+            content_id: 5,
+            user_id: 3,
+            title: "안녕하세요!",
+            context: "잘 부탁드려요",
+            created_at : '2019-01-02 13:13:12'
+        },
+        {
+            content_id: 6,
+            user_id: 3,
+            title: "안녕하세요!",
+            context: "잘 부탁드려요",
+            created_at : '2019-01-02 13:13:12'
+        },
+        {
+            content_id: 7,
+            user_id: 3,
+            title: "안녕하세요!",
+            context: "잘 부탁드려요",
+            created_at : '2019-01-02 13:13:12'
+        },
+        {
+            content_id: 8,
+            user_id: 3,
+            title: "안녕하세요!",
+            context: "잘 부탁드려요",
+            created_at : '2019-01-02 13:13:12'
+        },
+        {
+            content_id: 9,
+            user_id: 3,
+            title: "안녕하세요!",
+            context: "잘 부탁드려요",
+            created_at : '2019-01-02 13:13:12'
+        },
+        {
+            content_id: 10,
+            user_id: 3,
+            title: "안녕하세요!",
+            context: "잘 부탁드려요",
+            created_at : '2019-01-02 13:13:12'
+        },
+        {
+            content_id: 11,
             user_id: 3,
             title: "안녕하세요!",
             context: "잘 부탁드려요",

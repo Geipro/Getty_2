@@ -39,9 +39,14 @@ const routes = [
     component: () => import('../views/Board.vue')
   },
   {
-    path: '/boardCreate',
+    path: '/boardCreate/:contentId?',
     name: 'BoardCreate',
     component: () => import('../components/BoardPage/BoardCreate.vue')
+  },
+  {
+    path: "/boardDetail/:contentId",
+    name: "BoardDetail",
+    component: () => import('../components/BoardPage/BoardDetail.vue')
   }
 ]
 
