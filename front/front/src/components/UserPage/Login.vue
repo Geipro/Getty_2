@@ -11,12 +11,12 @@
                 <div class="container">
                     <div class="float-left">
                         <div class="form-group">
-                            <input type="id" name="id" v-validate="'required'" v-model="credential.id" data-vv-as="ID"
+                            <input type="id" name="id" v-validate="'required'" v-model="credential.user_id" data-vv-as="ID"
                             class="form-control" :class="{error: errors.has('ID')}"  id="ID" aria-describedby="idHelp" placeholder="Enter ID">
                             <span class="error" v-if="errors.has('ID')">{{errors.first('ID')}}</span>
                         </div>
                         <div class="form-group mt-3 mb-3">
-                            <input type="password" ref="password" name="password" v-validate="'required|min:6'" v-model="credential.password" data-vv-as="Password"
+                            <input type="password" ref="password" name="password" v-validate="'required|min:6'" v-model="credential.user_pw" data-vv-as="Password"
                             class="form-control" :class="{error: errors.has('password')}"  id="password" aria-describedby="password" placeholder="Enter Password">
                             <span class="error" v-if="errors.has('password')">{{errors.first('password')}}</span>
                         </div>
@@ -29,8 +29,6 @@
                 </div>
                 <div class="form-group mt-3">
                     <a href="#" class="mr-5 text-light" id="signup" @click="signup">회원가입</a>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<a class="ml-5 mr-5 text-light">|</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="#" class="text-light" id="changePw" @click="changePw">비밀번호 찾기</a>
                 </div>
             </form>        
         </div>
@@ -64,8 +62,8 @@ export default {
   data: function () {
     return {
       credential: {
-        id: '',
-        password: '',
+        user_id: '',
+        user_pw: '',
       }
     }
   },
@@ -76,27 +74,34 @@ export default {
     signup: function(){
       this.$emit('signup')
     },
-    changePw: function(){
-      this.$emit('pw')
-    },
     getJWT: function () {
       axios({
-        method: 'put',
-        url: `http://k5a405.p.ssafy.io:8000/api/auth/login`,
+        method: 'post',
+        url: `https://k5a405.p.ssafy.io/backend/signin`,
         data: this.credential
-      })
-        .then((res) => {
-          // console.log(res)
-          localStorage.setItem('nickname', res.data.message)
-          localStorage.setItem('JWT_TOKEN', res.data.accessToken)
-          alert(`${localStorage.getItem('nickname')} 님 반갑습니다!`)
-          this.$router.push({ name: 'User' })
-        })
-        .catch((err) => {
-          alert("탈퇴한 회원이거나 아이디 혹은 비밀번호가 일치하지 않습니다.")
-          console.log(err.headers)
-        })
-    },
+      }).then((res) => {
+                var token = res.data.Authorization;
+                localStorage.setItem('Token', token);
+                if (localStorage.getItem('Token')) {
+                  axios({
+                    method: 'get',
+                    url: `https://k5a405.p.ssafy.io/backend/test/get_user`,
+                    headers:{
+                      "token" : localStorage.getItem("Token")
+                    }
+                  }).then((user) => {
+                    // console.log(1111,user.data.user)
+                    alert(`${user.data.user_name} 님 반갑습니다!`);
+                    this.$router.push({ name: 'Home'})
+                  }).catch((err) => {
+                    alert(err);
+                  });
+                }
+            }).catch((err) => {
+                alert("탈퇴한 회원이거나 아이디 혹은 비밀번호가 일치하지 않습니다.")
+                console.log(err.headers)
+            })
+        },
 
     onSubmit() {
       this.$validator.validateAll()
