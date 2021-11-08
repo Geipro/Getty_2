@@ -54,10 +54,10 @@
           <b-dropdown-item href="#">FA</b-dropdown-item>
         </b-nav-item-dropdown>
 
-        <b-nav-item-dropdown text="거래소" right class="nav-margin">
+        <!-- <b-nav-item-dropdown text="거래소" right class="nav-margin">
           <b-dropdown-item href="#">Account</b-dropdown-item>
           <b-dropdown-item href="#">Settings</b-dropdown-item>
-        </b-nav-item-dropdown>
+        </b-nav-item-dropdown> -->
       </b-navbar-nav>
     </b-navbar>
   </div>
@@ -103,8 +103,8 @@ li {
   display: inline-block;
 }
 .nav-margin{
-    padding-right: 4rem;
-    padding-left: 4rem;
+    padding-right: 6rem;
+    padding-left: 6rem;
     /* padding-top: 1rem; */
     color: white;
 }

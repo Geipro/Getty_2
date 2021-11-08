@@ -36,7 +36,9 @@
           </tr>
           <tr class="text-white">
             <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
+            <!-- <td colspan="2">Larry the Bird</td> -->
+            <td>@twitter</td>
+            <td>@twitter</td>
             <td>@twitter</td>
             <td>@twitter</td>
             <td>@twitter</td>
@@ -56,14 +58,62 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 
 export default {
   name: 'WriteList',
   data: function () {
     return {
+      token:{
+          token : localStorage.getItem('Token'),
+        },
+      userinfo:{
+        user_name:'',
+        job:'',
+        salary:'',
+        phone_number:'',
+        address: "",
+      },
+      loaninfo:[],
+      loaninfo_name:[],
+      uploadFiles:[],
     }
   },
+  created(){
 
+  },
+  mounted(){
+    axios({
+      method: 'get',
+      url: 'http://j5a205.p.ssafy.io:3000/user/info',
+      headers : {"token" : `${this.token.token}`}
+    })
+    .then((res) =>{
+      this.userinfo = res.data.user
+      this.uploadFiles = res.data.user_files
+
+      //console.log(this.uploadFiles)
+    }).catch((err) =>{
+      console.log(err)
+    }),
+    axios({
+      method: 'get',
+      url: 'http://j5a205.p.ssafy.io:3000/user/loan/list',
+      headers : {"token" : `${this.token.token}`}
+    })
+    .then((res) =>{
+      this.loaninfo = res.data[0]
+      this.loaninfo_name = res.data[1]
+    }).catch((err) =>{
+      console.log(err)
+    })
+  },
+  methods:{
+    viewFile(event, url){
+      window.open(url)
+    }
+  }
 }
 
 </script>

@@ -8,6 +8,7 @@
         <MypageSide/>
       </div>
       <!-- d-flex justify-content-center align-items-center 빼면 길어짐 -->
+      <!-- api가 없는데 제외하고 페이지 변경해도 됨  -->
       <div class="col-8 d-flex justify-content-center align-items-center">
         <UserInformationModify/>
       </div>
