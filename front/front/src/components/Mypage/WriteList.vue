@@ -12,7 +12,7 @@
               <th scope="col">번호</th>
               <th scope="col">제목</th>
               <th scope="col">내용</th>
-              <th scope="col">추천</th>
+              <th scope="col">조회수</th>
               <th scope="col">작성일</th>
             </tr>
           </thead>

@@ -66,30 +66,16 @@
           </tr>
         </thead>
         <tbody>
-        <tr class="text-white">
-          <td scope="row">1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr class="text-white">
-          <td scope="row">2</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr class="text-white">
-          <td scope="row">3</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-        </tr>
+          <!-- 단위 / align 배치 수정 필요 -->
+          <tr class="text-white" v-for="(element, idx) in crypto" :key="idx">
+            <td colspan="2">{{ element.name }} <br> {{ element.sym }}</td>
+            <td colspan="2">{{ element.price }} <br> </td>
+            <!-- %는 소수점 2자리까지만 나타나게 하기(이거 기억이 안나네 찾아보기) / 3자리마다 , 하는것도 -->
+            <td colspan="2">{{ element.day_change_rate * 100 }} % <br>{{ element.day_chage_price }} </td>
+            <td colspan="2">{{ element.highest_52_week_rate }} % <br> {{ element.highest_52_week_price }} </td>
+            <td colspan="2">{{ element.lowest_52_week_rate }} % <br> {{ element.lowest_52_week_price }} </td>
+            <td colspan="2">{{ element.acc_trade_price_24h }} <br> {{ element.acc_trade_won_24h }} </td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -98,8 +84,30 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
-    name: 'MainPageCenter',
+  name: 'MainPageCenter',
+  data: function () {
+    return {
+      crypto: []
+    }
+  },
+  created(){
+
+  },
+  mounted(){
+    axios({
+      method: 'get',
+      url: 'https://k5a405.p.ssafy.io/backend/sort?reverse_flag=true&case=name',
+    })
+    .then((res) =>{
+      this.crypto = res.data
+      console.log(this.crypto[0])
+    }).catch((err) =>{
+      console.log(err)
+    })
+  }
 }
 </script>
 
