@@ -16,7 +16,8 @@ from common.consts import (
 
 models.Base.metadata.create_all(bind=engine)
 
-app = FastAPI(root_path="/backend")
+# app = FastAPI(root_path="/backend")   # Server
+app = FastAPI()  # Local
 
 # Cors
 origins = []
@@ -44,6 +45,24 @@ def create_access_token(*, data: dict = None, expires_delta: int = None):
     encoded_jwt = jwt.encode(to_encode, JWT_SECRET, algorithm=JWT_ALGORITHM)
 
     return encoded_jwt
+
+
+@app.get("/test/get_user", status_code=200)
+async def get_user(db: Session = Depends(get_db), token: str = Header(None)):
+    """
+    `토큰 decode test`\n
+    :header token:
+    :return:
+    """
+    if token == None:
+        raise HTTPException(status_code=400, detail="Header doesn't have Auth Token")
+    payload = jwt.decode(token, JWT_SECRET, algorithms=JWT_ALGORITHM)
+    user_id = payload.get("user_id")
+    if user_id is None:
+        raise HTTPException(status_code=400, detail="NO_MATCH_USER")
+    user = crud.get_user_by_userid(db, user_id=user_id)
+
+    return user
 
 
 @app.post("/signup", status_code=200, response_model=schemas.User)
@@ -92,48 +111,6 @@ async def sign_in(user_info: schemas.UserLogin, db: Session = Depends(get_db)):
     return token
 
 
-@app.get("/test/get_user", status_code=200)
-async def get_user(db: Session = Depends(get_db), token: str = Header(None)):
-    """
-    `토큰 decode test`\n
-    :header token:
-    :return:
-    """
-    if token == None:
-        raise HTTPException(status_code=400, detail="Header doesn't have Auth Token")
-    payload = jwt.decode(token, JWT_SECRET, algorithms=JWT_ALGORITHM)
-    user_id = payload.get("user_id")
-    if user_id is None:
-        raise HTTPException(status_code=400, detail="NO_MATCH_USER")
-    user = crud.get_user_by_userid(db, user_id=user_id)
-
-    return user
-
-
-@app.get("/post", status_code=200)
-async def get_my_post(
-    token: str = Header(None),
-    db: Session = Depends(get_db),
-):
-    """
-    `게시글 생성`
-    :header token:
-    :param db:
-    :param post_id:
-    :return:
-    """
-    if token == None:
-        raise HTTPException(status_code=400, detail="Header doesn't have Auth Token")
-    payload = jwt.decode(token, JWT_SECRET, algorithms=JWT_ALGORITHM)
-    user_id = payload.get("user_id")
-    if user_id is None:
-        raise HTTPException(status_code=400, detail="NO_MATCH_USER")
-    # print("test gogo")
-    user = crud.get_user_by_userid(db, user_id=user_id)
-
-    return crud.get_user_post_by_uid(db=db, uid=user.uid)
-
-
 @app.post("/post", status_code=200)
 async def create_post(
     post_info: schemas.PostCreate,
@@ -157,3 +134,93 @@ async def create_post(
     user = crud.get_user_by_userid(db, user_id=user_id)
 
     return crud.create_post(db=db, post=post_info, uid=user.uid)
+
+
+@app.get("/post", status_code=200)
+async def get_post(db: Session = Depends(get_db)):
+    """
+    `모든 게시글 가져오기`
+    :param db:
+    :return:
+    """
+    return crud.get_all_post(db=db)
+
+
+@app.get("/my_post", status_code=200)
+async def get_my_post(
+    token: str = Header(None),
+    db: Session = Depends(get_db),
+):
+    """
+    `내 게시글 가져오기`
+    :header token:
+    :param db:
+    :return:
+    """
+    if token == None:
+        raise HTTPException(status_code=400, detail="Header doesn't have Auth Token")
+    payload = jwt.decode(token, JWT_SECRET, algorithms=JWT_ALGORITHM)
+    user_id = payload.get("user_id")
+    if user_id is None:
+        raise HTTPException(status_code=400, detail="NO_MATCH_USER")
+    # print("test gogo")
+    user = crud.get_user_by_userid(db, user_id=user_id)
+
+    return crud.get_user_post_by_uid(db=db, uid=user.uid)
+
+
+@app.get("/comment", status_code=200)
+async def get_comment(pid: int, db: Session = Depends(get_db)):
+    """
+    `게시물 댓글 가져오기`
+    :param db:
+    :return:
+    """
+
+    return crud.get_comment_by_pid(db=db, pid=pid)
+
+
+@app.get("/my_comment", status_code=200)
+async def get_my_comment(token: str = Header(None), db: Session = Depends(get_db)):
+    """
+    `내 댓글 가져오기`
+    :header token:
+    :param db:
+    :return:
+    """
+    if token == None:
+        raise HTTPException(status_code=400, detail="Header doesn't have Auth Token")
+    payload = jwt.decode(token, JWT_SECRET, algorithms=JWT_ALGORITHM)
+    user_id = payload.get("user_id")
+    if user_id is None:
+        raise HTTPException(status_code=400, detail="NO_MATCH_USER")
+    # print("test gogo")
+    user = crud.get_user_by_userid(db, user_id=user_id)
+
+    return crud.get_user_comment_by_uid(db=db, uid=user.uid)
+
+
+@app.post("/comment", status_code=200)
+async def create_comment(
+    comment_info: schemas.CommentCreate,
+    pid: int,
+    token: str = Header(None),
+    db: Session = Depends(get_db),
+):
+    """
+    `댓글 생성`
+    :header token:
+    :param db:
+    :param post_id:
+    :return:
+    """
+    if token == None:
+        raise HTTPException(status_code=400, detail="Header doesn't have Auth Token")
+    payload = jwt.decode(token, JWT_SECRET, algorithms=JWT_ALGORITHM)
+    user_id = payload.get("user_id")
+    if user_id is None:
+        raise HTTPException(status_code=400, detail="NO_MATCH_USER")
+    # print("test gogo")
+    user = crud.get_user_by_userid(db, user_id=user_id)
+
+    return crud.create_comment(db=db, comment=comment_info, uid=user.uid, pid=pid)
