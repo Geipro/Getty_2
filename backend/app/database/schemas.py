@@ -54,11 +54,12 @@ class UserToken(BaseModel):
 class PostCreate(BaseModel):
     title: str
     content: str
-
     create_date: date
 
     class Config:
         orm_mode = True
 
 
-# class CommentCreate(BaseModel):
+class CommentCreate(BaseModel):
+    content: str
+    create_date: date

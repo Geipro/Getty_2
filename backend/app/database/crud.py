@@ -17,6 +17,18 @@ def get_user_post_by_uid(db: Session, uid: int):
     return db.query(models.Post).filter(models.Post.uid == uid).all()
 
 
+def get_user_comment_by_uid(db: Session, uid: int):
+    return db.query(models.Comment).filter(models.Comment.uid == uid).all()
+
+
+def get_comment_by_pid(db: Session, pid: int):
+    return db.query(models.Comment).filter(models.Comment.pid == pid).all()
+
+
+def get_all_post(db: Session):
+    return db.query(models.Post).all()
+
+
 def create_user(db: Session, user: schemas.UserCreate):
     hashed_password = bcrypt.hashpw(user.user_pw.encode("utf-8"), bcrypt.gensalt())
     create_now = date.today()
@@ -56,6 +68,17 @@ def create_post(db: Session, post: schemas.PostCreate, uid: int):
     return db_post
 
 
-# def create_comment(db: Session, post: schemas.CommentCreate):
-#     create_now = date.today()
-#     db_comment = models.Post(t)
+def create_comment(db: Session, comment: schemas.CommentCreate, uid: int, pid: int):
+    create_now = date.today()
+    db_comment = models.Comment(
+        content=comment.content,
+        create_date=create_now,
+        uid=uid,
+        pid=pid,
+    )
+
+    db.add(db_comment)
+    db.commit()
+    db.refresh(db_comment)
+
+    return db_comment
