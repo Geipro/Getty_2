@@ -6,6 +6,9 @@ from fastapi.middleware.cors import CORSMiddleware
 import bcrypt, jwt
 import os
 
+# getUpbit.py
+from chart.getUpbit import coin_list, update_coin_data
+
 from sqlalchemy.orm import Session
 from database import schemas, models, crud
 from database.database import SessionLocal, engine
@@ -224,3 +227,18 @@ async def create_comment(
     user = crud.get_user_by_userid(db, user_id=user_id)
 
     return crud.create_comment(db=db, comment=comment_info, uid=user.uid, pid=pid)
+
+
+@app.get("/sort", status_code=200)
+async def sorting_chart(is_asc: bool, db: Session = Depends(get_db)):
+    """
+    `차트 정렬`
+    :param db:
+    :param is_asc:
+    :return:
+    """
+
+
+if __name__ == "__main__":
+    update_coin_data()
+    print(coin_list)

@@ -38,10 +38,10 @@ def create_user(db: Session, user: schemas.UserCreate):
         user_name=user.user_name,
         phone_number=user.phone_number,
         create_date=create_now,
-        job=user.job,
+        # job=user.job,
         birth=user.birth,
         sex=user.sex,
-        address="",
+        # address="",
     )
 
     db.add(db_user)

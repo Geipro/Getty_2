@@ -8,8 +8,6 @@ class User(BaseModel):
 
     phone_number: str
     create_date: date
-    address: str
-    job: str
     birth: str
     sex: int
 
@@ -24,7 +22,6 @@ class UserCreate(BaseModel):
     user_name: str
 
     phone_number: str
-    job: str
     birth: str
     sex: int
 

@@ -22,8 +22,8 @@ class User(Base):
     create_date = Column(Date, nullable=True, comment="생성 날짜")
     phone_number = Column(String(45), nullable=True, comment="전화 번호")
 
-    address = Column(String(45), nullable=True, comment="주소")
-    job = Column(String(45), nullable=False, comment="직업")
+    # address = Column(String(45), nullable=True, comment="주소")
+    # job = Column(String(45), nullable=False, comment="직업")
     birth = Column(String(45), nullable=False, comment="생년월일")
     sex = Column(Integer, nullable=False, comment="성별")
 
