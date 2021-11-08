@@ -5,9 +5,10 @@ from fastapi.middleware.cors import CORSMiddleware
 
 import bcrypt, jwt
 import os
+from dotenv import load_dotenv
 
 # getUpbit.py
-from chart.getUpbit import coin_list, update_coin_data
+from chart.getUpbit import coin_list, get_coin_symbol, update_coin_data, sort_by
 
 from sqlalchemy.orm import Session
 from database import schemas, models, crud
@@ -19,11 +20,24 @@ from common.consts import (
 
 models.Base.metadata.create_all(bind=engine)
 
-# app = FastAPI(root_path="/backend")   # Server
-app = FastAPI()  # Local
+load_dotenv()
+
+if os.environ.get("LOCAL") != "True":
+    app = FastAPI(root_path="/backend")  # Server
+else:
+    app = FastAPI()  # Local
 
 # Cors
-origins = []
+origins = [
+    "https://localhost.tiangolo.com",
+    "https://localhost",
+    "https://k5a405.p.ssafy.io:8000",
+    "https://k5a405.p.ssafy.io",
+    "http://localhost.tiangolo.com",
+    "http://localhost",
+    "http://localhost:8000",
+    "http://k5a405.p.ssafy.io:8000",
+]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -230,15 +244,15 @@ async def create_comment(
 
 
 @app.get("/sort", status_code=200)
-async def sorting_chart(is_asc: bool, db: Session = Depends(get_db)):
+async def sorting_chart(reverse_flag: bool, case: str, db: Session = Depends(get_db)):
     """
     `차트 정렬`
     :param db:
-    :param is_asc:
+    :param reverse_flag:
     :return:
     """
+    get_coin_symbol()
+    new_data = update_coin_data()
+    # print(new_data)
 
-
-if __name__ == "__main__":
-    update_coin_data()
-    print(coin_list)
+    return sorted(new_data, key=lambda x: x[case], reverse=reverse_flag)
