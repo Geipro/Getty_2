@@ -10,44 +10,16 @@
           <thead>
             <tr class="text-white">
               <th scope="col">번호</th>
-              <th scope="col">제목</th>
-              <th scope="col">이름</th>
-              <th scope="col">추천</th>
+              <th scope="col">댓글 내용</th>
               <th scope="col">날짜</th>
-              <th scope="col">조회수</th>
             </tr>
           </thead>
          <tbody>
-          <tr class="text-white">
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+          <tr class="text-white" v-for="(element, idx) in reviewinfo" :key="idx">
+            <td class="col-2" scope="row">{{ idx + 1 }}</td>
+            <td class="col-8">{{ element.content }}</td>
+            <td class="col-2">{{ element.create_date }}</td>
           </tr>
-          <tr class="text-white">
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr class="text-white">
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-          </tr>
-          <!-- 아래 이용해서 돌리기 -->
-            <!-- <writingListItem
-              v-for="(writing, idx) in writingList"
-              :key="idx"
-              :writing="writing"
-              :movieId="movieId"
-            /> -->
           </tbody>
         </table>
       </div>
@@ -56,18 +28,40 @@
 </template>
 
 <script>
+import axios from 'axios';
 
 export default {
   name: 'ReviewList',
   data: function () {
     return {
+      token:{
+          token : localStorage.getItem('Token'),
+        },
+      reviewinfo: []
     }
   },
+  created(){
 
+  },
+  mounted(){
+    axios({
+      method: 'get',
+      url: 'https://k5a405.p.ssafy.io/backend/my_comment',
+      headers : {"token" : `${this.token.token}`}
+    })
+    .then((res) =>{
+      this.reviewinfo = res.data
+      console.log(this.reviewinfo[0])
+    }).catch((err) =>{
+      console.log(err)
+    })
+  }
 }
 
 </script>
 
 <style>
-
+.table-hover tbody tr:hover td {
+    background: #ffffff
+}
 </style>

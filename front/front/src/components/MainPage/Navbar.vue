@@ -4,7 +4,7 @@
     <span v-if="isLogin">
       <ul class="ulist">
         <li>
-          <router-link :to="{ name: 'Mypage' }" class="text-light nav-link">마이페이지</router-link>
+          <router-link :to="{ name: 'Mywrite' }" class="text-light nav-link">마이페이지</router-link>
         </li>
         <li>
           <router-link @click.native="logout" to="#" class="text-light nav-link" text-decoration: none>로그아웃</router-link>
@@ -14,9 +14,9 @@
     <span v-else>
       <ul>
         <!-- login 적용하면 마이페이지는 제거 -->
-        <li>
-          <router-link :to="{ name: 'Mypage' }" class="text-light nav-link">마이페이지</router-link>
-        </li>
+        <!-- <li>
+          <router-link :to="{ name: 'Mywrite' }" class="text-light nav-link">마이페이지</router-link>
+        </li> -->
         <li>
           <router-link :to="{ name: 'About' }" class="text-light nav-link">로그인</router-link>
         </li>
@@ -29,7 +29,6 @@
 
 
   <div class="justify-content-center mb-4 title-style">
-  <!-- <div style="color: white font-size: 300px" class="justify-content-center bg-#2c3e50 mb-4"> -->
     <router-link :to="{ name: 'Home' }">
       <img src="@/assets/logo.png" style="width:70px">
     </router-link>
@@ -54,10 +53,6 @@
           <b-dropdown-item href="#">FA</b-dropdown-item>
         </b-nav-item-dropdown>
 
-        <!-- <b-nav-item-dropdown text="거래소" right class="nav-margin">
-          <b-dropdown-item href="#">Account</b-dropdown-item>
-          <b-dropdown-item href="#">Settings</b-dropdown-item>
-        </b-nav-item-dropdown> -->
       </b-navbar-nav>
     </b-navbar>
   </div>
