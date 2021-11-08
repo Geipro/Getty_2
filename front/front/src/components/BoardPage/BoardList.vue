@@ -10,10 +10,7 @@
 </template>
 
 <script>
-import data from '@/data'
-
-let items = data.Content.sort((a, b) => {return b.content_id - a.content_id})
-items = items.map(contentItem => {return {...contentItem, user_name: data.User.filter(userItem => userItem.user_id === contentItem.user_id)[0].name}})
+import axios from 'axios'
 
 export default {
     name: 'BoardList',
@@ -23,7 +20,7 @@ export default {
             perPage : 10,
             fields: [
                 {
-                    key: 'content_id',
+                    key: 'pid',
                     label : '번호',
                     sortable: false
                 },
@@ -33,23 +30,36 @@ export default {
                     sortable: false
                 },
                 {
-                    key: 'user_name',
+                    key: 'uid',
                     label: '글쓴이',
                     sortable: false
                 },
                 {
-                    key:'created_at',
+                    key:'create_date',
                     label:'생성일',
                     sortable: false,
                 }
             ],
-            items : items
+            boards: [],
+            items : []
         }
+    },
+    created() {
+        axios({
+            method: 'get',
+            url: `https://k5a405.p.ssafy.io/backend/post`,
+        }).then((res) => {
+            console.log(res)
+            this.boards = res.data
+            this.items = this.boards.sort((a, b) => {return b.pid - a.pid})
+        }).catch((err) => {
+            alert(err)
+        })
     },
     methods:{
         rowClick(item){
             this.$router.push({
-                path: `/boardDetail/${item.content_id}`
+                path: `/boardDetail/${item.pid}`
             })
         },
         getList(){
@@ -63,7 +73,7 @@ export default {
     },
     computed:{
         rows(){
-            return this.items.length;
+            return this.boards.length;
         }
     }
 }
