@@ -2,14 +2,14 @@
   <div>
     <span>
       <ul class="navbar-nav">
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <router-link
             :to="{ name: 'Mypage' }"
           >
             개인정보수정
           </router-link>
         </li>
-        <br>
+        <br> -->
         <!-- props/ emit으로 해보기 -->
         <li class="nav-item">
           <router-link

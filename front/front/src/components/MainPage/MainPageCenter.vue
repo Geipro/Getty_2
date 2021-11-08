@@ -7,6 +7,53 @@
 
     <!-- table은 data binding해서 하면됨 지금은 보여주기용 데이터 바인딩 후 코드 짧아짐 -->
     <div class="d-lg-block col-lg-12">
+      <!-- <table
+        id="table"
+        data-toggle="table"
+        data-sort-class="table-active"
+        data-sortable="true"
+        data-height="460"
+        class="table table-bg-light table-hover"
+        data-url="json/data1.json">
+        <thead>
+          <tr class="text-white">
+            <th data-field="id" data-sortable="true">ID</th>
+            <th data-field="name" data-sortable="true">Item Name</th>
+            <th data-field="price" data-sortable="true">Item Price</th>
+            <th data-field="price" data-sortable="true">Item Price</th>
+            <th data-field="price" data-sortable="true">Item Price</th>
+            <th data-field="price" data-sortable="true">Item Price</th>
+          </tr>
+        </thead>
+         <tbody>
+        <tr class="text-white">
+          <td scope="row">1</td>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr class="text-white">
+          <td scope="row">2</td>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr class="text-white">
+          <td scope="row">3</td>
+          <td>@twitter</td>
+          <td>@twitter</td>
+          <td>@twitter</td>
+          <td>@twitter</td>
+          <td>@twitter</td>
+        </tr>
+        </tbody>
+      </table> -->
+
+
       <table class="table table-bg-light table-hover">
         <thead>
           <tr class="text-warning">
@@ -20,7 +67,7 @@
         </thead>
         <tbody>
         <tr class="text-white">
-          <th scope="row">1</th>
+          <td scope="row">1</td>
           <td>Mark</td>
           <td>Otto</td>
           <td>@mdo</td>
@@ -28,7 +75,7 @@
           <td>@mdo</td>
         </tr>
         <tr class="text-white">
-          <th scope="row">2</th>
+          <td scope="row">2</td>
           <td>Jacob</td>
           <td>Thornton</td>
           <td>@fat</td>
@@ -36,20 +83,13 @@
           <td>@fat</td>
         </tr>
         <tr class="text-white">
-          <th scope="row">3</th>
+          <td scope="row">3</td>
           <td>@twitter</td>
           <td>@twitter</td>
           <td>@twitter</td>
           <td>@twitter</td>
           <td>@twitter</td>
         </tr>
-        <!-- 아래 이용해서 돌리기 -->
-          <!-- <writingListItem
-            v-for="(writing, idx) in writingList"
-            :key="idx"
-            :writing="writing"
-            :movieId="movieId"
-          /> -->
         </tbody>
       </table>
     </div>
