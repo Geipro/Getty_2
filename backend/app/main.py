@@ -30,12 +30,14 @@ else:
 # Cors
 origins = [
     "https://localhost.tiangolo.com",
-    "https://localhost",
+    "http://localhost.tiangolo.com",
+    "https://localhost:8080",
+    "https://localhost:8000",
+    "http://localhost:8080",
+    "http://localhost:8000",
     "https://k5a405.p.ssafy.io:8000",
     "https://k5a405.p.ssafy.io",
-    "http://localhost.tiangolo.com",
     "http://localhost",
-    "http://localhost:8000",
     "http://k5a405.p.ssafy.io:8000",
 ]
 app.add_middleware(
@@ -150,7 +152,7 @@ async def create_post(
     # print("test gogo")
     user = crud.get_user_by_userid(db, user_id=user_id)
 
-    return crud.create_post(db=db, post=post_info, uid=user.uid)
+    return crud.create_post(db=db, post=post_info, uid=user.uid, user_id=user_id)
 
 
 @app.get("/post", status_code=200)
@@ -240,7 +242,9 @@ async def create_comment(
     # print("test gogo")
     user = crud.get_user_by_userid(db, user_id=user_id)
 
-    return crud.create_comment(db=db, comment=comment_info, uid=user.uid, pid=pid)
+    return crud.create_comment(
+        db=db, comment=comment_info, uid=user.uid, pid=pid, user_id=user_id
+    )
 
 
 @app.get("/sort", status_code=200)

@@ -38,13 +38,13 @@ class Post(Base):
         Integer,
         ForeignKey("user.uid", ondelete="RESTRICT", onupdate="RESTRICT"),
         nullable=False,
-        comment="고객 ID",
+        comment="고객 고유 ID",
     )
+    user_id = Column(String(45), nullable=False, comment="고객 ID")
 
     title = Column(String(100), nullable=False, comment="제목")
     content = Column(Text, nullable=False, comment="내용")
     hit = Column(Integer, nullable=False, comment="조회수", default=0)
-
     create_date = Column(Date, nullable=False, comment="작성일")
 
     # is_parent = Column(Boolean, nullable=False, comment="게시글/댓글 구별")
@@ -60,8 +60,9 @@ class Comment(Base):
         Integer,
         ForeignKey("user.uid", ondelete="RESTRICT", onupdate="RESTRICT"),
         nullable=False,
-        comment="고객 ID",
+        comment="고객 고유 ID",
     )
+    user_id = Column(String(45), nullable=False, comment="고객 ID")
     pid = Column(
         Integer,
         ForeignKey("post.pid", ondelete="RESTRICT", onupdate="RESTRICT"),

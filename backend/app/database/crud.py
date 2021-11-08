@@ -51,13 +51,14 @@ def create_user(db: Session, user: schemas.UserCreate):
     return db_user
 
 
-def create_post(db: Session, post: schemas.PostCreate, uid: int):
+def create_post(db: Session, post: schemas.PostCreate, uid: int, user_id: str):
     create_now = date.today()
     db_post = models.Post(
         title=post.title,
         content=post.content,
         hit=0,
         uid=uid,
+        user_id=user_id,
         create_date=create_now,
     )
 
@@ -68,12 +69,15 @@ def create_post(db: Session, post: schemas.PostCreate, uid: int):
     return db_post
 
 
-def create_comment(db: Session, comment: schemas.CommentCreate, uid: int, pid: int):
+def create_comment(
+    db: Session, comment: schemas.CommentCreate, uid: int, pid: int, user_id: str
+):
     create_now = date.today()
     db_comment = models.Comment(
         content=comment.content,
         create_date=create_now,
         uid=uid,
+        user_id=user_id,
         pid=pid,
     )
 
