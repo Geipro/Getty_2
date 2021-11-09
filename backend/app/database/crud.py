@@ -25,6 +25,10 @@ def get_comment_by_pid(db: Session, pid: int):
     return db.query(models.Comment).filter(models.Comment.pid == pid).all()
 
 
+def get_post_by_pid(db: Session, pid: int):
+    return db.query(models.Post).filter(models.Post.pid == pid).first()
+
+
 def get_all_post(db: Session):
     return db.query(models.Post).all()
 
@@ -59,7 +63,7 @@ def create_post(db: Session, post: schemas.PostCreate, uid: int, user_id: str):
         hit=0,
         uid=uid,
         user_id=user_id,
-        create_date=create_now,
+        create_date=str(create_now),
     )
 
     db.add(db_post)
@@ -75,7 +79,7 @@ def create_comment(
     create_now = date.today()
     db_comment = models.Comment(
         content=comment.content,
-        create_date=create_now,
+        create_date=str(create_now),
         uid=uid,
         user_id=user_id,
         pid=pid,

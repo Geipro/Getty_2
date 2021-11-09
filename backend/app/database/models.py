@@ -45,7 +45,7 @@ class Post(Base):
     title = Column(String(100), nullable=False, comment="제목")
     content = Column(Text, nullable=False, comment="내용")
     hit = Column(Integer, nullable=False, comment="조회수", default=0)
-    create_date = Column(Date, nullable=False, comment="작성일")
+    create_date = Column(String(45), nullable=False, comment="작성일")
 
     # is_parent = Column(Boolean, nullable=False, comment="게시글/댓글 구별")
 
@@ -71,4 +71,4 @@ class Comment(Base):
     )
 
     content = Column(Text, nullable=False, comment="내용")
-    create_date = Column(Date, nullable=False, comment="작성일")
+    create_date = Column(String(45), nullable=False, comment="작성일")
