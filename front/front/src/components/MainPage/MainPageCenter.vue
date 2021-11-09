@@ -5,55 +5,10 @@
       <iframe width="900px" height="320px" src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_c4176&symbol=BINANCE%3ABTCUSDT&interval=15&symboledit=1&saveimage=0&toolbarbg=f1f3f6&studies=%5B%5D&theme=Dark&style=1&timezone=Asia%2FSeoul&studies_overrides=%7B%7D&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&locale=kr&utm_source=kimpga.com&utm_medium=widget&utm_campaign=chart&utm_term=BINANCE%3ABTCUSDT" frameborder="0"></iframe>
     </div>
 
-    <!-- table은 data binding해서 하면됨 지금은 보여주기용 데이터 바인딩 후 코드 짧아짐 -->
-    <div class="d-lg-block col-lg-12">
-      <!-- <table
-        id="table"
-        data-toggle="table"
-        data-sort-class="table-active"
-        data-sortable="true"
-        data-height="460"
-        class="table table-bg-light table-hover"
-        data-url="json/data1.json">
-        <thead>
-          <tr class="text-white">
-            <th data-field="id" data-sortable="true">ID</th>
-            <th data-field="name" data-sortable="true">Item Name</th>
-            <th data-field="price" data-sortable="true">Item Price</th>
-            <th data-field="price" data-sortable="true">Item Price</th>
-            <th data-field="price" data-sortable="true">Item Price</th>
-            <th data-field="price" data-sortable="true">Item Price</th>
-          </tr>
-        </thead>
-         <tbody>
-        <tr class="text-white">
-          <td scope="row">1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr class="text-white">
-          <td scope="row">2</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr class="text-white">
-          <td scope="row">3</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-        </tr>
-        </tbody>
-      </table> -->
+    <div class="d-lg-block col-lg-12 bg-success">
+      <!-- <b-table striped hover :items="items" :fields="fields"></b-table> -->
 
-
+      <!-- <div><img :src=`https://static.upbit.com/logos/${imgName}.png`>{{ element.name }}</div> -->
       <table class="table table-bg-light table-hover">
         <thead>
           <tr class="text-warning">
@@ -66,25 +21,23 @@
           </tr>
         </thead>
         <tbody>
-          <!-- 단위 / align 배치 수정 필요 -->
           <tr class="text-white" v-for="(element, idx) in crypto" :key="idx">
-            <!-- <td colspan="2">{{ element.name }} <br> {{ element.sym }}</td> -->
             <td>
               <div>{{ element.name }}</div>
               <div>{{ element.sym }}</div>
             </td>
-            <td>{{ element.price | makeComma }} </td>
+            <td>{{ element.price | makeComma }}원</td>
             <td>
               <div>{{ (element.day_change_rate * 100).toFixed(2) }}</div>
-              <div>{{ element.day_chage_price | makeComma }}</div>
+              <div>{{ element.day_chage_price | makeComma }}원</div>
             </td>
             <td>
               <div>{{ element.highest_52_week_rate }} %</div>
-              <div>{{ element.highest_52_week_price | makeComma }}</div>
+              <div>{{ element.highest_52_week_price | makeComma }}원</div>
             </td>
             <td>
               <div>{{ element.lowest_52_week_rate }} %</div>
-              <div>{{ element.lowest_52_week_price | makeComma }}</div>
+              <div>{{ element.lowest_52_week_price | makeComma }}원</div>
             </td>
             <td>
               <div>{{ Math.floor(element.acc_trade_price_24h / 100000000).toFixed(0) | makeComma }} 억</div>
@@ -93,27 +46,63 @@
           </tr>
         </tbody>
       </table>
+
     </div>
   </div>
 
 </template>
 
 <script>
+
 import axios from 'axios';
-import { numToKorean } from 'num-to-korean'
-
-
+// import { numToKorean } from 'num-to-korean'
 
 export default {
   name: 'MainPageCenter',
   data: function () {
     return {
-      crypto: []
+      crypto: [],
+      // imgName: '',
+      // fields: [
+      //     {
+      //       key: '이름',
+      //       sortable: true
+      //     },
+      //     {
+      //       key: '현재가',
+      //       sortable: true
+      //     },
+      //     {
+      //       key: '전일대비',
+      //       sortable: true
+      //     },
+      //     {
+      //       key: '고가대비(52주)',
+      //       sortable: true
+      //     },
+      //     {
+      //       key: 'first_name',
+      //       sortable: true
+      //     },
+      //     {
+      //       key: 'age',
+      //       label: 'Person age',
+      //       sortable: true,
+      //       // variant: 'danger'
+      //     }
+      //   ],
+      //   items: [
+      //     { isActive: true, age: 40, first_name: 'Dickerson', last_name: 'Macdonald' },
+      //     { isActive: false, age: 21, first_name: 'Larsen', last_name: 'Shaw' },
+      //     { isActive: false, age: 89, first_name: 'Geneva', last_name: 'Wilson' },
+      //     { isActive: true, age: 38, first_name: 'Jami', last_name: 'Carney' }
+      //   ]
     }
   },
-  getVolume(volume) {
-    return numToKorean(Math.floor(volume / 100000000) * 100000000, 'mixed')
-  },
+
+  // getVolume(volume) {
+  //   return numToKorean(Math.floor(volume / 100000000) * 100000000, 'mixed')
+  // },
   //  numberToKorean(number){
   //   var inputNumber  = number < 0 ? false : number;
   //   var unitWords    = ['', '만', '억', '조', '경'];
@@ -147,7 +136,8 @@ export default {
     })
     .then((res) =>{
       this.crypto = res.data
-      console.log(this.crypto[0])
+
+      // console.log(this.crypto[0])
     }).catch((err) =>{
       console.log(err)
     })
