@@ -43,8 +43,8 @@ def update_coin_data():
         coin_object[coin]['highest_52_week_rate'] = round((hi_pri - pri)/hi_pri*100, 2)*-1
         coin_object[coin]['lowest_52_week_price'] = low_pri
         coin_object[coin]['lowest_52_week_rate'] = round((pri - low_pri)/low_pri*100, 2)
+        coin_object[coin]['acc_trade_volume_24h'] = res['acc_trade_volume_24h']
         coin_object[coin]['acc_trade_price_24h'] = trade_vol
-        coin_object[coin]['acc_trade_won_24h'] = int(trade_vol * pri)
         coin_list.append(coin_object[coin])
     print(coin_list)
 
@@ -79,10 +79,10 @@ def sort_by_lowest_52_week_lower():
     coin_list.sort(key=lambda x : x['lowest_52_week_rate'])
 
 def sort_by_trade_vol_upper():
-    coin_list.sort(key=lambda x : x['acc_trade_won_24h'], reverse=True)
+    coin_list.sort(key=lambda x : x['acc_trade_price_24h'], reverse=True)
     
 def sort_by_trade_vol_lower():
-    coin_list.sort(key=lambda x : x['acc_trade_won_24h'])
+    coin_list.sort(key=lambda x : x['acc_trade_price_24h'])
 
 def print_all():
     for coin in coin_list:
