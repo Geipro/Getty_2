@@ -11,6 +11,7 @@
 import data from "@/data";
 import CommentListItem from "./CommentItem";
 import CommentCreate from "./CommentCreate";
+import axios from "axios"
 
 export default {
     name: "CommentList",
@@ -27,6 +28,16 @@ export default {
     components: {
         CommentListItem,
         CommentCreate
+    },
+    created(){
+        axios({
+            method:'get',
+            url: `https://k5a405.p.ssafy.io/backend/comment`,
+            data: this.pid
+        }).then(res => {
+            
+            console.log(res)
+        })
     },
     methods: {
         reloadComment() {

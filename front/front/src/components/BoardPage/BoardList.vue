@@ -1,7 +1,7 @@
 <template>
     <div class="board text-center container">
         <h1 class="mb-5">자유게시판</h1>
-        <b-table dark striped hover bordered :items="items" :per-page="perPage" :current-page="currentPage" :fields="fields" @row-clicked="rowClick"></b-table>
+        <b-table dark striped hover bordered :items="items" :per-page="perPage" :current-page="currentPage" :fields="this.fields" @row-clicked="rowClick"></b-table>
         <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" align="center"></b-pagination>
         <div class="mt-5 mb-4 flow-row float-right justify-content-end" >
             <b-button variant="primary" class="" @click="write">글쓰기</b-button>
@@ -30,7 +30,7 @@ export default {
                     sortable: false
                 },
                 {
-                    key: 'uid',
+                    key: 'user_id',
                     label: '글쓴이',
                     sortable: false
                 },
@@ -47,7 +47,7 @@ export default {
     created() {
         axios({
             method: 'get',
-            url: `https://k5a405.p.ssafy.io/backend/post`,
+            url: `https://k5a405.p.ssafy.io/backend/posts`,
         }).then((res) => {
             console.log(res)
             this.boards = res.data
