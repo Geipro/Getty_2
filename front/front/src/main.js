@@ -8,6 +8,10 @@ import router from './router'
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
+// 아래는 3자리마다 , 넣어주는 정규표현식
+Vue.filter("makeComma", val =>{
+  return String(val).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+})
 
 new Vue({
   router,

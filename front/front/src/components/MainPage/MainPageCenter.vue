@@ -68,13 +68,28 @@
         <tbody>
           <!-- 단위 / align 배치 수정 필요 -->
           <tr class="text-white" v-for="(element, idx) in crypto" :key="idx">
-            <td colspan="2">{{ element.name }} <br> {{ element.sym }}</td>
-            <td colspan="2">{{ element.price }} <br> </td>
-            <!-- %는 소수점 2자리까지만 나타나게 하기(이거 기억이 안나네 찾아보기) / 3자리마다 , 하는것도 -->
-            <td colspan="2">{{ element.day_change_rate * 100 }} % <br>{{ element.day_chage_price }} </td>
-            <td colspan="2">{{ element.highest_52_week_rate }} % <br> {{ element.highest_52_week_price }} </td>
-            <td colspan="2">{{ element.lowest_52_week_rate }} % <br> {{ element.lowest_52_week_price }} </td>
-            <td colspan="2">{{ element.acc_trade_price_24h }} <br> {{ element.acc_trade_won_24h }} </td>
+            <!-- <td colspan="2">{{ element.name }} <br> {{ element.sym }}</td> -->
+            <td>
+              <div>{{ element.name }}</div>
+              <div>{{ element.sym }}</div>
+            </td>
+            <td>{{ element.price | makeComma }} </td>
+            <td>
+              <div>{{ (element.day_change_rate * 100).toFixed(2) }}</div>
+              <div>{{ element.day_chage_price | makeComma }}</div>
+            </td>
+            <td>
+              <div>{{ element.highest_52_week_rate }} %</div>
+              <div>{{ element.highest_52_week_price | makeComma }}</div>
+            </td>
+            <td>
+              <div>{{ element.lowest_52_week_rate }} %</div>
+              <div>{{ element.lowest_52_week_price | makeComma }}</div>
+            </td>
+            <td>
+              <div>{{ Math.floor(element.acc_trade_price_24h / 100000000).toFixed(0) | makeComma }} 억</div>
+              <div>{{ Math.floor(element.acc_trade_won_24h / 100000000).toFixed(0) | makeComma }} 억</div>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -85,6 +100,9 @@
 
 <script>
 import axios from 'axios';
+import { numToKorean } from 'num-to-korean'
+
+
 
 export default {
   name: 'MainPageCenter',
@@ -93,6 +111,32 @@ export default {
       crypto: []
     }
   },
+  getVolume(volume) {
+    return numToKorean(Math.floor(volume / 100000000) * 100000000, 'mixed')
+  },
+  //  numberToKorean(number){
+  //   var inputNumber  = number < 0 ? false : number;
+  //   var unitWords    = ['', '만', '억', '조', '경'];
+  //   var splitUnit    = 10000;
+  //   var splitCount   = unitWords.length;
+  //   var resultArray  = [];
+  //   var resultString = '';
+
+  //   for (var i = 0; i < splitCount; i++){
+  //        var unitResult = (inputNumber % Math.pow(splitUnit, i + 1)) / Math.pow(splitUnit, i);
+  //       unitResult = Math.floor(unitResult);
+  //       if (unitResult > 0){
+  //           resultArray[i] = unitResult;
+  //       }
+  //   }
+
+  //   for (var j = 0; j < resultArray.length; j++){
+  //       if(!resultArray[j]) continue;
+  //       resultString = String(resultArray[j]) + unitWords[j] + resultString;
+  //   }
+
+  //   return resultString;
+  // },
   created(){
 
   },
