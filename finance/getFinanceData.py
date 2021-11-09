@@ -1,6 +1,8 @@
 import requests
 import json
 
+from requests.exceptions import SSLError
+
 # 요청 포맷 http://finlife.fss.or.kr/finlifeapi/creditLoanProductsSearch.xml?auth={발급받은 인증키}&topFinGrpNo=050000&pageNo=1
 
 key = 'fac934f307d1d0770ec3143a5f14eaa7'
@@ -19,6 +21,9 @@ deposit = dict()
 saving_list = []
 saving = dict()
 
+# 연금 저축
+annuity_list = []
+annuity = dict()
 
 totURL_list = []
 def getMaxPage():
@@ -57,7 +62,22 @@ def getDeposit():
 def getSaving():
     res = requests.get(totURL_list[1]).json()
 
-    print(res)
+    for result in res['result']['baseList'][:2]:
+        saving['bank_name'] = result['kor_co_nm']
+        saving['product_name'] = result['fin_prdt_nm']
+        saving['join_way'] = result['join_way']
+        saving['interest_rate'] = result['mtrt_int']
+        saving['preferential_term'] = result['spcl_cnd']
+        if result['join_deny'] == '1':
+            saving['join_deny'] = '제한없음'
+        elif result['join_deny'] == '2':
+            saving['join_deny'] = '서민전용'
+        elif result['join_deny'] == '3':
+            saving['join_deny'] = '일부제한'
+        saving['max_limit'] = result['max_limit']
+        saving['etc_note'] = result['etc_note']
+        saving_list.append(saving)
+    print(saving_list)
 
 def getData():
     pass
