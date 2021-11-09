@@ -51,7 +51,7 @@ class UserToken(BaseModel):
 class PostCreate(BaseModel):
     title: str
     content: str
-    create_date: date
+    create_date: str
 
     class Config:
         orm_mode = True
@@ -59,4 +59,4 @@ class PostCreate(BaseModel):
 
 class CommentCreate(BaseModel):
     content: str
-    create_date: date
+    create_date: str
