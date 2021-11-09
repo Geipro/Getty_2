@@ -155,8 +155,8 @@ async def create_post(
     return crud.create_post(db=db, post=post_info, uid=user.uid, user_id=user_id)
 
 
-@app.get("/post", status_code=200)
-async def get_post(db: Session = Depends(get_db)):
+@app.get("/posts", status_code=200)
+async def get_all_post(db: Session = Depends(get_db)):
     """
     `모든 게시글 가져오기`
     :param db:
@@ -188,10 +188,23 @@ async def get_my_post(
     return crud.get_user_post_by_uid(db=db, uid=user.uid)
 
 
-@app.get("/comment", status_code=200)
-async def get_comment(pid: int, db: Session = Depends(get_db)):
+@app.get("/post", status_code=200)
+async def get_post(pid: int, db: Session = Depends(get_db)):
+    """
+    `특정 게시물(1개) 가져오기`
+    :param pid:
+    :param db:
+    :return:
+    """
+
+    return crud.get_post_by_pid(db=db, pid=pid)
+
+
+@app.get("/post", status_code=200)
+async def get_post(pid: int, db: Session = Depends(get_db)):
     """
     `게시물 댓글 가져오기`
+    :param pid:
     :param db:
     :return:
     """

@@ -25,6 +25,10 @@ def get_comment_by_pid(db: Session, pid: int):
     return db.query(models.Comment).filter(models.Comment.pid == pid).all()
 
 
+def get_post_by_pid(db: Session, pid: int):
+    return db.query(models.Post).filter(models.Post.pid == pid).first()
+
+
 def get_all_post(db: Session):
     return db.query(models.Post).all()
 
