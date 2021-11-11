@@ -13,16 +13,12 @@
     </span>
     <span v-else>
       <ul>
-        <!-- login 적용하면 마이페이지는 제거 -->
+        <li>
+          <router-link :to="{ name: 'About' }" class="text-light nav-link">로그인 / 회원가입</router-link>
+        </li>
         <!-- <li>
-          <router-link :to="{ name: 'Mywrite' }" class="text-light nav-link">마이페이지</router-link>
+          <a class="nav-link active" aria-current="page" href="/signup" style="color: white">회원가입</a>
         </li> -->
-        <li>
-          <router-link :to="{ name: 'About' }" class="text-light nav-link">로그인</router-link>
-        </li>
-        <li>
-          <a class="nav-link active" aria-current="page" href="#" style="color: white">회원가입</a>
-        </li>
       </ul>
     </span>
   </div>
@@ -46,13 +42,7 @@
         </b-nav-item-dropdown>
 
         <b-nav-item href="#" class="nav-margin">주요 뉴스</b-nav-item>
-        <b-nav-item-dropdown text="커뮤니티" right class="nav-margin">
-          <b-dropdown-item href="#">EN</b-dropdown-item>
-          <b-dropdown-item href="#">ES</b-dropdown-item>
-          <b-dropdown-item href="#">RU</b-dropdown-item>
-          <b-dropdown-item href="#">FA</b-dropdown-item>
-        </b-nav-item-dropdown>
-
+        <b-nav-item href="/board" class="nav-margin">커뮤니티</b-nav-item>
       </b-navbar-nav>
     </b-navbar>
   </div>
@@ -60,6 +50,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'Navbar',
   props: {
