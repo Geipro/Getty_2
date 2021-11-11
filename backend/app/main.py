@@ -203,13 +203,13 @@ async def get_post(pid: int, db: Session = Depends(get_db)):
 @app.get("/post", status_code=200)
 async def get_post(pid: int, db: Session = Depends(get_db)):
     """
-    `게시물 댓글 가져오기`
+    `특정 게시물 가져오기`
     :param pid:
     :param db:
     :return:
     """
 
-    return crud.get_comment_by_pid(db=db, pid=pid)
+    return crud.get_post_by_pid(db=db, pid=pid)
 
 
 @app.get("/my_comment", status_code=200)
@@ -230,6 +230,18 @@ async def get_my_comment(token: str = Header(None), db: Session = Depends(get_db
     user = crud.get_user_by_userid(db, user_id=user_id)
 
     return crud.get_user_comment_by_uid(db=db, uid=user.uid)
+
+
+@app.get("/comment", status_code=200)
+async def get_comment(pid: int, db: Session = Depends(get_db)):
+    """
+    `특정 게시물의 댓글 가져오기`
+    :param post_id:
+    :param db:
+    :return:
+    """
+
+    return crud.get_comment_by_pid(db=db, pid=pid)
 
 
 @app.post("/comment", status_code=200)
