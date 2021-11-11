@@ -1,12 +1,13 @@
 <template>
   <div class="about conatiner h-100">
+    <Navbar/>
     <div class="row justify-content-center align-items-center h-100">
       <div class="col-4 d-flex flex-column my-5">
-        <login v-if="login" 
+        <login v-if="login"
         @signup="changeSignup"
         class=""></login>
-        
-        <signup v-if="signup" 
+
+        <signup v-if="signup"
         @login="changeLogin"
         class="" ></signup>
       </div>
@@ -17,12 +18,14 @@
 <script>
 import Login from '@/components/UserPage/Login.vue'
 import Signup from '@/components/UserPage/Signup.vue'
+import Navbar from '@/components/MainPage/Navbar.vue'
 
 export default {
     name: 'About',
     components: {
         Login,
         Signup,
+        Navbar,
     },
     data () {
         return {
