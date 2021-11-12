@@ -22,20 +22,20 @@
                 <b-button variant="success">삭제</b-button>
             </div>
             <div class="content-detail-comment">
-                <!-- <CommentList :contentId="contentId"></CommentList> -->
+                <CommentList></CommentList>
             </div>
         </b-card>
     </div>
 </template>
 
 <script>
-//import CommentList from '@/components/BoardPage/CommentList.vue'
+import CommentList from '@/components/BoardPage/CommentList.vue'
 import axios from 'axios'
 
 export default {
     name: "ContentDetail",
     components:{
-        //CommentList
+        CommentList
     },
     data(){
         return{
@@ -65,16 +65,6 @@ export default {
         })
     },
     methods:{
-        // deleteData(){
-        //     this.$router.push({
-        //         path : '/board'
-        //     })
-        // },
-        // updateData() {
-        //     this.$router.push({
-        //          path: `/board/create/${this.contentId}`
-        //      });
-        // }
     }
 }
 </script>

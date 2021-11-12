@@ -17,7 +17,7 @@
 
 <script>
 import axios from 'axios'
- 
+
 
 export default{
     name: 'BoardCreate',
@@ -33,7 +33,6 @@ export default{
     created(){
         let today = new Date();
         this.boardData.create_date = today.toLocaleDateString() + " " + today.getFullYear() + ":" + today.getHours() + ":" + today.getMinutes();
-        console.log(this.boardData.create_date)
     },
     methods:{
         uploadContent(){
