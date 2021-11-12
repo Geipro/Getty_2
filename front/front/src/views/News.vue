@@ -58,7 +58,7 @@ export default {
       //     console.log(error);
       //   });
       axios
-        .get('/news/' + encodeURI(this.searchQuery, 'utf-8'))
+        .get('https://k5a405.p.ssafy.io/backend/news/' + encodeURI(this.searchQuery, 'utf-8'))
         .then((response) => {
           this.newsList = response.data;
           console.log(this.newsList);
