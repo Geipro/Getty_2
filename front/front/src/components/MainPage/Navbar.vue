@@ -34,16 +34,16 @@
     <b-navbar type="dark" variant="#2c3e50" class="justify-content-center">
       <b-navbar-nav>
         <!-- Navbar dropdowns -->
-        <b-nav-item-dropdown text="금융 상품 정보" right class="nav-margin">
+        <b-nav-item-dropdown text="금융 상품 정보" right class="nav-margin text-light">
           <b-dropdown-item href="#">예금</b-dropdown-item>
           <b-dropdown-item href="#">적금</b-dropdown-item>
           <b-dropdown-item href="#">신용대출</b-dropdown-item>
           <b-dropdown-item href="#">주택담보대출</b-dropdown-item>
         </b-nav-item-dropdown>
-        <router-link :to="{ name: 'News' }" class="text-light nav-link">뉴스</router-link>
+        <!-- <router-link :to="{ name: 'News' }" class="text-light nav-link">뉴스</router-link> -->
 
-        <b-nav-item href="#" class="nav-margin">주요 뉴스</b-nav-item>
-        <b-nav-item href="/board" class="nav-margin">커뮤니티</b-nav-item>
+        <b-nav-item href="/news" class="nav-margin text-light">뉴스</b-nav-item>
+        <b-nav-item href="/board" class="nav-margin text-light">커뮤니티</b-nav-item>
       </b-navbar-nav>
     </b-navbar>
   </div>
