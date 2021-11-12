@@ -51,6 +51,36 @@ const routes = [
     component: () => import('../components/BoardPage/BoardDetail.vue')
   },
   {
+    path: '/creditloan',
+    name: 'CreditLoan',
+    component: () => import('../components/FinanceProduct/CreditLoan.vue')
+  },
+  {
+    path: '/deposit',
+    name: 'Deposit',
+    component: () => import('../components/FinanceProduct/Deposit.vue')
+  },
+  {
+    path: '/renthouse',
+    name: 'RentHouse',
+    component: () => import('../components/FinanceProduct/RentHouse.vue')
+  },
+  {
+    path: '/mortgage',
+    name: 'Mortgage',
+    component: () => import('../components/FinanceProduct/Mortgage.vue')
+  },
+  {
+    path: '/savings',
+    name: 'Savings',
+    component: () => import('../components/FinanceProduct/Savings.vue')
+  },
+  {
+    path: '/product',
+    name: 'Product',
+    component: () => import('../views/Product.vue')
+  },
+  {
     path: '/news',
     name: 'News',
     component: News

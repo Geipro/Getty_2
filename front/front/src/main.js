@@ -4,6 +4,8 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import router from './router'
+import VueLodash from 'vue-lodash'
+import lodash from 'lodash'
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
@@ -12,6 +14,7 @@ Vue.use(IconsPlugin)
 Vue.filter("makeComma", val =>{
   return String(val).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 })
+Vue.use(VueLodash, { name: 'custom' , lodash: lodash })
 
 new Vue({
   router,

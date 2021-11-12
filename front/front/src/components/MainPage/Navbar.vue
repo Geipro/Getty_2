@@ -7,7 +7,7 @@
           <router-link :to="{ name: 'Mywrite' }" class="text-light nav-link mt-3">마이페이지</router-link>
         </li>
         <li>
-          <router-link @click.native="logout" to="#" class="text-light nav-link" text-decoration: none>로그아웃</router-link>
+          <router-link @click.native="logout" to="#" class="text-light nav-link mr-3" text-decoration: none>로그아웃</router-link>
         </li>
       </ul>
     </span>
@@ -35,10 +35,11 @@
       <b-navbar-nav>
         <!-- Navbar dropdowns -->
         <b-nav-item-dropdown text="금융 상품 정보" right class="nav-margin text-light">
-          <b-dropdown-item href="#">예금</b-dropdown-item>
-          <b-dropdown-item href="#">적금</b-dropdown-item>
-          <b-dropdown-item href="#">신용대출</b-dropdown-item>
-          <b-dropdown-item href="#">주택담보대출</b-dropdown-item>
+          <b-dropdown-item href="/deposit">예금</b-dropdown-item>
+          <b-dropdown-item href="/savings">적금</b-dropdown-item>
+          <b-dropdown-item href="/creditloan">신용대출</b-dropdown-item>
+          <b-dropdown-item href="/renthouse">전세자금대출</b-dropdown-item>
+          <b-dropdown-item href="/mortgage">주택담보대출</b-dropdown-item>
         </b-nav-item-dropdown>
         <!-- <router-link :to="{ name: 'News' }" class="text-light nav-link">뉴스</router-link> -->
 

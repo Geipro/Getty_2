@@ -12,7 +12,7 @@
       <table class="table table-bg-light table-hover">
         <thead>
           <tr class="text-warning">
-            <th scope="col">이름</th>
+            <th scope="col" >이름</th>
             <th scope="col">현재가</th>
             <th scope="col">전일대비</th>
             <th scope="col">고가대비(52주)</th>
@@ -40,8 +40,8 @@
               <div>{{ element.lowest_52_week_price | makeComma }}원</div>
             </td>
             <td>
-              <div>{{ Math.floor(element.acc_trade_price_24h / 100000000).toFixed(0) | makeComma }} 억</div>
-              <div>{{ Math.floor(element.acc_trade_won_24h / 100000000).toFixed(0) | makeComma }} 억</div>
+              <div>{{ Math.floor(element.acc_trade_price_24h / 100000000).toFixed(0) | makeComma }}억</div>
+              <div>{{ Math.floor(element.acc_trade_volume_24h / 10000).toFixed(0) | makeComma }}개</div>
             </td>
           </tr>
         </tbody>
@@ -53,79 +53,15 @@
 </template>
 
 <script>
-
 import axios from 'axios';
-// import { numToKorean } from 'num-to-korean'
 
 export default {
   name: 'MainPageCenter',
   data: function () {
     return {
       crypto: [],
-      // imgName: '',
-      // fields: [
-      //     {
-      //       key: '이름',
-      //       sortable: true
-      //     },
-      //     {
-      //       key: '현재가',
-      //       sortable: true
-      //     },
-      //     {
-      //       key: '전일대비',
-      //       sortable: true
-      //     },
-      //     {
-      //       key: '고가대비(52주)',
-      //       sortable: true
-      //     },
-      //     {
-      //       key: 'first_name',
-      //       sortable: true
-      //     },
-      //     {
-      //       key: 'age',
-      //       label: 'Person age',
-      //       sortable: true,
-      //       // variant: 'danger'
-      //     }
-      //   ],
-      //   items: [
-      //     { isActive: true, age: 40, first_name: 'Dickerson', last_name: 'Macdonald' },
-      //     { isActive: false, age: 21, first_name: 'Larsen', last_name: 'Shaw' },
-      //     { isActive: false, age: 89, first_name: 'Geneva', last_name: 'Wilson' },
-      //     { isActive: true, age: 38, first_name: 'Jami', last_name: 'Carney' }
-      //   ]
     }
   },
-
-  // getVolume(volume) {
-  //   return numToKorean(Math.floor(volume / 100000000) * 100000000, 'mixed')
-  // },
-  //  numberToKorean(number){
-  //   var inputNumber  = number < 0 ? false : number;
-  //   var unitWords    = ['', '만', '억', '조', '경'];
-  //   var splitUnit    = 10000;
-  //   var splitCount   = unitWords.length;
-  //   var resultArray  = [];
-  //   var resultString = '';
-
-  //   for (var i = 0; i < splitCount; i++){
-  //        var unitResult = (inputNumber % Math.pow(splitUnit, i + 1)) / Math.pow(splitUnit, i);
-  //       unitResult = Math.floor(unitResult);
-  //       if (unitResult > 0){
-  //           resultArray[i] = unitResult;
-  //       }
-  //   }
-
-  //   for (var j = 0; j < resultArray.length; j++){
-  //       if(!resultArray[j]) continue;
-  //       resultString = String(resultArray[j]) + unitWords[j] + resultString;
-  //   }
-
-  //   return resultString;
-  // },
   created(){
 
   },
@@ -141,7 +77,7 @@ export default {
     }).catch((err) =>{
       console.log(err)
     })
-  }
+  },
 }
 </script>
 
