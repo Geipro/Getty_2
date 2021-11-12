@@ -9,6 +9,7 @@
             <th scope="col" >은행 이름 </th>
             <th scope="col">상품 이름</th>
             <th scope="col">가입 방법</th>
+            <!-- modal로 할까? -->
             <th scope="col">중도상환 수수료</th>
             <th scope="col">연체 이자율</th>
             <th scope="col">대출 한도</th>

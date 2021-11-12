@@ -2,7 +2,7 @@
   <div class="justify-content-center align-items-center" style="text-align: center; width: 100%">
     <Navbar />
     <h2 class="mt-3 mb-4">주택담보대출</h2>
-    <div class="d-lg-block col-lg-12 bg-success">
+    <div class="d-lg-block col-lg-12 bg-grey">
       <table class="table table-bg-light table-hover">
         <thead>
           <tr class="text-warning">
