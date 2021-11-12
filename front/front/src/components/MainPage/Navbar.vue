@@ -4,7 +4,7 @@
     <span v-if="isLogin">
       <ul class="ulist">
         <li>
-          <router-link :to="{ name: 'Mywrite' }" class="text-light nav-link">마이페이지</router-link>
+          <router-link :to="{ name: 'Mywrite' }" class="text-light nav-link mt-3">마이페이지</router-link>
         </li>
         <li>
           <router-link @click.native="logout" to="#" class="text-light nav-link" text-decoration: none>로그아웃</router-link>
@@ -14,7 +14,7 @@
     <span v-else>
       <ul>
         <li>
-          <router-link :to="{ name: 'About' }" class="text-light nav-link">로그인 / 회원가입</router-link>
+          <router-link :to="{ name: 'About' }" class="text-light nav-link mt-3">로그인 / 회원가입</router-link>
         </li>
         <!-- <li>
           <a class="nav-link active" aria-current="page" href="/signup" style="color: white">회원가입</a>
