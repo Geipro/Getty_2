@@ -6,7 +6,6 @@
     <div class="d-flex justify-content-center align-items-center">
       <MainPageCenter />
     </div>
-    <!-- <MainPageBottom /> -->
   </div>
 </template>
 

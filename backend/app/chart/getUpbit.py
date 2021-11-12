@@ -28,7 +28,7 @@ def get_coin_symbol():
 # 얼마마다 갱신할 지
 def update_coin_data():
     coin_list = []
-    for coin in check_list[:3]:
+    for coin in check_list:
         tot_URL = url + coin
         res = requests.get(tot_URL).json()[0]
         # print(res)
@@ -47,8 +47,8 @@ def update_coin_data():
         coin_object[coin]["lowest_52_week_rate"] = round(
             (pri - low_pri) / low_pri * 100, 2
         )
+        coin_object[coin]["acc_trade_volume_24h"] = res["acc_trade_volume_24h"]
         coin_object[coin]["acc_trade_price_24h"] = trade_vol
-        coin_object[coin]["acc_trade_won_24h"] = int(trade_vol * pri)
         coin_list.append(coin_object[coin])
 
     return coin_list

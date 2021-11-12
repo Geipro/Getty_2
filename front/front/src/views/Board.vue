@@ -1,15 +1,16 @@
 <template>
     <div class="board conatiner-fluid h-100">
-        <div class="row justify-content-center align-items-center h-100">
-            <board-list v-if="Blist"
-            ></board-list>
+      <Navbar/>
+      <div class="row justify-content-center align-items-center h-100 mt-4">
+        <board-list v-if="Blist"
+        ></board-list>
 
-            <board-create v-if="Bcreate"
-            ></board-create>
+        <board-create v-if="Bcreate"
+        ></board-create>
 
-            <board-detail v-if="Bdetail"
-            ></board-detail>
-        </div>
+        <board-detail v-if="Bdetail"
+        ></board-detail>
+      </div>
     </div>
 </template>
 
@@ -18,13 +19,15 @@
 import BoardCreate from '@/components/BoardPage/BoardCreate.vue'
 import BoardDetail from '@/components/BoardPage/BoardDetail.vue'
 import BoardList from '@/components/BoardPage/BoardList.vue'
+import Navbar from '@/components/MainPage/Navbar.vue'
 
 export default {
     name:'Board',
     components: {
         BoardCreate,
         BoardDetail,
-        BoardList
+        BoardList,
+        Navbar,
     },
     data(){
         return{
