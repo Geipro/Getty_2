@@ -15,7 +15,7 @@
   font-family: 'Noto Sans KR', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /* text-align: center; */
   color: white;
   background-color: #1f2325;
   min-height: 100vh;

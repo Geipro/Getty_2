@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="container mb-3">
-            <h1 class="border">자유게시판</h1>
+            <h1 class="border text-center">자유게시판</h1>
         </div>
         <div class="container mb-5">
             <b-input v-model="boardData.title" placeholder="제목을 입력하시오"></b-input>
@@ -10,8 +10,10 @@
             <b-form-textarea v-model="boardData.content" placeholder="내용을 입력하시오" rows="10" max-rows="10">
             </b-form-textarea>
         </div>
-        <b-button variant="primary" class="mr-3" @click="uploadContent()">저장</b-button> &nbsp;&nbsp;
-        <b-button @click="cancel">취소</b-button>
+        <div class="text-center">
+            <b-button variant="primary" class="mr-3" @click="uploadContent()">저장</b-button> &nbsp;&nbsp;
+            <b-button @click="cancel">취소</b-button>
+        </div>
     </div>
 </template>
 

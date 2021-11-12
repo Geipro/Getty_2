@@ -2,10 +2,10 @@
   <div>
     <div>
       <div class="row align-items-center">
-        <span class="col-8 offset-2 align-self-center"><h5 class="text-white mb-0">내가 쓴 글</h5></span>
+        <span class="col-8 offset-2 align-self-center text-center"><h5 class="text-white mb-0">내가 쓴 글</h5></span>
       </div>
       <br>
-      <div class="d-lg-block col-lg-12">
+      <div class="d-lg-block col-lg-12 text-center">
         <table class="table table-bg-light table-hover">
           <thead>
             <tr class="text-white">

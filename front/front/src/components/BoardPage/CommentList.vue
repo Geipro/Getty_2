@@ -1,13 +1,17 @@
 <template>
     <div>
         <div>
-            <p></p>
+            <h3>댓글</h3>
         </div>
-        <div :key="item.pid" v-for="item in comments">
+        <div class="mb-3" :key="item.pid" v-for="item in comments">
             <div v-if="item.content != ''">
                 <div class="md-12">
-                    <a class="float-left mr-5">{{item.user_id}}</a>
-                    <a class="float-right ml-5">{{item.create_date}}</a>
+                    <div class="text-left">
+                        <h4 class="float-left text-left mr-5">{{item.user_id}}</h4>
+                        <a class="float-right text-right ml-5">  --- {{item.create_date}}</a>
+                    </div>
+                    <!-- <div class="float-right text-right">
+                    </div> -->
                 </div>
                 <div class="mt-2">
                     <a>{{item.content}}</a>

@@ -2,10 +2,10 @@
   <div>
     <div>
       <div class="row align-items-center">
-        <span class="col-8 offset-2 align-self-center"><h5 class="text-white mb-0">내가 쓴 댓글</h5></span>
+        <span class="col-8 offset-2 align-self-center text-center"><h5 class="text-white mb-0">내가 쓴 댓글</h5></span>
       </div>
       <br>
-      <div class="d-lg-block col-lg-12">
+      <div class="d-lg-block col-lg-12 text-center">
         <table class="table table-bg-light table-hover">
           <thead>
             <tr class="text-white">
@@ -14,7 +14,7 @@
               <th scope="col">날짜</th>
             </tr>
           </thead>
-         <tbody>
+        <tbody>
           <tr class="text-white" v-for="(element, idx) in reviewinfo" :key="idx">
             <td class="col-2" scope="row">{{ idx + 1 }}</td>
             <td class="col-8">{{ element.content }}</td>
