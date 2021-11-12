@@ -7,6 +7,11 @@ import bcrypt, jwt
 import os
 from dotenv import load_dotenv
 
+from bs4 import BeautifulSoup
+import requests
+import re
+
+
 # getUpbit.py
 from chart.getUpbit import coin_list, get_coin_symbol, update_coin_data, sort_by
 
@@ -285,3 +290,37 @@ async def sorting_chart(reverse_flag: bool, case: str, db: Session = Depends(get
     # print(new_data)
 
     return sorted(new_data, key=lambda x: x[case], reverse=reverse_flag)
+
+@app.get("/news/{query}")
+def read_item(query: str):
+    print(query)
+    query = query.replace(' ', '+') 
+    # news_num = int(input('총 필요한 뉴스기사 수를 입력해주세요(숫자만 입력) : '))
+    news_num = 10
+    news_url = 'https://search.naver.com/search.naver?where=news&sm=tab_jum&query={}'
+    req = requests.get(news_url.format(query))
+    soup = BeautifulSoup(req.text, 'html.parser')
+
+    news_dict = {} 
+    idx = 0 
+    # cur_page = 1
+
+    table = soup.find('ul',{'class' : 'list_news'})
+    li_list = table.find_all('li', {'id': re.compile('sp_nws.*')})
+    area_list = [li.find('div', {'class' : 'news_area'}) for li in li_list]
+    a_list = [area.find('a', {'class' : 'news_tit'}) for area in area_list]
+    thumbnail_list = [li.find('a', {'class': 'dsc_thumb'}).find('img') for li in li_list]
+
+    for n in a_list[:min(len(a_list), news_num-idx)]:
+        news_dict[idx] = {'title' : n.get('title'),
+                          'url' : n.get('href'),
+                          }
+        idx += 1
+
+    idx = 0
+
+    for n in thumbnail_list[:min(len(thumbnail_list), news_num-idx)]:
+        news_dict[idx]['thumbnail'] = n.get('src')
+        idx += 1
+
+    return news_dict

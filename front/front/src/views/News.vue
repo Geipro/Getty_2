@@ -47,7 +47,7 @@ export default {
   methods: {
     findNews: function() {
       console.log(this.searchQuery);
-      console.log('http://127.0.0.1:8000/news/' + encodeURI(this.searchQuery, 'utf-8'));
+      console.log('https://k5a405.p.ssafy.io/backend/news/' + encodeURI(this.searchQuery, 'utf-8'));
       // axios
       //   .get('http://127.0.0.1:8000/news/' + encodeURI(this.searchQuery, 'utf-8'))
       //   .then((response) => {
