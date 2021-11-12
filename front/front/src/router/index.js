@@ -4,6 +4,8 @@ import Home from '../views/Home.vue'
 import Mypage from '@/views/Mypage.vue'
 import Mywrite from '@/views/Mywrite.vue'
 import Myreview from '@/views/Myreview.vue'
+import News from '@/views/News.vue'
+
 
 Vue.use(VueRouter)
 
@@ -47,7 +49,12 @@ const routes = [
     path: "/boardDetail/:contentId",
     name: "BoardDetail",
     component: () => import('../components/BoardPage/BoardDetail.vue')
-  }
+  },
+  {
+    path: '/news',
+    name: 'News',
+    component: News
+  },
 ]
 
 const router = new VueRouter({

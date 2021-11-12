@@ -40,6 +40,7 @@
           <b-dropdown-item href="#">신용대출</b-dropdown-item>
           <b-dropdown-item href="#">주택담보대출</b-dropdown-item>
         </b-nav-item-dropdown>
+        <router-link :to="{ name: 'News' }" class="text-light nav-link">뉴스</router-link>
 
         <b-nav-item href="#" class="nav-margin">주요 뉴스</b-nav-item>
         <b-nav-item href="/board" class="nav-margin">커뮤니티</b-nav-item>
