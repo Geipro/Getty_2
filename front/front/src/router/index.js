@@ -76,11 +76,6 @@ const routes = [
     component: () => import('../components/FinanceProduct/Savings.vue')
   },
   {
-    path: '/product',
-    name: 'Product',
-    component: () => import('../views/Product.vue')
-  },
-  {
     path: '/news',
     name: 'News',
     component: News

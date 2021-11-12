@@ -1,6 +1,7 @@
 <template>
-  <div class="mt-5 justify-content-center align-items-center" style="text-align: center; width: 100%">
-    <h2>예금</h2>
+  <div class="justify-content-center align-items-center" style="text-align: center; width: 100%">
+    <Navbar />
+    <h2 class="mt-3 mb-4">예금</h2>
     <div class="d-lg-block col-lg-12 bg-success">
       <table class="table table-bg-light table-hover">
         <thead>
@@ -35,9 +36,13 @@
 
 <script>
 import axios from 'axios';
+import Navbar from '@/components/MainPage/Navbar.vue'
 
 export default {
   name: 'Deposit',
+  components: {
+        Navbar,
+    },
   data: function () {
     return {
       Depo: [],

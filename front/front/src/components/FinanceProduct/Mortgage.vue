@@ -1,6 +1,7 @@
 <template>
-  <div class="mt-5 justify-content-center align-items-center" style="text-align: center; width: 100%">
-    <h2>주택담보대출</h2>
+  <div class="justify-content-center align-items-center" style="text-align: center; width: 100%">
+    <Navbar />
+    <h2 class="mt-3 mb-4">주택담보대출</h2>
     <div class="d-lg-block col-lg-12 bg-success">
       <table class="table table-bg-light table-hover">
         <thead>
@@ -15,7 +16,6 @@
             <th scope="col">대출 금리</th>
             <th scope="col">최저 금리</th>
             <th scope="col">최고 금리</th>
-            <!-- <th scope="col">전월 평균</th> -->
           </tr>
         </thead>
         <tbody>
@@ -27,11 +27,9 @@
             <td>{{ element.dly_rate }}</td>
             <td>{{ element.loan_lmt }}</td>
             <td>{{ element.mrtg_type_nm }}</td>
-            <td>{{ element.lend_rate_avg }}</td>
-            <td>{{ element.lend_rate_min }}</td>
-            <td>{{ element.lend_rate_max }}</td>
-            <td>{{ element.max_limit }}</td>
-
+            <td>{{ element.lend_rate_avg }}%</td>
+            <td>{{ element.lend_rate_min }}%</td>
+            <td>{{ element.lend_rate_max }}%</td>
           </tr>
         </tbody>
       </table>
@@ -42,9 +40,13 @@
 
 <script>
 import axios from 'axios';
+import Navbar from '@/components/MainPage/Navbar.vue'
 
 export default {
   name: 'Mortgage',
+  components: {
+        Navbar,
+    },
   data: function () {
     return {
       mortgage: [],
