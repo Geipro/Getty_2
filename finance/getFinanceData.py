@@ -10,16 +10,15 @@ bank_code = '020000'
 URL_list = ['depositProductsSearch', 'savingProductsSearch', 'mortgageLoanProductsSearch',
  'rentHouseLoanProductsSearch', 'creditLoanProductsSearch']
 
+
 # 정기예금 : { 은행이름, 상품이름, 가입경로, 만기 후 이율, 우대 조건, 가입제한, 최고한도, 유의사항}
 deposit_list = []
-deposit = dict()
 
 # 적금 : 예금과 동일
 saving_list = []
-saving = dict()
 
 # 분할상환 방식, 변동금리 기준 -> 네이버가 분할상환, 변동금리 기준으로 제공
-# 주택담보대출 : { 은행이름, 상품이름, 가입방법, 중도상환수수료, 연체이자율, 대출한도, 담보유형, 대출금리 최저, 최고, 전월평균 }
+# 주택담보대출 : { 은행이름, 상품이름, 가입방법, 대출부대비용, 중도상환수수료, 연체이자율, 대출한도, 담보유형, 대출금리 최저, 최고, 전월평균 }
 mortgage_list = []
 
 # 만기일시 상환방식, 변동금리 기준
@@ -27,27 +26,33 @@ mortgage_list = []
 rentHouse_list = []
 
 
-# 신용대출 : { 은행이름, 상품이름, 가입방법, 대출종류명, 신용평가회사, 900점 초과 금리, 801 ~ 900, 701 ~ 800, 
+# 신용대출 : { 은행이름, 상품이름, 가입방법, 대출종류명, 신용평가회사, 900점 초과 금리, 801 ~ 900, 701 ~ 800,
 # 601 ~ 700, 501 ~ 600, 401 ~ 500, 301 ~ 400, 300이하, 평균 금리 }
 creditLoan_list = []
 
-totURL_list = []
+totURL_list = ['http://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth=fac934f307d1d0770ec3143a5f14eaa7&topFinGrpNo=020000&pageNo=1',
+               'http://finlife.fss.or.kr/finlifeapi/savingProductsSearch.json?auth=fac934f307d1d0770ec3143a5f14eaa7&topFinGrpNo=020000&pageNo=1',
+               'http://finlife.fss.or.kr/finlifeapi/mortgageLoanProductsSearch.xml?auth=fac934f307d1d0770ec3143a5f14eaa7&topFinGrpNo=020000&pageNo=1',
+               'http://finlife.fss.or.kr/finlifeapi/rentHouseLoanProductsSearch.xml?auth=fac934f307d1d0770ec3143a5f14eaa7&topFinGrpNo=020000&pageNo=1',
+               'http://finlife.fss.or.kr/finlifeapi/creditLoanProductsSearch.xml?auth=fac934f307d1d0770ec3143a5f14eaa7&topFinGrpNo=020000&pageNo=1']
 
 # 금융 정보 가져올 API url 생성
-def make_total_URL():
-    cnt = 0
-    for url in URL_list:
-        cnt += 1
-        if cnt < 3:
-            totURL_list.append(f'{URL}{url}.json?auth={key}&topFinGrpNo={bank_code}&pageNo=1')
-        else:
-            totURL_list.append(f'{URL}{url}.xml?auth={key}&topFinGrpNo={bank_code}&pageNo=1')
+# def make_total_URL():
+#     cnt = 0
+#     for url in URL_list:
+#         cnt += 1
+#         if cnt < 3:
+#             totURL_list.append(f'{URL}{url}.json?auth={key}&topFinGrpNo={bank_code}&pageNo=1')
+#         else:
+#             totURL_list.append(f'{URL}{url}.xml?auth={key}&topFinGrpNo={bank_code}&pageNo=1')
+#     print(totURL_list)
 
 
 # 정기예금 데이터 get
 def getDeposit():
     res = requests.get(totURL_list[0]).json()
     for result in res['result']['baseList']:
+        deposit = dict()
         deposit['bank_name'] = result['kor_co_nm']
         deposit['product_name'] = result['fin_prdt_nm']
         deposit['join_way'] = result['join_way']
@@ -62,13 +67,16 @@ def getDeposit():
         deposit['max_limit'] = result['max_limit']
         deposit['etc_note'] = result['etc_note']
         deposit_list.append(deposit)
-    print(deposit_list)
+
+    for dl in deposit_list:
+        print(dl, end='\n\n-----------------------------------------------------------------------------\n\n')
 
 # 적금 데이터 get
 def getSaving():
     res = requests.get(totURL_list[1]).json()
 
     for result in res['result']['baseList']:
+        saving = dict()
         saving['bank_name'] = result['kor_co_nm']
         saving['product_name'] = result['fin_prdt_nm']
         saving['join_way'] = result['join_way']
@@ -83,7 +91,8 @@ def getSaving():
         saving['max_limit'] = result['max_limit']
         saving['etc_note'] = result['etc_note']
         saving_list.append(saving)
-    print(saving_list)
+    for dl in saving_list:
+        print(dl, end='\n\n-----------------------------------------------------------------------------\n\n')
 
 # 주택담보대출 API get
 def getMortgage():
@@ -165,7 +174,7 @@ def getcreditLoan():
             print(mg, end='\n\n-----------------------------------------------------------------------\n\n')
 
 if __name__ == '__main__':
-    make_total_URL()
+    # make_total_URL()
     getDeposit()
     getSaving()
     getMortgage()
