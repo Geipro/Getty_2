@@ -122,15 +122,20 @@ def getMortgage():
 
     res = requests.get(totURL_list[2])._content
     xml_obj = bs(res, "lxml-xml")
+    # print(xml_obj)
     for result in xml_obj.find_all("product"):
         mortgage = dict()
+        # print(result)
+        # print()
+        # print()
         base = result.find("baseinfo")
+        print(base.find("erly_rpay_fee").text.split("\n"))
         options = result.find_all("option")
         mortgage["bank_name"] = base.find("kor_co_nm").text
         mortgage["product_name"] = base.find("fin_prdt_nm").text
         mortgage["join_way"] = base.find("join_way").text
         mortgage["loan_inci_expn"] = base.find("loan_inci_expn").text
-        mortgage["erly_rpay_fee"] = base.find("erly_rpay_fee").text
+        mortgage["erly_rpay_fee"] = base.find("erly_rpay_fee").text.split("\n")
         mortgage["dly_rate"] = base.find("dly_rate").text
         mortgage["loan_lmt"] = base.find("loan_lmt").text
         for option in options:
@@ -143,11 +148,14 @@ def getMortgage():
                 mortgage["lend_rate_max"] = option.find("lend_rate_max").text
                 mortgage["lend_rate_avg"] = option.find("lend_rate_avg").text
         mortgage_list.append(mortgage)
-    for mg in mortgage_list:
-        print(
-            mg,
-            end="\n\n-----------------------------------------------------------------------\n\n",
-        )
+
+        # test break
+        # break
+    # for mg in mortgage_list:
+    #     print(
+    #         mg,
+    #         end="\n\n-----------------------------------------------------------------------\n\n",
+    #     )
 
 
 # 전세자금 API get

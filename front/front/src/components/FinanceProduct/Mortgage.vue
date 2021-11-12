@@ -23,7 +23,13 @@
             <td>{{ element.bank_name }}</td>
             <td>{{ element.product_name }}</td>
             <td>{{ element.join_way }}</td>
-            <td>{{ element.erly_rpay_fee }}</td>
+            <!-- <td>{{ element.erly_rpay_fee }}</td> -->
+            <!-- erly_rpay_fee list -->
+            <td>
+              <p v-for="(erf, idx) in element.erly_rpay_fee" :key="idx">
+                {{ erf }}
+              </p>
+            </td>
             <td>{{ element.dly_rate }}</td>
             <td>{{ element.loan_lmt }}</td>
             <td>{{ element.mrtg_type_nm }}</td>
