@@ -1,50 +1,58 @@
 <template>
     <div>
-        <div :key="item.comment_id" v-for="item in comments">
-            <CommentListItem :commentObj="item"></CommentListItem>
+        <div>
+            <p></p>
         </div>
-        <CommentCreate :contentId="contentId" :reloadComment="reloadComment"/>
+        <div :key="item.pid" v-for="item in comments">
+            <div v-if="item.content != ''">
+                <div class="md-12">
+                    <a class="float-left mr-5">{{item.user_id}}</a>
+                    <a class="float-right ml-5">{{item.create_date}}</a>
+                </div>
+                <div class="mt-2">
+                    <a>{{item.content}}</a>
+                </div>
+            </div>
+        </div>
+        <CommentCreate/>
     </div>
 </template>
 
 <script>
-import data from "@/data";
-import CommentListItem from "./CommentItem";
 import CommentCreate from "./CommentCreate";
 import axios from "axios"
 
 export default {
     name: "CommentList",
     props: {
-        contentId: Number
     },
     data() {
         return {
-            comments: data.Comment.filter(commentItem => {
-                return commentItem.content_id === this.contentId;
-            })
+            user_id : '',
+            content : '',
+            create_date : '',
+            comments:[]
         };
     },
     components: {
-        CommentListItem,
         CommentCreate
     },
     created(){
         axios({
             method:'get',
             url: `https://k5a405.p.ssafy.io/backend/comment`,
-            data: this.pid
-        }).then(res => {
-            
+            params:{
+                pid : window.location.pathname.split("/")[2]
+            }
+        }).then((res) => {
+            this.comments = res.data
             console.log(res)
+        }).catch((err) => {
+            alert(err)
         })
     },
     methods: {
-        reloadComment() {
-            this.comments = data.Comment.filter(commentItem => {
-                return commentItem.content_id === this.contentId;
-            });
-        }
+
     }
 };
 </script>
