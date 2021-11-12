@@ -15,6 +15,9 @@ import re
 # getUpbit.py
 from chart.getUpbit import coin_list, get_coin_symbol, update_coin_data, sort_by
 
+# getFinanceData.py
+import finance.getFinanceData as getFD
+
 from sqlalchemy.orm import Session
 from database import schemas, models, crud
 from database.database import SessionLocal, engine
@@ -291,36 +294,100 @@ async def sorting_chart(reverse_flag: bool, case: str, db: Session = Depends(get
 
     return sorted(new_data, key=lambda x: x[case], reverse=reverse_flag)
 
+
+@app.get("/deposit", status_code=200)
+async def get_deposit(db: Session = Depends(get_db)):
+    """
+    `정기 예금 데이터 가져오기`
+    :param db:
+    :return:
+    """
+    getFD.getDeposit()
+
+    return getFD.deposit_list
+
+
+@app.get("/saving", status_code=200)
+async def get_saving(db: Session = Depends(get_db)):
+    """
+    `적금 데이터 가져오기`
+    :param db:
+    :return:
+    """
+    getFD.getSaving()
+
+    return getFD.saving_list
+
+
+@app.get("/mortgage", status_code=200)
+async def get_mortgage(db: Session = Depends(get_db)):
+    """
+    `주택담보대출 API 가져오기`
+    :param db:
+    :return:
+    """
+    getFD.getMortgage()
+
+    return getFD.mortgage_list
+
+
+@app.get("/renthouse", status_code=200)
+async def get_renthouse(db: Session = Depends(get_db)):
+    """
+    `전세자금 API 가져오기`
+    :param db:
+    :return:
+    """
+    getFD.getRentHouse()
+
+    return getFD.rentHouse_list
+
+
+@app.get("/credit_loan", status_code=200)
+async def get_credit_loan(db: Session = Depends(get_db)):
+    """
+    `개인신용대출 API 가져오기`
+    :param db:
+    :return:
+    """
+    getFD.getcreditLoan()
+
+    return getFD.creditLoan_list
+
+
 @app.get("/news/{query}")
 def read_item(query: str):
     print(query)
-    query = query.replace(' ', '+') 
+    query = query.replace(" ", "+")
     # news_num = int(input('총 필요한 뉴스기사 수를 입력해주세요(숫자만 입력) : '))
     news_num = 10
-    news_url = 'https://search.naver.com/search.naver?where=news&sm=tab_jum&query={}'
+    news_url = "https://search.naver.com/search.naver?where=news&sm=tab_jum&query={}"
     req = requests.get(news_url.format(query))
-    soup = BeautifulSoup(req.text, 'html.parser')
+    soup = BeautifulSoup(req.text, "html.parser")
 
-    news_dict = {} 
-    idx = 0 
+    news_dict = {}
+    idx = 0
     # cur_page = 1
 
-    table = soup.find('ul',{'class' : 'list_news'})
-    li_list = table.find_all('li', {'id': re.compile('sp_nws.*')})
-    area_list = [li.find('div', {'class' : 'news_area'}) for li in li_list]
-    a_list = [area.find('a', {'class' : 'news_tit'}) for area in area_list]
-    thumbnail_list = [li.find('a', {'class': 'dsc_thumb'}).find('img') for li in li_list]
+    table = soup.find("ul", {"class": "list_news"})
+    li_list = table.find_all("li", {"id": re.compile("sp_nws.*")})
+    area_list = [li.find("div", {"class": "news_area"}) for li in li_list]
+    a_list = [area.find("a", {"class": "news_tit"}) for area in area_list]
+    thumbnail_list = [
+        li.find("a", {"class": "dsc_thumb"}).find("img") for li in li_list
+    ]
 
-    for n in a_list[:min(len(a_list), news_num-idx)]:
-        news_dict[idx] = {'title' : n.get('title'),
-                          'url' : n.get('href'),
-                          }
+    for n in a_list[: min(len(a_list), news_num - idx)]:
+        news_dict[idx] = {
+            "title": n.get("title"),
+            "url": n.get("href"),
+        }
         idx += 1
 
     idx = 0
 
-    for n in thumbnail_list[:min(len(thumbnail_list), news_num-idx)]:
-        news_dict[idx]['thumbnail'] = n.get('src')
+    for n in thumbnail_list[: min(len(thumbnail_list), news_num - idx)]:
+        news_dict[idx]["thumbnail"] = n.get("src")
         idx += 1
 
     return news_dict

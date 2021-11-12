@@ -14,6 +14,8 @@ url = "https://api.upbit.com/v1/ticker?markets="
 
 # coin 객체에 이름, 심볼명 주기적으로 업데이트
 def get_coin_symbol():
+    if check_list:
+        check_list.clear()
     res = requests.get("https://api.upbit.com/v1/market/all").json()
     # print(res)
     for li in res:
@@ -23,17 +25,26 @@ def get_coin_symbol():
             coin_object[coin_sym]["name"] = str(list(li.values())[1])
             coin_object[coin_sym]["sym"] = str(coin_sym)[4:]
             check_list.append(coin_sym)
-    # print(', '.join(check_list))
+    # print(", ".join(check_list))
+
 
 # coin_object 안에 데이터 넣기
 # 얼마마다 갱신할 지
 def update_coin_data():
+    # print(f"check_list = {check_list}")
+    # print("init coin_list")
     coin_list = []
-    tot_URL = url + ', '.join(check_list)
+    # print("temp_URL = url")
+    temp_URL = url
+    # print("tot_URL")
+    tot_URL = temp_URL + ",".join(check_list)
+    # print(tot_URL)
+    # print(temp_URL)
     tot_res = requests.get(tot_URL).json()
+    # print(tot_res)
     for res in tot_res:
         # print(res)
-        sym = res['market']
+        sym = res["market"]
         pri = res["trade_price"]
         hi_pri = res["highest_52_week_price"]
         low_pri = res["lowest_52_week_price"]
@@ -52,7 +63,7 @@ def update_coin_data():
         coin_object[sym]["acc_trade_volume_24h"] = res["acc_trade_volume_24h"]
         coin_object[sym]["acc_trade_price_24h"] = trade_vol
         coin_list.append(coin_object[sym])
-    
+
     # 테스트용 출력
     # for coin in coin_list:
     #     print(coin, end='\n\n-----------------------------------------------------------------------------------\n\n')
