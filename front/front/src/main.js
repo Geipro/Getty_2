@@ -14,6 +14,7 @@ Vue.use(IconsPlugin)
 Vue.filter("makeComma", val =>{
   return String(val).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 })
+
 Vue.use(VueLodash, { name: 'custom' , lodash: lodash })
 
 new Vue({

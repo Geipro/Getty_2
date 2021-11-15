@@ -12,7 +12,7 @@
             <th scope="col">만기 후 이율</th>
             <th scope="col">우대 조건</th>
             <th scope="col">가입 제한</th>
-            <th scope="col">최고 한도</th>
+            <th scope="col">최고 한도(원)</th>
             <th scope="col">유의사항</th>
           </tr>
         </thead>

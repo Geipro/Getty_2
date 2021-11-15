@@ -1,5 +1,5 @@
 <template>
-    <div class="board conatiner-fluid h-100">
+    <div class="board conatiner-fluid h-100" style="text-align: center;">
       <Navbar/>
       <div class="row justify-content-center align-items-center h-100 mt-4">
         <board-list v-if="Blist"

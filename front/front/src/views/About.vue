@@ -1,5 +1,5 @@
 <template>
-  <div class="about conatiner h-100">
+  <div class="about conatiner h-100" style="text-align: center;">
     <Navbar/>
     <div class="row justify-content-center align-items-center h-100">
       <div class="col-4 d-flex flex-column my-5">
