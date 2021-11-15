@@ -7,7 +7,7 @@
             <div v-if="item.content != ''">
                 <div class="md-12">
                     <div class="text-left">
-                        <h4 class="float-left text-left mr-5">{{item.user_id}}</h4>
+                        <a class="float-left text-left mr-5">{{item.user_id}}</a>
                         <a class="float-right text-right ml-5">  --- {{item.create_date}}</a>
                     </div>
                     <!-- <div class="float-right text-right">
