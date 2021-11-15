@@ -80,11 +80,11 @@ def getDeposit():
         deposit["etc_note"] = result["etc_note"]
         deposit_list.append(deposit)
 
-    for dl in deposit_list:
-        print(
-            dl,
-            end="\n\n-----------------------------------------------------------------------------\n\n",
-        )
+    # for dl in deposit_list:
+    #     print(
+    #         dl,
+    #         end="\n\n-----------------------------------------------------------------------------\n\n",
+    #     )
 
 
 # 적금 데이터 get
@@ -112,11 +112,11 @@ def getSaving():
         saving["max_limit"] = result["max_limit"]
         saving["etc_note"] = result["etc_note"]
         saving_list.append(saving)
-    for dl in saving_list:
-        print(
-            dl,
-            end="\n\n-----------------------------------------------------------------------------\n\n",
-        )
+    # for dl in saving_list:
+    #     print(
+    #         dl,
+    #         end="\n\n-----------------------------------------------------------------------------\n\n",
+    #     )
 
 
 # 주택담보대출 API get
@@ -190,11 +190,11 @@ def getRentHouse():
                 rentHouse["lend_rate_max"] = option.find("lend_rate_max").text
                 rentHouse["lend_rate_avg"] = option.find("lend_rate_avg").text
         rentHouse_list.append(rentHouse)
-        for mg in rentHouse_list:
-            print(
-                mg,
-                end="\n\n-----------------------------------------------------------------------\n\n",
-            )
+        # for mg in rentHouse_list:
+        #     print(
+        #         mg,
+        #         end="\n\n-----------------------------------------------------------------------\n\n",
+        #     )
 
 
 # 개인신용대출 API get
@@ -226,11 +226,11 @@ def getcreditLoan():
                 creditLoan["crdt_grad_13"] = option.find("crdt_grad_13").text
                 creditLoan["crdt_grad_avg"] = option.find("crdt_grad_avg").text
         creditLoan_list.append(creditLoan)
-        for mg in creditLoan_list:
-            print(
-                mg,
-                end="\n\n-----------------------------------------------------------------------\n\n",
-            )
+        # for mg in creditLoan_list:
+        #     print(
+        #         mg,
+        #         end="\n\n-----------------------------------------------------------------------\n\n",
+        #     )
 
 
 if __name__ == "__main__":
