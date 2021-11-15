@@ -8,7 +8,6 @@
           <tr class="text-warning">
             <th scope="col" >은행 이름 </th>
             <th scope="col">상품 이름</th>
-            <th scope="col">가입 방법</th>
             <th scope="col">대출 종류명</th>
             <th scope="col">신용평가회사</th>
             <th scope="col">900점 초과 금리</th>
@@ -20,13 +19,13 @@
             <th scope="col">301 ~ 400</th>
             <th scope="col">300 이하</th>
             <th scope="col">평균 금리</th>
+            <th scope="col">가입 방법</th>
           </tr>
         </thead>
         <tbody>
           <tr class="text-white" v-for="(element, idx) in CreditLoan" :key="idx">
             <td>{{ element.bank_name }}</td>
             <td>{{ element.product_name }}</td>
-            <td>{{ element.join_way }}</td>
             <td>{{ element.crdt_prdt_type_nm }}</td>
             <td>{{ element.cb_name }}</td>
             <td>{{ element.crdt_grad_1 }}%</td>
@@ -38,6 +37,7 @@
             <td>{{ element.crdt_grad_12 }}%</td>
             <td>{{ element.crdt_grad_13 }}%</td>
             <td>{{ element.crdt_grad_avg }}%</td>
+            <td>{{ element.join_way }}</td>
           </tr>
         </tbody>
       </table>

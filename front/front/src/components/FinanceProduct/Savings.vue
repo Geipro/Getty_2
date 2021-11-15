@@ -8,24 +8,33 @@
           <tr class="text-warning">
             <th scope="col" >은행 이름 </th>
             <th scope="col">상품 이름</th>
+            <th scope="col">평균 금리</th>
+            <th scope="col">최고 금리</th>
             <th scope="col">가입 경로</th>
-            <th scope="col">만기 후 이율</th>
-            <th scope="col">우대 조건</th>
             <th scope="col">가입 제한</th>
             <th scope="col">최고 한도(원)</th>
-            <th scope="col">유의사항</th>
+            <th scope="col">상세 정보</th>
           </tr>
         </thead>
         <tbody>
           <tr class="text-white" v-for="(element, idx) in savings" :key="idx">
             <td>{{ element.bank_name }}</td>
             <td>{{ element.product_name }}</td>
+            <td>{{ element.intr_rate }}%</td>
+            <td>{{ element.intr_rate2 }}%</td>
             <td>{{ element.join_way }}</td>
-            <td>{{ element.interest_rate }}</td>
-            <td>{{ element.preferential_term }}</td>
             <td>{{ element.join_deny }}</td>
             <td>{{ element.max_limit }}</td>
-            <td>{{ element.etc_note }}</td>
+            <td>
+              <!-- modal 방식 -->
+                <b-button v-b-modal="'myModal' + idx">상세</b-button>
+
+                <b-modal :id="'myModal' + idx" title="상세페이지">
+                  <p>우대조건 <br> {{ element.preferential_term }}</p>
+                  <p>유의사항 <br> {{ element.etc_note }}</p>
+                  <p>만기 후 이율 <br> {{ element.interest_rate }}</p>
+                </b-modal>
+            </td>
           </tr>
         </tbody>
       </table>
