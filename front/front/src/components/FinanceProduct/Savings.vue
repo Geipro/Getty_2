@@ -24,7 +24,7 @@
             <td>{{ element.intr_rate2 }}%</td>
             <td>{{ element.join_way }}</td>
             <td>{{ element.join_deny }}</td>
-            <td>{{ element.max_limit }}</td>
+            <td>{{ element.max_limit | makeComma }}</td>
             <td>
               <!-- modal 방식 -->
                 <b-button v-b-modal="'myModal' + idx">상세</b-button>

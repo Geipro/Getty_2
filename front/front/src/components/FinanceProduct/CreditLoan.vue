@@ -19,7 +19,7 @@
             <th scope="col">301 ~ 400</th>
             <th scope="col">300 이하</th>
             <th scope="col">평균 금리</th>
-            <th scope="col">가입 방법</th>
+            <th scope="col">상세 정보</th>
           </tr>
         </thead>
         <tbody>
@@ -37,7 +37,13 @@
             <td>{{ element.crdt_grad_12 }}%</td>
             <td>{{ element.crdt_grad_13 }}%</td>
             <td>{{ element.crdt_grad_avg }}%</td>
-            <td>{{ element.join_way }}</td>
+            <td><!-- modal 방식 -->
+                <b-button v-b-modal="'myModal' + idx">상세</b-button>
+
+                <b-modal :id="'myModal' + idx" title="상세페이지">
+                  <p>가입 방법 <br> {{ element.join_way }}</p>
+                </b-modal>
+            </td>
           </tr>
         </tbody>
       </table>
