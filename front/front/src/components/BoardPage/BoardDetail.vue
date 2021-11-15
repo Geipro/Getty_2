@@ -14,13 +14,13 @@
                     </div>
                 </div>
             </div>
-            <div class="content-detail-content">
+            <div class="content-detail-content pt-5 pl-5 pr-5 pb-5">
                 {{context}}
             </div>
-            <div class="content-detail-button">
+            <!-- <div class="content-detail-button">
                 <b-button variant="primary">수정</b-button>
                 <b-button variant="success">삭제</b-button>
-            </div>
+            </div> -->
             <div class="content-detail-comment">
                 <CommentList></CommentList>
             </div>
@@ -35,7 +35,7 @@ import axios from 'axios'
 export default {
     name: "ContentDetail",
     components:{
-        CommentList
+        CommentList,
     },
     data(){
         return{

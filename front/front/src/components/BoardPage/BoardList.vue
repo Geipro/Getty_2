@@ -14,6 +14,8 @@ import axios from 'axios'
 
 export default {
     name: 'BoardList',
+    components: {
+    },
     data (){
         return{
             currentPage : 1,
