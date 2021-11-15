@@ -61,28 +61,51 @@ def getDeposit():
     deposit_list = []
 
     res = requests.get(totURL_list[0]).json()
-    for result in res["result"]["baseList"]:
+
+    baseRES = res["result"]["baseList"]
+    optionRES = res["result"]["optionList"]
+
+    for idx in range(len(baseRES)):
         deposit = dict()
-        deposit["bank_name"] = result["kor_co_nm"]
-        deposit["product_name"] = result["fin_prdt_nm"]
-        deposit["join_way"] = result["join_way"]
-        deposit["interest_rate"] = result["mtrt_int"]
-        deposit["preferential_term"] = result["spcl_cnd"]
-        if result["join_deny"] == "1":
+        deposit["bank_name"] = baseRES[idx]["kor_co_nm"]
+        deposit["product_name"] = baseRES[idx]["fin_prdt_nm"]
+        deposit["join_way"] = baseRES[idx]["join_way"]
+        deposit["interest_rate"] = baseRES[idx]["mtrt_int"]
+        deposit["preferential_term"] = baseRES[idx]["spcl_cnd"]
+        if baseRES[idx]["join_deny"] == "1":
             deposit["join_deny"] = "제한없음"
-        elif result["join_deny"] == "2":
+        elif baseRES[idx]["join_deny"] == "2":
             deposit["join_deny"] = "서민전용"
-        elif result["join_deny"] == "3":
+        elif baseRES[idx]["join_deny"] == "3":
             deposit["join_deny"] = "일부제한"
-        deposit["max_limit"] = result["max_limit"]
-        deposit["etc_note"] = result["etc_note"]
+        deposit["max_limit"] = baseRES[idx]["max_limit"]
+        deposit["etc_note"] = baseRES[idx]["etc_note"]
+        deposit["intr_rate"] = optionRES[idx]["intr_rate"]
+        deposit["intr_rate2"] = optionRES[idx]["intr_rate2"]
         deposit_list.append(deposit)
 
-    for dl in deposit_list:
-        print(
-            dl,
-            end="\n\n-----------------------------------------------------------------------------\n\n",
-        )
+    # for result in res["result"]["baseList"]:
+    #     deposit = dict()
+    #     deposit["bank_name"] = result["kor_co_nm"]
+    #     deposit["product_name"] = result["fin_prdt_nm"]
+    #     deposit["join_way"] = result["join_way"]
+    #     deposit["interest_rate"] = result["mtrt_int"]
+    #     deposit["preferential_term"] = result["spcl_cnd"]
+    #     if result["join_deny"] == "1":
+    #         deposit["join_deny"] = "제한없음"
+    #     elif result["join_deny"] == "2":
+    #         deposit["join_deny"] = "서민전용"
+    #     elif result["join_deny"] == "3":
+    #         deposit["join_deny"] = "일부제한"
+    #     deposit["max_limit"] = result["max_limit"]
+    #     deposit["etc_note"] = result["etc_note"]
+    #     deposit_list.append(deposit)
+
+    # for dl in deposit_list:
+    #     print(
+    #         dl,
+    #         end="\n\n-----------------------------------------------------------------------------\n\n",
+    #     )
 
 
 # 적금 데이터 get
@@ -92,27 +115,51 @@ def getSaving():
 
     res = requests.get(totURL_list[1]).json()
 
-    for result in res["result"]["baseList"]:
+    baseRES = res["result"]["baseList"]
+    optionRES = res["result"]["optionList"]
+
+    for idx in range(len(baseRES)):
         saving = dict()
-        saving["bank_name"] = result["kor_co_nm"]
-        saving["product_name"] = result["fin_prdt_nm"]
-        saving["join_way"] = result["join_way"]
-        saving["interest_rate"] = result["mtrt_int"]
-        saving["preferential_term"] = result["spcl_cnd"]
-        if result["join_deny"] == "1":
+        saving["bank_name"] = baseRES[idx]["kor_co_nm"]
+        saving["product_name"] = baseRES[idx]["fin_prdt_nm"]
+        saving["join_way"] = baseRES[idx]["join_way"]
+        saving["interest_rate"] = baseRES[idx]["mtrt_int"]
+        saving["preferential_term"] = baseRES[idx]["spcl_cnd"]
+        if baseRES[idx]["join_deny"] == "1":
             saving["join_deny"] = "제한없음"
-        elif result["join_deny"] == "2":
+        elif baseRES[idx]["join_deny"] == "2":
             saving["join_deny"] = "서민전용"
-        elif result["join_deny"] == "3":
+        elif baseRES[idx]["join_deny"] == "3":
             saving["join_deny"] = "일부제한"
-        saving["max_limit"] = result["max_limit"]
-        saving["etc_note"] = result["etc_note"]
+        saving["max_limit"] = baseRES[idx]["max_limit"]
+        saving["etc_note"] = baseRES[idx]["etc_note"]
+        saving["intr_rate"] = optionRES[idx]["intr_rate"]
+        saving["intr_rate2"] = optionRES[idx]["intr_rate2"]
         saving_list.append(saving)
-    for dl in saving_list:
-        print(
-            dl,
-            end="\n\n-----------------------------------------------------------------------------\n\n",
-        )
+
+    # for result in res["result"]["baseList"]:
+    #     saving = dict()
+    #     saving["bank_name"] = result["kor_co_nm"]
+    #     saving["product_name"] = result["fin_prdt_nm"]
+    #     saving["join_way"] = result["join_way"]
+    #     saving["interest_rate"] = result["mtrt_int"]
+    #     saving["preferential_term"] = result["spcl_cnd"]
+    #     saving["intr_rate"] = result["intr_rate"]
+    #     saving["intr_rate2"] = result["intr_rate2"]
+    #     if result["join_deny"] == "1":
+    #         saving["join_deny"] = "제한없음"
+    #     elif result["join_deny"] == "2":
+    #         saving["join_deny"] = "서민전용"
+    #     elif result["join_deny"] == "3":
+    #         saving["join_deny"] = "일부제한"
+    #     saving["max_limit"] = result["max_limit"]
+    #     saving["etc_note"] = result["etc_note"]
+    #     saving_list.append(saving)
+    # for dl in saving_list:
+    #     print(
+    #         dl,
+    #         end="\n\n-----------------------------------------------------------------------------\n\n",
+    #     )
 
 
 # 주택담보대출 API get
@@ -186,11 +233,11 @@ def getRentHouse():
                 rentHouse["lend_rate_max"] = option.find("lend_rate_max").text
                 rentHouse["lend_rate_avg"] = option.find("lend_rate_avg").text
         rentHouse_list.append(rentHouse)
-        for mg in rentHouse_list:
-            print(
-                mg,
-                end="\n\n-----------------------------------------------------------------------\n\n",
-            )
+        # for mg in rentHouse_list:
+        #     print(
+        #         mg,
+        #         end="\n\n-----------------------------------------------------------------------\n\n",
+        #     )
 
 
 # 개인신용대출 API get
@@ -222,11 +269,11 @@ def getcreditLoan():
                 creditLoan["crdt_grad_13"] = option.find("crdt_grad_13").text
                 creditLoan["crdt_grad_avg"] = option.find("crdt_grad_avg").text
         creditLoan_list.append(creditLoan)
-        for mg in creditLoan_list:
-            print(
-                mg,
-                end="\n\n-----------------------------------------------------------------------\n\n",
-            )
+        # for mg in creditLoan_list:
+        #     print(
+        #         mg,
+        #         end="\n\n-----------------------------------------------------------------------\n\n",
+        #     )
 
 
 if __name__ == "__main__":
