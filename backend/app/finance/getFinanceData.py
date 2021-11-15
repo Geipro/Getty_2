@@ -68,6 +68,8 @@ def getDeposit():
         deposit["join_way"] = result["join_way"]
         deposit["interest_rate"] = result["mtrt_int"]
         deposit["preferential_term"] = result["spcl_cnd"]
+        deposit["intr_rate"] = result["intr_rate"]
+        deposit["intr_rate2"] = result["intr_rate2"]
         if result["join_deny"] == "1":
             deposit["join_deny"] = "제한없음"
         elif result["join_deny"] == "2":
@@ -99,6 +101,8 @@ def getSaving():
         saving["join_way"] = result["join_way"]
         saving["interest_rate"] = result["mtrt_int"]
         saving["preferential_term"] = result["spcl_cnd"]
+        saving["intr_rate"] = result["intr_rate"]
+        saving["intr_rate2"] = result["intr_rate2"]
         if result["join_deny"] == "1":
             saving["join_deny"] = "제한없음"
         elif result["join_deny"] == "2":
