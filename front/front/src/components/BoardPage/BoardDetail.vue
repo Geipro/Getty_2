@@ -1,6 +1,7 @@
 <template>
     <div>
-        <b-card>
+      <Navbar/>
+        <b-card class="mt-4">
             <div class="content-detail-content-info">
                 <div class="content-detail-content-info-left">
                     <h4 class="w-100">{{title}}</h4>
@@ -31,11 +32,13 @@
 <script>
 import CommentList from '@/components/BoardPage/CommentList.vue'
 import axios from 'axios'
+import Navbar from '@/components/MainPage/Navbar.vue'
 
 export default {
     name: "ContentDetail",
     components:{
         CommentList,
+        Navbar
     },
     data(){
         return{
@@ -44,7 +47,7 @@ export default {
             created : '',
             context : '',
             pid : window.location.pathname.split("/")[2]
-            
+
         };
     },
     created(){

@@ -2,11 +2,13 @@
   <div class="justify-content-center align-items-center" style="text-align: center; width: 100%">
     <Navbar />
     <h2 class="mt-3 mb-4">예금</h2>
+    <p class="mt-3 mb-4" style="text-align: right;">금리 : %</p>
     <div class="d-lg-block col-lg-12 bg-success">
       <table class="table table-bg-light table-hover">
         <thead>
           <tr class="text-warning">
-            <th scope="col" >은행 이름 </th>
+            <!-- <b-table :items="items" :fields="this.fields"></b-table> -->
+            <th scope="col">은행 이름 </th>
             <th scope="col">상품 이름</th>
             <th scope="col">평균 금리</th>
             <th scope="col">최고 금리</th>
@@ -21,8 +23,8 @@
 
             <td>{{ element.bank_name }}</td>
             <td>{{ element.product_name }}</td>
-            <td>{{ element.intr_rate }}%</td>
-            <td>{{ element.intr_rate2 }}%</td>
+            <td>{{ element.intr_rate }}</td>
+            <td>{{ element.intr_rate2 }}</td>
             <td>{{ element.join_way }}</td>
             <td>{{ element.join_deny }}</td>
             <td>{{ isEmpty(element.max_limit) | makeComma }}</td>
@@ -56,6 +58,8 @@ export default {
   data: function () {
     return {
       Depo: [],
+      items_avg : [],
+
       isEmpty(value){
         if(value == null || value.length === 0) {
            return "";
@@ -75,8 +79,8 @@ export default {
     })
     .then((res) =>{
       this.Depo = res.data
-
-      console.log(this.Depo[0])
+      this.items_avg = this.Depo.sort((a, b) => {return b.intr_rate - a.intr_rate})
+      // this.items_max = this.Depo.sort((a, b) => {return b.intr_rate2 - a.intr_rate2})
     }).catch((err) =>{
       console.log(err)
     })
