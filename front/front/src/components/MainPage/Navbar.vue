@@ -24,7 +24,7 @@
   </div>
 
 
-  <div class="justify-content-center mb-4 title-style">
+  <div class="justify-content-center mb-4 title-style" style="text-align: center;">
     <router-link :to="{ name: 'Home' }">
       <img src="@/assets/logo.png" style="width:70px">
     </router-link>

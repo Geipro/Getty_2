@@ -2,6 +2,7 @@
   <div class="justify-content-center align-items-center" style="text-align: center; width: 100%">
     <Navbar />
     <h2 class="mt-3 mb-4">적금</h2>
+    <p class="mt-3 mb-4" style="text-align: right;">금리 : %</p>
     <div class="d-lg-block col-lg-12 bg-success">
       <table class="table table-bg-light table-hover">
         <thead>
@@ -20,8 +21,8 @@
           <tr class="text-white" v-for="(element, idx) in savings" :key="idx">
             <td>{{ element.bank_name }}</td>
             <td>{{ element.product_name }}</td>
-            <td>{{ element.intr_rate }}%</td>
-            <td>{{ element.intr_rate2 }}%</td>
+            <td>{{ element.intr_rate }}</td>
+            <td>{{ element.intr_rate2 }}</td>
             <td>{{ element.join_way }}</td>
             <td>{{ element.join_deny }}</td>
             <td>{{ element.max_limit | makeComma }}</td>
@@ -55,6 +56,8 @@ export default {
   data: function () {
     return {
       savings: [],
+      items_max : [],
+      items_avg : [],
     }
   },
   created(){
@@ -67,8 +70,9 @@ export default {
     })
     .then((res) =>{
       this.savings = res.data
-
-      console.log(this.savings[0])
+      this.items_avg = this.savings.sort((a, b) => {return b.intr_rate - a.intr_rate})
+      // 다중 최고값으로 안됨...
+      // this.items_max = this.savings.sort((a, b) => {return b.intr_rate2 - a.intr_rate2})
     }).catch((err) =>{
       console.log(err)
     })

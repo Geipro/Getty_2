@@ -2,6 +2,7 @@
   <div class="justify-content-center align-items-center" style="text-align: center; width: 100%">
     <Navbar />
     <h2 class="mt-3 mb-4">전세자금대출</h2>
+    <p class="mt-3 mb-4" style="text-align: right;">금리 : %</p>
     <div class="d-lg-block col-lg-12 bg-success">
       <table class="table table-bg-light table-hover">
         <thead>
@@ -9,9 +10,9 @@
             <th scope="col" >은행 이름 </th>
             <th scope="col">상품 이름</th>
             <th scope="col">대출 한도</th>
-            <th scope="col">대출 금리</th>
             <th scope="col">최저 금리</th>
             <th scope="col">최고 금리</th>
+            <th scope="col">평균 금리</th>
           </tr>
         </thead>
         <tbody>
@@ -19,9 +20,9 @@
             <td>{{ element.bank_name }}</td>
             <td>{{ element.product_name }}</td>
             <td>{{ element.loan_lmt }}</td>
-            <td>{{ element.lend_rate_avg }}%</td>
-            <td>{{ element.lend_rate_min }}%</td>
-            <td>{{ element.lend_rate_max }}%</td>
+            <td>{{ isEmpty2(element.lend_rate_min) }}</td>
+            <td>{{ isEmpty2(element.lend_rate_max) }}</td>
+            <td>{{ isEmpty2(element.lend_rate_avg) }}</td>
             <td><!-- modal 방식 -->
                 <b-button v-b-modal="'myModal' + idx">상세</b-button>
 
@@ -51,6 +52,14 @@ export default {
   data: function () {
     return {
       renthouse: [],
+      items_min: [],
+      isEmpty2(value){
+        if(value == null || value.length === 0) {
+           return "-";
+        } else{
+          return value;
+        }
+      }
     }
   },
   created(){
@@ -63,8 +72,8 @@ export default {
     })
     .then((res) =>{
       this.renthouse = res.data
-
-      console.log(this.renthouse[0])
+      // 최저 금리 순으로
+      this.items_min = this.renthouse.sort((a, b) => {return a.lend_rate_min - b.lend_rate_min })
     }).catch((err) =>{
       console.log(err)
     })

@@ -1,6 +1,7 @@
 <template>
     <div>
-        <div class="container mb-3">
+      <Navbar/>
+        <div class="container mb-3 mt-4">
             <h1 class="border text-center">자유게시판</h1>
         </div>
         <div class="container mb-5">
@@ -19,10 +20,13 @@
 
 <script>
 import axios from 'axios'
-
+import Navbar from '@/components/MainPage/Navbar.vue'
 
 export default{
     name: 'BoardCreate',
+    components:{
+        Navbar
+    },
     data(){
         return{
             boardData:{
