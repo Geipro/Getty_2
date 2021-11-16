@@ -397,7 +397,6 @@ def read_item(query: str):
         cur_page += 1
         
         pages = soup.find('div', {'class' : 'sc_page_inner'})
-        print(pages)
         next_page_url = [p for p in pages.find_all('a') if p.text == str(cur_page)][0].get('href')
         
         req = requests.get('https://search.naver.com/search.naver' + next_page_url)
