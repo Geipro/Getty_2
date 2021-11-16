@@ -9,11 +9,11 @@
         <table class="table table-bg-light table-hover">
           <thead>
             <tr class="text-white">
-              <th scope="col">번호</th>
-              <th scope="col">제목</th>
-              <th scope="col">내용</th>
-              <th scope="col">조회수</th>
-              <th scope="col">작성일</th>
+              <th style="width: 10%">번호</th>
+              <th style="width: 20%">제목</th>
+              <th style="width: 50%">내용</th>
+              <th style="width: 10%">조회수</th>
+              <th style="width: 10%">작성일</th>
             </tr>
           </thead>
          <tbody>
