@@ -23,9 +23,27 @@
             <td>{{ element.product_name }}</td>
             <td>{{ element.loan_lmt }}</td>
             <td>{{ element.mrtg_type_nm }}</td>
-            <td>{{ isEmpty2(element.lend_rate_min) }}</td>
-            <td>{{ isEmpty2(element.lend_rate_max) }}</td>
-            <td>{{ isEmpty2(element.lend_rate_avg) }}</td>
+            <td>{{ element.lend_rate_min }}</td>
+            <td>{{ element.lend_rate_max }}</td>
+            <td>{{ element.lend_rate_avg }}</td>
+            <td><!-- modal 방식 -->
+                <b-button v-b-modal="'myModal' + idx">상세</b-button>
+
+                <b-modal :id="'myModal' + idx" title="상세페이지">
+                  <p>중도상환 수수료 <br> {{ element.erly_rpay_fee }}</p>
+                  <p>연체 이자율 <br> {{ element.dly_rate }}</p>
+                  <p>가입 방법 <br> {{ element.join_way }}</p>
+                </b-modal>
+            </td>
+          </tr>
+          <tr class="text-white" v-for="(element, idx) in mortgage_no_avg" :key="idx">
+            <td>{{ element.bank_name }}</td>
+            <td>{{ element.product_name }}</td>
+            <td>{{ element.loan_lmt }}</td>
+            <td>{{ element.mrtg_type_nm }}</td>
+            <td>{{ element.lend_rate_min }}</td>
+            <td>{{ element.lend_rate_max }}</td>
+            <td>{{ element.lend_rate_avg }}</td>
             <td><!-- modal 방식 -->
                 <b-button v-b-modal="'myModal' + idx">상세</b-button>
 
@@ -55,6 +73,7 @@ export default {
   data: function () {
     return {
       mortgage: [],
+      mortgage_no_avg: [],
       items_avg: [],
       isEmpty2(value){
         if(value == null || value.length === 0) {
@@ -74,7 +93,22 @@ export default {
       url: 'https://k5a405.p.ssafy.io/backend/mortgage',
     })
     .then((res) =>{
-      this.mortgage = res.data
+      // Object.keys(object_1).includes('test_1')
+      for(let i = 0; i < res.data.length; ++i){
+        if(Object.keys(res.data[i]).includes("lend_rate_avg") === false){
+          this.mortgage_no_avg.push(res.data[i])
+          continue
+        }
+        if(res.data[i]["lend_rate_avg"] == "" ||res.data[i]["lend_rate_max"] == "" ||res.data[i]["lend_rate_min"] == ""){
+          this.mortgage_no_avg.push(res.data[i])
+          continue
+        }
+        this.mortgage.push(res.data[i])
+        // console.log(res.data[i])
+      }
+      console.log(this.mortgage)
+      console.log(this.mortgage_no_avg)
+
       // 최저 금리 순으로(왜 주택담보대출만 정렬이 안되지?)
       this.items_avg = this.mortgage.sort((a, b) => {return a.lend_rate_avg - b.lend_rate_avg })
       // this.items_min = this.mortgage.sort((a, b) => {return (a === 0) - (b === 0) || a.lend_rate_min - b.lend_rate_min })
