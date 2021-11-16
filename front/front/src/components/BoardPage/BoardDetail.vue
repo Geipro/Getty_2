@@ -16,8 +16,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="content-detail-content pt-5 pl-5 pr-5 pb-5" style="padding:2rem;">
-                    {{context}}
+                <div class="content-detail-content pt-5 pl-5 pr-5 pb-5" style="padding:2rem; min-height:500px; height:auto">
+                    <pre>
+                        {{context}}
+                    </pre>
                 </div>
                 <!-- <div class="content-detail-button">
                     <b-button variant="primary">수정</b-button>
