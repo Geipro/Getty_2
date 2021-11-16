@@ -1,9 +1,13 @@
 <template>
-    <div class="board text-center container">
-        <h1 class="mb-5">자유게시판</h1>
-        <b-table dark striped hover bordered :items="items" :per-page="perPage" :current-page="currentPage" :fields="this.fields" @row-clicked="rowClick"></b-table>
-        <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" align="center"></b-pagination>
-        <div class="mt-5 mb-4 flow-row float-right justify-content-end" >
+    <div class="container">
+        <div class="inline-block mb-2">
+            <a class="mt-3 mb-4 float-left text-left offset-4" style="font-size: 30px">자유게시판</a>
+        </div>
+        <b-table class="text-center" dark striped hover bordered 
+        :items="items" :per-page="perPage" :current-page="currentPage" 
+        :fields="this.fields" @row-clicked="rowClick" style="width:900px" align="center"></b-table>
+        <b-pagination class="text-center" v-model="currentPage" :total-rows="rows" :per-page="perPage" align="center"></b-pagination>
+        <div class="mt-5 mb-4 text-center" >
             <b-button variant="primary" class="" @click="write">글쓰기</b-button>
         </div>
     </div>

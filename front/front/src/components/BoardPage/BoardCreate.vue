@@ -1,19 +1,21 @@
 <template>
-    <div>
+    <div class="row justify-content-center">
         <Navbar/>
-        <div class="container mb-3 mt-4 col-md-8">
-            <h1 class="border text-center">자유게시판</h1>
-        </div>
-        <div class="container mb-5">
-            <b-input v-model="boardData.title" placeholder="제목을 입력하시오"></b-input>
-        </div>
-        <div class="container mb-3">
-            <b-form-textarea v-model="boardData.content" placeholder="내용을 입력하시오" rows="10" max-rows="10">
-            </b-form-textarea>
-        </div>
-        <div class="text-center">
-            <b-button variant="primary" class="mr-3" @click="uploadContent()">저장</b-button> &nbsp;&nbsp;
-            <b-button @click="cancel">취소</b-button>
+        <div class="border mb-3 mt-4" style="width:950px; height:500px">
+            <div class="container mb-3 mt-4 border" style="width:850px; padding:1rem">
+                <h3 class=" text-left">자유게시판</h3>
+            </div>
+            <div class="container mb-3" style="width:900px">
+                <b-input v-model="boardData.title" placeholder="제목을 입력하시오"></b-input>
+            </div>
+            <div class="container mb-3" style="width:900px">
+                <b-form-textarea v-model="boardData.content" placeholder="내용을 입력하시오" rows="10" max-rows="10">
+                </b-form-textarea>
+            </div>
+            <div class="text-center">
+                <b-button variant="primary" class="mr-3" @click="uploadContent()">저장</b-button> &nbsp;&nbsp;
+                <b-button @click="cancel">취소</b-button>
+            </div>
         </div>
     </div>
 </template>
