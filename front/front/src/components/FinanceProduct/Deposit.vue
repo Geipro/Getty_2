@@ -11,7 +11,7 @@
     <div class="mb-4 mr-5 float-right text-right" style="width:200px; float:right; clear:both; background-color:#1f2325;">
       <a class="float-right">금리 : %</a>
     </div> -->
-    
+
     <div class="d-lg-block col-lg-12" style="background-color:#23282d" >
       <table class="table table-bg-light table-hover">
         <thead>
@@ -71,7 +71,7 @@ export default {
 
       isEmpty(value){
         if(value == null || value.length === 0) {
-           return "";
+           return "-";
         } else{
           return value;
         }
