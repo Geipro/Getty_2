@@ -2,7 +2,7 @@
 <div>
   <div class="d-flex justify-content-end">
     <span v-if="isLogin">
-      <ul class="ulist">
+      <ul class="ulist" >
         <li>
           <router-link :to="{ name: 'Mywrite' }" class="text-light nav-link mt-3">마이페이지</router-link>
         </li>
@@ -32,11 +32,11 @@
   </div>
   <div>
     <b-navbar type="dark" variant="#2c3e50" class="justify-content-center">
-      <b-navbar-nav>
+      <b-navbar-nav style="border-bottom:1px solid #ffffff;">
         <!-- Navbar dropdowns -->
-        <b-nav-item-dropdown text="금융 상품 정보" right class="nav-margin text-light">
-          <b-dropdown-item href="/deposit">예금</b-dropdown-item>
-          <b-dropdown-item href="/savings">적금</b-dropdown-item>
+        <b-nav-item-dropdown text="금융상품" right class="nav-margin text-light">
+          <b-dropdown-item href="/deposit">예금 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b-dropdown-item>
+          <b-dropdown-item href="/savings">적금&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b-dropdown-item>
           <b-dropdown-item href="/creditloan">신용대출</b-dropdown-item>
           <b-dropdown-item href="/renthouse">전세자금대출</b-dropdown-item>
           <b-dropdown-item href="/mortgage">주택담보대출</b-dropdown-item>

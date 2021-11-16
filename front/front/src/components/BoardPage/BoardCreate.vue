@@ -1,7 +1,7 @@
 <template>
     <div>
-      <Navbar/>
-        <div class="container mb-3 mt-4">
+        <Navbar/>
+        <div class="container mb-3 mt-4 col-md-8">
             <h1 class="border text-center">자유게시판</h1>
         </div>
         <div class="container mb-5">

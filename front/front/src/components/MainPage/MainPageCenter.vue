@@ -5,7 +5,7 @@
       <iframe width="900px" height="320px" src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_c4176&symbol=BINANCE%3ABTCUSDT&interval=15&symboledit=1&saveimage=0&toolbarbg=f1f3f6&studies=%5B%5D&theme=Dark&style=1&timezone=Asia%2FSeoul&studies_overrides=%7B%7D&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&locale=kr&utm_source=kimpga.com&utm_medium=widget&utm_campaign=chart&utm_term=BINANCE%3ABTCUSDT" frameborder="0"></iframe>
     </div>
 
-    <div class="d-lg-block col-lg-12 bg-success">
+    <div class="d-lg-block col-lg-12" style="background-color:#23282d">
       <!-- <b-table striped hover :items="items" :fields="fields"></b-table> -->
 
       <!-- <div><img :src=`https://static.upbit.com/logos/${imgName}.png`>{{ element.name }}</div> -->

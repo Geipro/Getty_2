@@ -15,7 +15,7 @@
                     </div>
                 </div>
             </div>
-            <div class="content-detail-content pt-5 pl-5 pr-5 pb-5">
+            <div class="content-detail-content pt-5 pl-5 pr-5 pb-5" style="padding:2rem;">
                 {{context}}
             </div>
             <!-- <div class="content-detail-button">

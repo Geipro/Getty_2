@@ -1,9 +1,18 @@
 <template>
   <div class="justify-content-center align-items-center" style="text-align: center; width: 100%">
     <Navbar />
-    <h2 class="mt-3 mb-4">예금</h2>
-    <p class="mt-3 mb-4" style="text-align: right;">금리 : %</p>
-    <div class="d-lg-block col-lg-12 bg-success">
+    <div class="inline-block mb-2">
+      <a class="mt-3 mb-4 float-left" style="font-size: 30px">예금</a>
+      <a class="float-right offset-10">금리 : %</a>
+    </div>
+    <!-- <div class="float-left mt-3 mb-2" style="width:200px; float:left; background-color:#1f2325;">
+      <a style="font-size:30px">예금</a>
+    </div>
+    <div class="mb-4 mr-5 float-right text-right" style="width:200px; float:right; clear:both; background-color:#1f2325;">
+      <a class="float-right">금리 : %</a>
+    </div> -->
+    
+    <div class="d-lg-block col-lg-12" style="background-color:#23282d" >
       <table class="table table-bg-light table-hover">
         <thead>
           <tr class="text-warning">
