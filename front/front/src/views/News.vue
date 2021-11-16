@@ -24,19 +24,6 @@ export default {
     Navbar,
     NewsList,
   },
-  // watch: {
-  //   search: function (val) {
-  //     axios
-  //       .get('http://127.0.0.1/news/' + encodeURI(val, 'utf-8'))
-  //       .then((response) => {
-  //         this.Newslist = response.data;
-  //         console.log(this.NewsList);
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   },
-  // },
   data() {
     return {
       searchQuery: '',
@@ -48,15 +35,6 @@ export default {
     findNews: function() {
       console.log(this.searchQuery);
       console.log('https://k5a405.p.ssafy.io/backend/news/' + encodeURI(this.searchQuery, 'utf-8'));
-      // axios
-      //   .get('http://127.0.0.1:8000/news/' + encodeURI(this.searchQuery, 'utf-8'))
-      //   .then((response) => {
-      //     this.newslist = response.data;
-      //     console.log(this.newslist);
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //   });
       axios
         .get('https://k5a405.p.ssafy.io/backend/news/' + encodeURI(this.searchQuery, 'utf-8'))
         .then((response) => {
@@ -66,19 +44,13 @@ export default {
         .catch((error) => {
           console.log(error);
         });
-// 클릭 후 저장
-      // localStorage.setItem('key', 'value')
       this.clearInput();
     },
 
-    clearInput: function() {
+clearInput: function() {
       this.searchQuery = "";
     }
-
-
   }
-
-
 }
 </script>
 

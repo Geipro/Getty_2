@@ -358,37 +358,49 @@ async def get_credit_loan(db: Session = Depends(get_db)):
 @app.get("/news/{query}")
 def read_item(query: str):
     query = query.replace(' ', '+') 
-    news_num = 10
+    news_num = 18
     news_url = 'https://search.naver.com/search.naver?where=news&sm=tab_jum&query={}'
     req = requests.get(news_url.format(query))
     soup = BeautifulSoup(req.text, 'html.parser')
 
     news_dict = {} 
+    cur_page = 1
+    idx = 0
 
-    table = soup.find('ul',{'class' : 'list_news'})
-    li_list = table.find_all('li', {'id': re.compile('sp_nws.*')})
-    area_list = [li.find('div', {'class' : 'news_area'}) for li in li_list]
-    a_list = [area.find('a', {'class' : 'news_tit'}) for area in area_list]
-    desc_list = [li.find('div', {'class':'news_dsc'}).find('div', {'class':'dsc_wrap'}).get_text() for li in li_list]
+    while idx < news_num:
+        table = soup.find('ul',{'class' : 'list_news'})
+        li_list = table.find_all('li', {'id': re.compile('sp_nws.*')})
+        area_list = [li.find('div', {'class' : 'news_area'}) for li in li_list]
+        a_list = [area.find('a', {'class' : 'news_tit'}) for area in area_list]
+        desc_list = [li.find('div', {'class':'news_dsc'}).find('div', {'class':'dsc_wrap'}).get_text() for li in li_list]
 
-    thumbnail_list = []
-    for li in li_list:
-        try:
-            thumbnail_list.append(li.find('a', {'class': 'dsc_thumb'}).find('img').get('src'))
-        except:
-            thumbnail_list.append('')
+        thumbnail_list = []
+        for li in li_list:
+            try:
+                thumbnail_list.append(li.find('a', {'class': 'dsc_thumb'}).find('img').get('src'))
+            except:
+                thumbnail_list.append('')
 
-    for i in range(news_num):
-        n = a_list[i]
-        title = n.get('title')
-        url = n.get('href')
-        thumbnail = thumbnail_list[i]
-        desc = desc_list[i]
-        news_dict[i] = {
-            'title': title,
-            'url': url,
-            'thumbnail': thumbnail,
-            'desc': desc,
-        }
+        for i in range(len(a_list[:min(len(a_list), news_num-idx)])):
+            n = a_list[i]
+            title = n.get('title')
+            url = n.get('href')
+            thumbnail = thumbnail_list[i]
+            desc = desc_list[i]
+            news_dict[idx] = {
+                'title': title,
+                'url': url,
+                'thumbnail': thumbnail,
+                'desc': desc,
+            }
+            idx += 1
+        cur_page += 1
+        
+        pages = soup.find('div', {'class' : 'sc_page_inner'})
+        print(pages)
+        next_page_url = [p for p in pages.find_all('a') if p.text == str(cur_page)][0].get('href')
+        
+        req = requests.get('https://search.naver.com/search.naver' + next_page_url)
+        soup = BeautifulSoup(req.text, 'html.parser')
 
     return news_dict

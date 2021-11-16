@@ -2,7 +2,9 @@
   <div class="card" >
     <div class="card-inner">
       <div class="card-front">
-        <img :src="news.thumbnail" class="news-img">
+        <img v-if="news.thumbnail.length ===0" src="@/assets/logo.png" class="logo-img">
+        <img v-else :src="news.thumbnail" class="news-img">
+
         <div class="front-container">
           <p class="news-title" :title="news.title"> {{news.title}}</p>
         </div>
@@ -86,6 +88,13 @@ export default {
   width:100%;
   height: 170px;
 }
+
+.logo-img {
+  width: 150px;
+  height: 150px;
+  margin-top: 20px;
+}
+
 
 .front-container {
   padding: 0px 20px 0px 20px;
