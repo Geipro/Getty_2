@@ -357,44 +357,38 @@ async def get_credit_loan(db: Session = Depends(get_db)):
 
 @app.get("/news/{query}")
 def read_item(query: str):
-    query = query.replace(" ", "+")
+    query = query.replace(' ', '+') 
     news_num = 10
-    news_url = "https://search.naver.com/search.naver?where=news&sm=tab_jum&query={}"
+    news_url = 'https://search.naver.com/search.naver?where=news&sm=tab_jum&query={}'
     req = requests.get(news_url.format(query))
-    soup = BeautifulSoup(req.text, "html.parser")
+    soup = BeautifulSoup(req.text, 'html.parser')
 
-    news_dict = {}
-    idx = 0
+    news_dict = {} 
 
-    table = soup.find("ul", {"class": "list_news"})
-    li_list = table.find_all("li", {"id": re.compile("sp_nws.*")})
-    area_list = [li.find("div", {"class": "news_area"}) for li in li_list]
-    a_list = [area.find("a", {"class": "news_tit"}) for area in area_list]
-    thumbnail_list = [
-        li.find("a", {"class": "dsc_thumb"}).find("img") for li in li_list
-    ]
-    desc_list = [
-        li.find('div', {'class':'news_dsc'}).find('div', {'class':'dsc_wrap'}).get_text() for li in li_list
-    ]
+    table = soup.find('ul',{'class' : 'list_news'})
+    li_list = table.find_all('li', {'id': re.compile('sp_nws.*')})
+    area_list = [li.find('div', {'class' : 'news_area'}) for li in li_list]
+    a_list = [area.find('a', {'class' : 'news_tit'}) for area in area_list]
+    desc_list = [li.find('div', {'class':'news_dsc'}).find('div', {'class':'dsc_wrap'}).get_text() for li in li_list]
 
+    thumbnail_list = []
+    for li in li_list:
+        try:
+            thumbnail_list.append(li.find('a', {'class': 'dsc_thumb'}).find('img').get('src'))
+        except:
+            thumbnail_list.append('')
 
-    for n in a_list[: min(len(a_list), news_num - idx)]:
-        news_dict[idx] = {
-            "title": n.get("title"),
-            "url": n.get("href"),
+    for i in range(news_num):
+        n = a_list[i]
+        title = n.get('title')
+        url = n.get('href')
+        thumbnail = thumbnail_list[i]
+        desc = desc_list[i]
+        news_dict[i] = {
+            'title': title,
+            'url': url,
+            'thumbnail': thumbnail,
+            'desc': desc,
         }
-        idx += 1
-
-    idx = 0
-
-    for n in thumbnail_list[: min(len(thumbnail_list), news_num - idx)]:
-        news_dict[idx]["thumbnail"] = n.get("src")
-        idx += 1
-
-    idx = 0
-
-    for desc in desc_list[:min(len(thumbnail_list), news_num-idx)]:
-        news_dict[idx]['desc'] = desc
-        idx += 1
 
     return news_dict
