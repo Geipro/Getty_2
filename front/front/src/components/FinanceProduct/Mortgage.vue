@@ -3,7 +3,7 @@
     <Navbar />
     <div class="inline-block mb-2">
       <a class="mt-3 mb-4 float-left" style="font-size: 30px">주택담보대출</a>
-      <a class="float-right offset-10">금리 : %</a>
+      <a class="float-right offset-9">금리 : %</a>
     </div>
     <div class="d-lg-block col-lg-12" style="background-color:#23282d" >
       <table class="table table-bg-light table-hover">
