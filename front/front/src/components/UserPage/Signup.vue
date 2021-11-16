@@ -104,7 +104,7 @@
             </div>
             <label class="radio is-inline" v-for="sex in sexs" :key="sex">
               <input type="radio" :value="sex.value" class="radio-input" v-validate="'required'" data-vv-as="성별" v-model="userinfo.sex" name="sex">
-              <span class="radio-label ml-5 mr-3"> {{ sex.text }} </span>
+              <span class="radio-label ml-5 mr-3" style="margin-left:10px; margin-right:50px"> {{ sex.text }} </span>
             </label>
             <br>
             <span class="error" v-if="errors.has('sex')">{{errors.first('sex')}}</span>
@@ -158,8 +158,8 @@ import ko from 'vee-validate/dist/locale/ko.js'
 
 ko.messages.required = (field) => `${field} 이/가 필요합니다.`
 
-ko.messages.password = (field) => `${field}는 최소 4글자 여야합니다.`
-ko.messages.passwordConfirmation = (field) => `${field}는 최소 4글자 여야합니다.`
+ko.messages.password = (field) => `${field}는 최소 6글자 여야합니다.`
+ko.messages.passwordConfirmation = (field) => `${field}는 최소 6글자 여야합니다.`
 
 
 const config = {
@@ -281,12 +281,15 @@ export default {
             alert('회원가입이 완료되었습니다~!')
             //this.login()
             this.$emit('login')
+            this.login()
           }).catch((err) =>{
             alert(err)
           })
         }else {
           alert('비밀번호 확인하여주세요!')
         }
+      }else{
+        alert("항목을 전부 입력해주세요!")
       }
     }
   }
