@@ -1,31 +1,35 @@
 <template>
-    <div>
-      <Navbar/>
-        <b-card class="mt-4">
-            <div class="content-detail-content-info">
-                <div class="content-detail-content-info-left">
-                    <h4 class="w-100">{{title}}</h4>
-                </div>
-                <div class="content-detail-content-info-right">
-                    <div class="content-detail-content-info-right-user">
-                        글쓴이 : {{user}}
+    <div class="board row justify-content-center">
+        <Navbar/>
+        <div style="background-color:#1f2325; width:900px;">
+            <div class="mt-4">
+                <div class="content-detail-content-info">
+                    <div class="content-detail-content-info-left">
+                        <h4 class="w-100">{{title}}</h4>
                     </div>
-                    <div class="content-detail-content-info-right-created">
-                        작성일 : {{created}}
+                    <div class="content-detail-content-info-right">
+                        <div>
+                            글쓴이 : {{user}}
+                        </div>
+                        <div>
+                            작성일 : {{created}}
+                        </div>
                     </div>
                 </div>
+                <div class="content-detail-content pt-5 pl-5 pr-5 pb-5" style="padding:2rem; min-height:500px; height:auto">
+                    <pre>
+                        {{context}}
+                    </pre>
+                </div>
+                <!-- <div class="content-detail-button">
+                    <b-button variant="primary">수정</b-button>
+                    <b-button variant="success">삭제</b-button>
+                </div> -->
+                <div class="content-detail-comment">
+                    <CommentList></CommentList>
+                </div>
             </div>
-            <div class="content-detail-content pt-5 pl-5 pr-5 pb-5" style="padding:2rem;">
-                {{context}}
-            </div>
-            <!-- <div class="content-detail-button">
-                <b-button variant="primary">수정</b-button>
-                <b-button variant="success">삭제</b-button>
-            </div> -->
-            <div class="content-detail-comment">
-                <CommentList></CommentList>
-            </div>
-        </b-card>
+        </div>
     </div>
 </template>
 
@@ -73,31 +77,23 @@ export default {
 </script>
 
 <style scoped>
-div{
-    background-color: black;
-}
 .content-detail-content-info {
     border: 1px solid white;
     display: flex;
-    justify-content: space-between;
 }
 
 .content-detail-content-info-left {
-    width: 720px;
+    width: 700px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
     text-align: center;
     padding: 1rem;
 }
 
 .content-detail-content-info-right {
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    width: 200px;
+    margin-left:30px;
     padding: 1rem;
 }
 
@@ -105,7 +101,7 @@ div{
     border: 1px solid white;
     margin-top: 1rem;
     padding-top: 1rem;
-    min-height: 720px;
+    height: 500px;
 }
 
 .content-detail-button {
@@ -119,4 +115,5 @@ div{
     margin-top: 1rem;
     padding: 2rem;
 }
+
 </style>

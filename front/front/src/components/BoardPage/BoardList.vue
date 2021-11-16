@@ -1,5 +1,8 @@
 <template>
-    <div class="container">
+    <div v-if="!isLogin" class="container text-center">
+        <h1>로그인을 해주세요!</h1>
+    </div>
+    <div v-else class="container">
         <div class="inline-block mb-2">
             <a class="mt-3 mb-4 float-left text-left offset-4" style="font-size: 30px">자유게시판</a>
         </div>
@@ -23,6 +26,7 @@ export default {
     data (){
         return{
             currentPage : 1,
+            isLogin:false,
             perPage : 10,
             fields: [
                 {
@@ -61,6 +65,11 @@ export default {
         }).catch((err) => {
             alert(err)
         })
+    },
+    mounted(){
+        if(localStorage.getItem("Token") != null){
+            this.isLogin = true;
+        }
     },
     methods:{
         rowClick(item){

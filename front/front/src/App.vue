@@ -18,7 +18,7 @@
   /* text-align: center; */
   color: white;
   background-color: #1f2325;
-  min-height: 100vh;
+  min-height: 98vh;
   position: relative;
   width: 100%;
 }
