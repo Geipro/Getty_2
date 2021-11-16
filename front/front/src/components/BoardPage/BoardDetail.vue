@@ -1,6 +1,6 @@
 <template>
-    <div>
-      <Navbar/>
+    <div class="row justify-content-center" style="width:900px">
+        <Navbar/>
         <b-card class="mt-4">
             <div class="content-detail-content-info">
                 <div class="content-detail-content-info-left">
@@ -74,7 +74,7 @@ export default {
 
 <style scoped>
 div{
-    background-color: black;
+    background-color: #1f2325
 }
 .content-detail-content-info {
     border: 1px solid white;
@@ -83,7 +83,7 @@ div{
 }
 
 .content-detail-content-info-left {
-    width: 720px;
+    width: 600px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -105,7 +105,7 @@ div{
     border: 1px solid white;
     margin-top: 1rem;
     padding-top: 1rem;
-    min-height: 720px;
+    height: 500px;
 }
 
 .content-detail-button {

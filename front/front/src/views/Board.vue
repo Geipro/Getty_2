@@ -1,7 +1,7 @@
 <template>
-    <div class="board conatiner-fluid h-100">
+    <div class="board conatiner-fluid">
       <Navbar/>
-      <div class="row justify-content-center h-100 mt-4">
+      <div class="row justify-content-center mt-4">
         <board-list v-if="Blist"
         ></board-list>
 

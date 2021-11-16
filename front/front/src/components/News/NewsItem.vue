@@ -9,8 +9,8 @@
       </div>
       <div class="card-back">
         <div class="news-summary">
-          <!-- <p>{{news.desc}}</p> -->
-          <p>'탭루트' 업데이트로 거래 보안·효율성 개선 정성호 특파원 = 최대 가상화폐 비트코인이 4년 만에 업데이트되면서 비트코인 네트워크에서 중개인 없는 거래가 가능한 '스마트 계약'이 더 활성화될 전망이다. CNBC는... </p>
+          <p>{{news.desc}}</p>
+          <!-- <p>'탭루트' 업데이트로 거래 보안·효율성 개선 정성호 특파원 = 최대 가상화폐 비트코인이 4년 만에 업데이트되면서 비트코인 네트워크에서 중개인 없는 거래가 가능한 '스마트 계약'이 더 활성화될 전망이다. CNBC는... </p> -->
         </div>
         <div class="redirectbutton">
           <a class="news-redirect" :title="news.title" :href="news.url"> 기사 페이지로 </a>
