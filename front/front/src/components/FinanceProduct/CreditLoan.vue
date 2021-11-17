@@ -8,13 +8,13 @@
     <div class="d-lg-block col-lg-12" style="background-color:#23282d">
       <table class="table table-bg-light table-hover">
         <thead>
-          <tr class="text-warning">
-            <th scope="col" >은행 이름 </th>
-            <th scope="col">상품 이름</th>
-            <th scope="col">대출 종류명</th>
-            <th scope="col">신용평가회사</th>
+          <tr class="text-warning" style="text-align: center;">
+            <th scope="col" style="text-align: left;">은행 이름 </th>
+            <th scope="col" style="text-align: left;">상품 이름</th>
+            <th scope="col" style="text-align: left;">대출 종류명</th>
+            <th scope="col" style="text-align: left;">신용평가회사</th>
             <th scope="col">평균 금리</th>
-            <th scope="col">900점 초과 금리</th>
+            <th scope="col">900 초과</th>
             <th scope="col">801 ~ 900</th>
             <th scope="col">701 ~ 800</th>
             <th scope="col">601 ~ 700</th>
@@ -27,10 +27,10 @@
         </thead>
         <tbody>
           <tr class="text-white" v-for="(element, idx) in CreditLoan" :key="idx">
-            <td>{{ element.bank_name }}</td>
-            <td>{{ element.product_name }}</td>
-            <td>{{ element.crdt_prdt_type_nm }}</td>
-            <td>{{ element.cb_name }}</td>
+            <td style="text-align: left;">{{ element.bank_name }}</td>
+            <td style="text-align: left;">{{ element.product_name }}</td>
+            <td style="text-align: left;">{{ element.crdt_prdt_type_nm }}</td>
+            <td style="text-align: left;">{{ element.cb_name }}</td>
             <td>{{ isEmpty2(element.crdt_grad_avg) }}</td>
             <td>{{ isEmpty2(element.crdt_grad_1) }}</td>
             <td>{{ isEmpty2(element.crdt_grad_4) }}</td>
@@ -43,7 +43,7 @@
             <td><!-- modal 방식 -->
                 <b-button v-b-modal="'myModal' + idx">상세</b-button>
 
-                <b-modal :id="'myModal' + idx" title="상세페이지">
+                <b-modal :id="'myModal' + idx" title="상세페이지" cancel-title="취소" ok-title="확인">
                   <p>가입 방법 <br> {{ element.join_way }}</p>
                 </b-modal>
             </td>

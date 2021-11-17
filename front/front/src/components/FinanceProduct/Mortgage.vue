@@ -8,48 +8,48 @@
     <div class="d-lg-block col-lg-12" style="background-color:#23282d" >
       <table class="table table-bg-light table-hover">
         <thead>
-          <tr class="text-warning">
-            <th scope="col" >은행 이름 </th>
+          <tr class="text-warning" style="text-align: left;">
+            <th scope="col" >은행 이름</th>
             <th scope="col">상품 이름</th>
             <th scope="col">대출 한도</th>
             <th scope="col">담보 유형</th>
-            <th scope="col">최저 금리</th>
-            <th scope="col">최고 금리</th>
-            <th scope="col">평균 금리</th>
-            <th scope="col">상세 정보</th>
+            <th scope="col" style="text-align: center;">최저 금리</th>
+            <th scope="col" style="text-align: center;">최고 금리</th>
+            <th scope="col" style="text-align: center;">평균 금리</th>
+            <th scope="col" style="text-align: center;">상세 정보</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="text-white" v-for="(element, idx) in mortgage" :key="idx">
+          <tr class="text-white" v-for="(element, idx) in mortgage" :key="idx" style="text-align: left;">
             <td>{{ element.bank_name }}</td>
             <td>{{ element.product_name }}</td>
             <td>{{ element.loan_lmt }}</td>
             <td>{{ element.mrtg_type_nm }}</td>
-            <td>{{ element.lend_rate_min }}</td>
-            <td>{{ element.lend_rate_max }}</td>
-            <td>{{ element.lend_rate_avg }}</td>
-            <td><!-- modal 방식 -->
+            <td style="text-align: center;">{{ element.lend_rate_min }}</td>
+            <td style="text-align: center;">{{ element.lend_rate_max }}</td>
+            <td style="text-align: center;">{{ element.lend_rate_avg }}</td>
+            <td style="text-align: center;"><!-- modal 방식 -->
                 <b-button v-b-modal="'myModal' + idx">상세</b-button>
 
-                <b-modal :id="'myModal' + idx" title="상세페이지">
+                <b-modal :id="'myModal' + idx" title="상세페이지" cancel-title="취소" ok-title="확인">
                   <p>중도상환 수수료 <br> {{ element.erly_rpay_fee }}</p>
                   <p>연체 이자율 <br> {{ element.dly_rate }}</p>
                   <p>가입 방법 <br> {{ element.join_way }}</p>
                 </b-modal>
             </td>
           </tr>
-          <tr class="text-white" v-for="(element, idx) in mortgage_no_avg" :key="idx">
+          <tr class="text-white" v-for="(element, index) in mortgage_no_avg" :key="index" style="text-align: left;">
             <td>{{ element.bank_name }}</td>
             <td>{{ element.product_name }}</td>
             <td>{{ element.loan_lmt }}</td>
             <td>{{ element.mrtg_type_nm }}</td>
-            <td>{{ element.lend_rate_min }}</td>
-            <td>{{ element.lend_rate_max }}</td>
-            <td>{{ element.lend_rate_avg }}</td>
-            <td><!-- modal 방식 -->
-                <b-button v-b-modal="'myModal' + idx">상세</b-button>
+            <td style="text-align: center;">{{ isEmpty2(element.lend_rate_min) }}</td>
+            <td style="text-align: center;">{{ isEmpty2(element.lend_rate_max) }}</td>
+            <td style="text-align: center;">{{ isEmpty2(element.lend_rate_avg) }}</td>
+            <td style="text-align: center;"><!-- modal 방식 -->
+                <b-button v-b-modal="'myModal2' + index">상세</b-button>
 
-                <b-modal :id="'myModal' + idx" title="상세페이지">
+                <b-modal :id="'myModal2' + index" title="상세페이지" cancel-title="취소" ok-title="확인">
                   <p>중도상환 수수료 <br> {{ element.erly_rpay_fee }}</p>
                   <p>연체 이자율 <br> {{ element.dly_rate }}</p>
                   <p>가입 방법 <br> {{ element.join_way }}</p>
@@ -108,10 +108,8 @@ export default {
         this.mortgage.push(res.data[i])
         // console.log(res.data[i])
       }
-      console.log(this.mortgage)
-      console.log(this.mortgage_no_avg)
-
-      // 최저 금리 순으로(왜 주택담보대출만 정렬이 안되지?)
+      // console.log(this.mortgage)
+      // console.log(this.mortgage_no_avg)
       this.items_avg = this.mortgage.sort((a, b) => {return a.lend_rate_avg - b.lend_rate_avg })
       // this.items_min = this.mortgage.sort((a, b) => {return (a === 0) - (b === 0) || a.lend_rate_min - b.lend_rate_min })
     }).catch((err) =>{

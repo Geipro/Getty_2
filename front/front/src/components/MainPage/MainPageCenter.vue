@@ -11,8 +11,8 @@
       <!-- <div><img :src=`https://static.upbit.com/logos/${imgName}.png`>{{ element.name }}</div> -->
       <table class="table table-bg-light table-hover">
         <thead>
-          <tr class="text-warning">
-            <th scope="col" >이름</th>
+          <tr class="text-warning" style="text-align: right;">
+            <th scope="col" style="text-align: left;">이름</th>
             <th scope="col">현재가</th>
             <th scope="col">전일대비</th>
             <th scope="col">고가대비(52주)</th>
@@ -21,8 +21,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="text-white" v-for="(element, idx) in crypto" :key="idx">
-            <td>
+          <tr class="text-white" v-for="(element, idx) in crypto" :key="idx" style="text-align: right;">
+            <td style="text-align: left;">
               <div>{{ element.name }}</div>
               <div>{{ element.sym }}</div>
             </td>
