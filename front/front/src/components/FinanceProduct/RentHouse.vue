@@ -54,7 +54,7 @@ export default {
   data: function () {
     return {
       renthouse: [],
-      items_min: [],
+      items_avg: [],
       isEmpty2(value){
         if(value == null || value.length === 0) {
            return "-";
@@ -75,7 +75,7 @@ export default {
     .then((res) =>{
       this.renthouse = res.data
       // 최저 금리 순으로
-      this.items_min = this.renthouse.sort((a, b) => {return a.lend_rate_min - b.lend_rate_min })
+      this.items_avg = this.renthouse.sort((a, b) => {return a.lend_rate_avg - b.lend_rate_avg })
     }).catch((err) =>{
       console.log(err)
     })
