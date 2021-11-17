@@ -4,7 +4,7 @@
         <div class="myform form">
             <div class="logo mb-3">
                 <div class="col-md-12 text-center">
-                    <h1 class="text-light" >Login</h1>
+                    <h1 class="text-light" >로그인</h1>
                 </div>
             </div>
             <form action="#" method="post" name="login" class=" form-signin ">
@@ -12,12 +12,12 @@
                     <div class="float-left">
                         <div class="form-group">
                             <input type="id" name="id" v-validate="'required'" v-model="credential.user_id" data-vv-as="ID"
-                            class="form-control" :class="{error: errors.has('ID')}"  id="ID" aria-describedby="idHelp" placeholder="Enter ID">
+                            class="form-control" :class="{error: errors.has('ID')}"  id="ID" aria-describedby="idHelp" placeholder="아이디">
                             <span class="error" v-if="errors.has('ID')">{{errors.first('ID')}}</span>
                         </div>
                         <div class="form-group mt-3 mb-3">
                             <input type="password" ref="password" name="password" v-validate="'required|min:6'" v-model="credential.user_pw" data-vv-as="Password"
-                            class="form-control" :class="{error: errors.has('password')}"  id="password" aria-describedby="password" placeholder="Enter Password">
+                            class="form-control" :class="{error: errors.has('password')}"  id="password" aria-describedby="password" placeholder="비밀번호">
                             <span class="error" v-if="errors.has('password')">{{errors.first('password')}}</span>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="form-group mt-3">
-                    <a href="#" class="mr-5 text-light" id="signup" @click="signup">회원가입</a>
+                    <a href="#" class="mr-5 text-light" id="signup" @click="signup">회원가입 페이지로 이동</a>
                 </div>
             </form>        
         </div>

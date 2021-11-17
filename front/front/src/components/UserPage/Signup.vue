@@ -4,7 +4,7 @@
     <div class="myform form">
       <div class="logo mb-3">
         <div class="col-md-12 text-center">
-          <h1 class="text-light" >Signup</h1>
+          <h1 class="text-light" >회원가입</h1>
         </div>
       </div>
       <form 
@@ -16,7 +16,7 @@
             <label for="user_name">이름</label>
           </div>
           <input type="text"  name="user_name" v-model="userinfo.user_name"
-          class="form-control" id="user_name" aria-describedby="nameHelp" placeholder="Enter Username">
+          class="form-control" id="user_name" aria-describedby="nameHelp" placeholder="이름을 입력하세요">
           <span class="error" v-if="errors.has('user_name')">{{errors.first('user_name')}}</span>
         </div>
         <div class="form-group mb-2 mt-2">
@@ -24,7 +24,7 @@
             <label for="user_id">아이디</label>
           </div>
           <input type="id" name="user_id" v-validate="'required'" v-model="userinfo.user_id" data-vv-as="ID"
-          class="form-control" :class="{error: errors.has('user_id')}"  id="id" aria-describedby="UserIdHelp" placeholder="Enter ID">
+          class="form-control" :class="{error: errors.has('user_id')}"  id="id" aria-describedby="UserIdHelp" placeholder="ID를 입력하세요">
           <span class="error" v-if="errors.has('user_id')">{{errors.first('user_id')}}</span>
         </div>
 
@@ -122,7 +122,7 @@
             <label for="password">Password</label>
           </div>
           <input type="password" ref="password" name="password" v-validate="'required|min:4'" v-model="userinfo.user_pw" data-vv-as="Password"
-          class="form-control" :class="{error: errors.has('password')}"  id="password" aria-describedby="password" placeholder="Enter Password">
+          class="form-control" :class="{error: errors.has('password')}"  id="password" aria-describedby="password" placeholder="비밀번호를 입력해주세요">
           <span class="error" v-if="errors.has('password')">{{errors.first('password')}}</span>
         </div>
         <div class="form-group text-left mb-2 mt-2">
@@ -130,7 +130,7 @@
             <label for="passwordConfirmation">Password Confirmation</label>
           </div>
           <input type="password" name="passwordConfirmation" v-validate="'confirmed:password'" v-model="userinfo.passwordConfirmation" data-vv-as="Password Confirmation"
-          class="form-control" :class="{error: errors.has('passwordConfirmation')}"  id="passwordConfirmation" aria-describedby="passwordConfirmationHelp" placeholder="Enter Password One More">
+          class="form-control" :class="{error: errors.has('passwordConfirmation')}"  id="passwordConfirmation" aria-describedby="passwordConfirmationHelp" placeholder="비밀번호를 한번 더 입력해주세요">
           <span class="error" v-if="errors.has('passwordConfirmation')">{{errors.first('passwordConfirmation')}}</span>
         </div>
         <div class="text-center float-right mt-3 mb-3">
@@ -140,7 +140,7 @@
         </div>
         <div class="col-md-12 ">
           <div class="form-group">
-            <a href="#" class="mr-5 text-light" id="login" @click="login">로그인</a>
+            <a href="#" class="mr-5 text-light" id="login" @click="login">로그인 페이지로 이동</a>
           </div>
         </div>
       </form>

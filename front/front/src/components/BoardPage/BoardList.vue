@@ -4,7 +4,7 @@
     </div>
     <div v-else class="container">
         <div class="inline-block mb-2">
-            <a class="mt-3 mb-4 float-left text-left offset-4" style="font-size: 30px">자유게시판</a>
+            <a class="mt-3 mb-4 float-left text-left offset-4" style="font-size: 30px">커뮤니티</a>
         </div>
         <b-table class="text-center" dark striped hover bordered 
         :items="items" :per-page="perPage" :current-page="currentPage" 
