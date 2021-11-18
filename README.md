@@ -147,16 +147,16 @@ zipp==3.6.0
 
 ## 서비스 URL
 
-> https://k5a405.p.ssafy.io/
+> [https://k5a405.p.ssafy.io/](https://k5a405.p.ssafy.io/)
 
 ---
 
 ## Test Account
 
-> **ID**
+### ID
 
 - TestProject
 
-> **PW**
+### PW
 
 - test1289
