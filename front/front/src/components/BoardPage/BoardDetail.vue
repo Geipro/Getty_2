@@ -64,7 +64,8 @@ export default {
             this.created = res.data.create_date
             this.context = res.data.content
         }).catch((err) => {
-            alert(err)
+            //alert(err)
+            err
         })
     },
     methods:{

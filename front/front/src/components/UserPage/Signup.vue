@@ -15,7 +15,7 @@
           <div class="d-flex justify-content-between">
             <label for="user_name">이름</label>
           </div>
-          <input type="text"  name="user_name" v-model="userinfo.user_name"
+          <input type="text"  name="user_name" v-validate="'required'" v-model="userinfo.user_name"
           class="form-control" id="user_name" aria-describedby="nameHelp" placeholder="이름을 입력하세요">
           <span class="error" v-if="errors.has('user_name')">{{errors.first('user_name')}}</span>
         </div>
@@ -283,7 +283,8 @@ export default {
             this.$emit('login')
             this.login()
           }).catch((err) =>{
-            alert(err)
+            //alert(err)
+            err
           })
         }else {
           alert('비밀번호 확인하여주세요!')

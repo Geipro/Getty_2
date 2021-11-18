@@ -77,7 +77,8 @@ export default {
       this.renthouse = res.data
       this.items_avg = this.renthouse.sort((a, b) => {return a.lend_rate_avg - b.lend_rate_avg })
     }).catch((err) =>{
-      console.log(err)
+      //console.log(err)
+      err
     })
   },
 }

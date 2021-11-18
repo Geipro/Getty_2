@@ -75,7 +75,8 @@ export default {
 
       // console.log(this.crypto[0])
     }).catch((err) =>{
-      console.log(err)
+      //console.log(err)
+      err
     })
   },
 }

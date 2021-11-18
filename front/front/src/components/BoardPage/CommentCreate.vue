@@ -45,10 +45,12 @@ export default {
                 },
                 data : this.comment
             }).then((res) => {
-                console.log(res)
+                //console.log(res)
+                res
                 this.$router.go();
             }).catch((err) => {
-                alert(err)
+                //alert(err)
+                err
             })
         },
     }

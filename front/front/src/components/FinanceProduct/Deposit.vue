@@ -82,7 +82,8 @@ export default {
       this.Depo = res.data
       this.items_avg = this.Depo.sort((a, b) => {return b.intr_rate - a.intr_rate})
     }).catch((err) =>{
-      console.log(err)
+      //console.log(err)
+      err
     })
   },
 }

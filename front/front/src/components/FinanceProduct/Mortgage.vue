@@ -108,7 +108,8 @@ export default {
       }
       this.items_avg = this.mortgage.sort((a, b) => {return a.lend_rate_avg - b.lend_rate_avg })
     }).catch((err) =>{
-      console.log(err)
+      //console.log(err)
+      err
     })
   },
 }

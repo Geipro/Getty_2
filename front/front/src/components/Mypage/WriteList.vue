@@ -58,7 +58,8 @@ export default {
       this.postinfo = res.data
       // console.log(this.postinfo[0])
     }).catch((err) =>{
-      console.log(err)
+      //console.log(err)
+      err
     })
   }
 }

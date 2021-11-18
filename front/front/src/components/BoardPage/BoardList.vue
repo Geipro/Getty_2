@@ -63,7 +63,8 @@ export default {
             this.boards = res.data
             this.items = this.boards.sort((a, b) => {return b.pid - a.pid})
         }).catch((err) => {
-            alert(err)
+            //alert(err)
+            err
         })
     },
     mounted(){

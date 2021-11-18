@@ -50,9 +50,10 @@ export default {
             }
         }).then((res) => {
             this.comments = res.data
-            console.log(res)
+            //console.log(res)
         }).catch((err) => {
-            alert(err)
+            //alert(err)
+            err
         })
     },
     methods: {

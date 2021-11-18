@@ -79,7 +79,8 @@ export default {
       this.savings = res.data
       this.items_avg = this.savings.sort((a, b) => {return b.intr_rate - a.intr_rate})
     }).catch((err) =>{
-      console.log(err)
+      //console.log(err)
+      err
     })
   },
 }

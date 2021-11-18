@@ -54,9 +54,9 @@ export default{
             }).then(res => {
                 alert("업로드가 완료되었습니다.")
                 this.$router.push({path:'/board'})
-                console.log(res)
+                res
             }).catch(err => {
-                alert(err)
+                err
             })
         },
         updateContent(){

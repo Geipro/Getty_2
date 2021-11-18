@@ -94,12 +94,14 @@ export default {
                     alert(`${user.data.user_name} 님 반갑습니다!`);
                     this.$router.push({ name: 'Home'})
                   }).catch((err) => {
-                    alert(err);
+                    //alert(err);
+                    err
                   });
                 }
             }).catch((err) => {
                 alert("탈퇴한 회원이거나 아이디 혹은 비밀번호가 일치하지 않습니다.")
-                console.log(err.headers)
+                //console.log(err.headers)
+                err
             })
         },
 

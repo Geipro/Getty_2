@@ -53,7 +53,8 @@ export default {
       this.reviewinfo = res.data
       // console.log(this.reviewinfo[0])
     }).catch((err) =>{
-      console.log(err)
+      //console.log(err)
+      err
     })
   }
 }
