@@ -28,14 +28,14 @@
             <td style="text-align: center;">{{ element.lend_rate_min }}</td>
             <td style="text-align: center;">{{ element.lend_rate_max }}</td>
             <td style="text-align: center;">{{ element.lend_rate_avg }}</td>
-            <td style="text-align: center;"><!-- modal 방식 -->
-                <b-button v-b-modal="'myModal' + idx">상세</b-button>
+            <td style="text-align: center;">
+              <b-button v-b-modal="'myModal' + idx">상세</b-button>
 
-                <b-modal :id="'myModal' + idx" title="상세페이지" cancel-title="취소" ok-title="확인">
-                  <p>중도상환 수수료 <br> {{ element.erly_rpay_fee }}</p>
-                  <p>연체 이자율 <br> {{ element.dly_rate }}</p>
-                  <p>가입 방법 <br> {{ element.join_way }}</p>
-                </b-modal>
+              <b-modal :id="'myModal' + idx" title="상세페이지" cancel-title="취소" ok-title="확인">
+                <p>중도상환 수수료 <br> {{ element.erly_rpay_fee }}</p>
+                <p>연체 이자율 <br> {{ element.dly_rate }}</p>
+                <p>가입 방법 <br> {{ element.join_way }}</p>
+              </b-modal>
             </td>
           </tr>
           <tr class="text-white" v-for="(element, index) in mortgage_no_avg" :key="index" style="text-align: left;">
@@ -46,14 +46,14 @@
             <td style="text-align: center;">{{ isEmpty2(element.lend_rate_min) }}</td>
             <td style="text-align: center;">{{ isEmpty2(element.lend_rate_max) }}</td>
             <td style="text-align: center;">{{ isEmpty2(element.lend_rate_avg) }}</td>
-            <td style="text-align: center;"><!-- modal 방식 -->
-                <b-button v-b-modal="'myModal2' + index">상세</b-button>
+            <td style="text-align: center;">
+              <b-button v-b-modal="'myModal2' + index">상세</b-button>
 
-                <b-modal :id="'myModal2' + index" title="상세페이지" cancel-title="취소" ok-title="확인">
-                  <p>중도상환 수수료 <br> {{ element.erly_rpay_fee }}</p>
-                  <p>연체 이자율 <br> {{ element.dly_rate }}</p>
-                  <p>가입 방법 <br> {{ element.join_way }}</p>
-                </b-modal>
+              <b-modal :id="'myModal2' + index" title="상세페이지" cancel-title="취소" ok-title="확인">
+                <p>중도상환 수수료 <br> {{ element.erly_rpay_fee }}</p>
+                <p>연체 이자율 <br> {{ element.dly_rate }}</p>
+                <p>가입 방법 <br> {{ element.join_way }}</p>
+              </b-modal>
             </td>
           </tr>
         </tbody>
@@ -95,7 +95,6 @@ export default {
       url: 'https://k5a405.p.ssafy.io/backend/mortgage',
     })
     .then((res) =>{
-      // Object.keys(object_1).includes('test_1')
       for(let i = 0; i < res.data.length; ++i){
         if(Object.keys(res.data[i]).includes("lend_rate_avg") === false){
           this.mortgage_no_avg.push(res.data[i])
@@ -106,12 +105,8 @@ export default {
           continue
         }
         this.mortgage.push(res.data[i])
-        // console.log(res.data[i])
       }
-      // console.log(this.mortgage)
-      // console.log(this.mortgage_no_avg)
       this.items_avg = this.mortgage.sort((a, b) => {return a.lend_rate_avg - b.lend_rate_avg })
-      // this.items_min = this.mortgage.sort((a, b) => {return (a === 0) - (b === 0) || a.lend_rate_min - b.lend_rate_min })
     }).catch((err) =>{
       console.log(err)
     })

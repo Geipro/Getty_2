@@ -40,12 +40,12 @@
             <td>{{ isEmpty2(element.crdt_grad_11) }}</td>
             <td>{{ isEmpty2(element.crdt_grad_12) }}</td>
             <td>{{ isEmpty2(element.crdt_grad_13) }}</td>
-            <td><!-- modal 방식 -->
-                <b-button v-b-modal="'myModal' + idx">상세</b-button>
+            <td>
+              <b-button v-b-modal="'myModal' + idx">상세</b-button>
 
-                <b-modal :id="'myModal' + idx" title="상세페이지" cancel-title="취소" ok-title="확인">
-                  <p>가입 방법 <br> {{ element.join_way }}</p>
-                </b-modal>
+              <b-modal :id="'myModal' + idx" title="상세페이지" cancel-title="취소" ok-title="확인">
+                <p>가입 방법 <br> {{ element.join_way }}</p>
+              </b-modal>
             </td>
           </tr>
         </tbody>
@@ -87,7 +87,6 @@ export default {
     })
     .then((res) =>{
       this.CreditLoan = res.data
-      // 최저 금리 순으로
       this.items_avg = this.CreditLoan.sort((a, b) => {return a.crdt_grad_avg - b.crdt_grad_avg })
     }).catch((err) =>{
       console.log(err)

@@ -26,14 +26,14 @@
             <td style="text-align: center;">{{ isEmpty2(element.lend_rate_min) }}</td>
             <td style="text-align: center;">{{ isEmpty2(element.lend_rate_max) }}</td>
             <td style="text-align: center;">{{ isEmpty2(element.lend_rate_avg) }}</td>
-            <td style="text-align: center;"><!-- modal 방식 -->
-                <b-button v-b-modal="'myModal' + idx">상세</b-button>
+            <td style="text-align: center;">
+              <b-button v-b-modal="'myModal' + idx">상세</b-button>
 
-                <b-modal :id="'myModal' + idx" title="상세페이지" cancel-title="취소" ok-title="확인">
-                  <p>중도상환 수수료 <br> {{ element.erly_rpay_fee }}</p>
-                  <p>연체 이자율 <br> {{ element.dly_rate }}</p>
-                  <p>가입 방법 <br> {{ element.join_way }}</p>
-                </b-modal>
+              <b-modal :id="'myModal' + idx" title="상세페이지" cancel-title="취소" ok-title="확인">
+                <p>중도상환 수수료 <br> {{ element.erly_rpay_fee }}</p>
+                <p>연체 이자율 <br> {{ element.dly_rate }}</p>
+                <p>가입 방법 <br> {{ element.join_way }}</p>
+              </b-modal>
             </td>
           </tr>
         </tbody>
@@ -75,7 +75,6 @@ export default {
     })
     .then((res) =>{
       this.renthouse = res.data
-      // 최저 금리 순으로
       this.items_avg = this.renthouse.sort((a, b) => {return a.lend_rate_avg - b.lend_rate_avg })
     }).catch((err) =>{
       console.log(err)

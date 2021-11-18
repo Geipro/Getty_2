@@ -51,7 +51,7 @@ export default {
     })
     .then((res) =>{
       this.reviewinfo = res.data
-      console.log(this.reviewinfo[0])
+      // console.log(this.reviewinfo[0])
     }).catch((err) =>{
       console.log(err)
     })

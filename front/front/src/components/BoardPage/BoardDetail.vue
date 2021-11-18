@@ -21,10 +21,6 @@
                         {{context}}
                     </pre>
                 </div>
-                <!-- <div class="content-detail-button">
-                    <b-button variant="primary">수정</b-button>
-                    <b-button variant="success">삭제</b-button>
-                </div> -->
                 <div class="content-detail-comment">
                     <CommentList></CommentList>
                 </div>
@@ -62,7 +58,7 @@ export default {
                 pid : this.pid
             }
         }).then((res) => {
-            console.log(res)
+            // console.log(res)
             this.title = res.data.title
             this.user = res.data.user_id
             this.created = res.data.create_date

@@ -10,7 +10,6 @@
       <table class="table table-bg-light table-hover">
         <thead>
           <tr class="text-warning" style="text-align: left;">
-            <!-- <b-table :items="items" :fields="this.fields"></b-table> -->
             <th scope="col">은행 이름 </th>
             <th scope="col">상품 이름</th>
             <th scope="col" style="text-align: center;">평균 금리</th>
@@ -32,14 +31,13 @@
             <td>{{ element.join_deny }}</td>
             <td style="text-align: right;">{{ isEmpty(element.max_limit) | makeComma }}</td>
             <td style="text-align: center;">
-              <!-- modal 방식 -->
-                <b-button v-b-modal="'myModal' + idx">상세</b-button>
+              <b-button v-b-modal="'myModal' + idx">상세</b-button>
 
-                <b-modal :id="'myModal' + idx" title="상세페이지" cancel-title="취소" ok-title="확인">
-                  <p>우대조건 <br> {{ element.preferential_term }}</p>
-                  <p>유의사항 <br> {{ element.etc_note }}</p>
-                  <p>만기 후 이율 <br> {{ element.interest_rate }}</p>
-                </b-modal>
+              <b-modal :id="'myModal' + idx" title="상세페이지" cancel-title="취소" ok-title="확인">
+                <p>우대조건 <br> {{ element.preferential_term }}</p>
+                <p>유의사항 <br> {{ element.etc_note }}</p>
+                <p>만기 후 이율 <br> {{ element.interest_rate }}</p>
+              </b-modal>
             </td>
           </tr>
         </tbody>
@@ -83,7 +81,6 @@ export default {
     .then((res) =>{
       this.Depo = res.data
       this.items_avg = this.Depo.sort((a, b) => {return b.intr_rate - a.intr_rate})
-      // this.items_max = this.Depo.sort((a, b) => {return b.intr_rate2 - a.intr_rate2})
     }).catch((err) =>{
       console.log(err)
     })

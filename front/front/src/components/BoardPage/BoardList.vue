@@ -6,8 +6,8 @@
         <div class="inline-block mb-2">
             <a class="mt-3 mb-4 float-left text-left offset-4" style="font-size: 30px">커뮤니티</a>
         </div>
-        <b-table class="text-center" dark striped hover bordered 
-        :items="items" :per-page="perPage" :current-page="currentPage" 
+        <b-table class="text-center" dark striped hover bordered
+        :items="items" :per-page="perPage" :current-page="currentPage"
         :fields="this.fields" @row-clicked="rowClick" style="width:900px" align="center"></b-table>
         <b-pagination class="text-center" v-model="currentPage" :total-rows="rows" :per-page="perPage" align="center"></b-pagination>
         <div class="mt-5 mb-4 text-center" >
@@ -35,7 +35,7 @@ export default {
                     sortable: false
                 },
                 {
-                    key: 'title', 
+                    key: 'title',
                     label : '제목',
                     sortable: false
                 },
@@ -59,7 +59,7 @@ export default {
             method: 'get',
             url: `https://k5a405.p.ssafy.io/backend/posts`,
         }).then((res) => {
-            console.log(res)
+            // console.log(res)
             this.boards = res.data
             this.items = this.boards.sort((a, b) => {return b.pid - a.pid})
         }).catch((err) => {
@@ -78,7 +78,7 @@ export default {
             })
         },
         getList(){
-            //axios
+
         },
         write(){
             this.$router.push({

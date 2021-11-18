@@ -12,7 +12,7 @@
                 <b-button class="btn-lg" variant="info" @click="createComment()">작성하기</b-button>
             </b-input-group-append>
         </b-input-group>
-    </div>    
+    </div>
 </template>
 
 <script>

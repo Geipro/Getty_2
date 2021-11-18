@@ -73,7 +73,7 @@ export default {
     .then((res) =>{
       this.crypto = res.data
 
-      console.log(this.crypto[0])
+      // console.log(this.crypto[0])
     }).catch((err) =>{
       console.log(err)
     })

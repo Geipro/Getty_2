@@ -56,7 +56,7 @@ export default {
     })
     .then((res) =>{
       this.postinfo = res.data
-      console.log(this.postinfo[0])
+      // console.log(this.postinfo[0])
     }).catch((err) =>{
       console.log(err)
     })
