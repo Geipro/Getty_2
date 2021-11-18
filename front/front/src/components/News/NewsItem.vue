@@ -43,7 +43,6 @@ export default {
 <style scoped>
 .card {
   display:inline-block;
-  /* box-shadow: 0 3px 8px 3px rgba(255,255,255,0.1); */
   transition: 0.5s;
   width: 250px;
   height: 300px;
@@ -54,14 +53,12 @@ export default {
   margin-top: 0em;
   margin-bottom: 4em;
   background-color: transparent;
-  /* perspective: 1000px; */
 }
 
 .card-inner {
   position: relative;
   width: 100%;
   height: 100%;
-  /* text-align: center; */
   transition: transform 0.8s;
   transform-style: preserve-3d;
   border-radius: 10px;
@@ -70,16 +67,14 @@ export default {
 }
 
 .card:hover .card-inner {
-  /* box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); */
   transform: rotateY(180deg);
 }
 
-/* Position the front and back side */
 .card-front, .card-back {
   position: absolute;
   width: 100%;
   height: 100%;
-  -webkit-backface-visibility: hidden; /* Safari */
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 
@@ -99,7 +94,6 @@ export default {
 .front-container {
   padding: 0px 20px 0px 20px;
   word-wrap: break-word;
-/* overflow: hidden; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -107,20 +101,10 @@ export default {
 }
 
 .news-title {
-  /* position: absolute;
-  top: 50%;
-  left: 50%; */
   font-size: 15px;
-  /* overflow: hidden; */
-
-  /* text-overflow: ellipsis; */
-  /* white-space: nowrap; */
-  /* color: white; */
   width: 100%;
   height: 130px;
   font-weight: bolder;
-  /* margin-bottom: 2em; */
-  /* cursor: pointer; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -131,8 +115,6 @@ export default {
 
 .card-back {
   transform: rotateY(180deg);
-  /* width: 100%;
-  height: 100%; */
   border-radius: 10px;
   text-align: center;
   display: flex;
@@ -143,23 +125,18 @@ export default {
 .news-summary{
   background-color: #172a46;
   padding: 0px 20px 0px 20px;
-
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 100%;
   height: 250px;
-
-  /* flex-flow: row wrap; */
   overflow: hidden;
   border-radius: 10px 10px 0px 0px;
 }
 
 .redirectbutton {
   border-radius: 0px 0px 10px 10px;
-  /* cursor: pointer; */
-  /* background-color: #018786; */
   background-color: white;
   color: #018786;
 

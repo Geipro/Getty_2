@@ -33,13 +33,10 @@ export default {
   },
   methods: {
     findNews: function() {
-      console.log(this.searchQuery);
-      console.log('https://k5a405.p.ssafy.io/backend/news/' + encodeURI(this.searchQuery, 'utf-8'));
       axios
         .get('https://k5a405.p.ssafy.io/backend/news/' + encodeURI(this.searchQuery, 'utf-8'))
         .then((response) => {
           this.newsList = response.data;
-          // console.log(this.newsList);
         })
         .catch((error) => {
           console.log(error);
