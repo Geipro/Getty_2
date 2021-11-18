@@ -140,8 +140,10 @@ zipp==3.6.0
 
 ### Database
 
-- Mysql
-- SQLAlchemy        1.4.25
+```txt
+MySQL
+SQLAlchemy        1.4.25
+```
 
 ---
 
